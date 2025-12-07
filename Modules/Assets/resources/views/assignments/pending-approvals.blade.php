@@ -53,6 +53,8 @@
         const pendingApprovalsAjaxUrl = "{{ route('tenant.assignments.pendingApproval') }}";
         const resendNotificationUrl = "{{ route('tenant.assignments.sendReminder', ':id') }}";
         const assignmentDetailsUrl = "{{ route('tenant.assignments.details', ':id') }}";
+        const cancelAssignmentUrl = "{{ route('tenant.assignments.cancel', ':id') }}";
+        const updateAssignmentUrl = "{{ route('tenant.assignments.update', ':id') }}";
         const bulkRemindUrl = "{{ route('tenant.assignments.bulkRemind') }}";
         const exportUrl = "{{ route('tenant.assignments.exportPendingApprovals') }}";
         const csrfToken = "{{ csrf_token() }}";

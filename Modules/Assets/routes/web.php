@@ -114,6 +114,8 @@ Route::group(['middleware' => function ($request, $next) {
         Route::get('/{assignment}/details', [AssetAssignmentController::class, 'assignmentDetails'])->name('details');
         Route::post('/{assignment}/send-reminder', [AssetAssignmentController::class, 'sendReminder'])->name('sendReminder');
         Route::post('/{assignment}/resend-notification', [AssetAssignmentController::class, 'sendReminder'])->name('resendNotification');
+        Route::post('/{assignment}/cancel', [AssetAssignmentController::class, 'cancelAssignment'])->name('cancel');
+        Route::put('/{assignment}/update', [AssetAssignmentController::class, 'updateAssignment'])->name('update');
         Route::post('/bulk-remind', [AssetAssignmentController::class, 'bulkSendReminders'])->name('bulkRemind');
         Route::post('/bulk-approve-returns', [AssetAssignmentController::class, 'bulkApproveReturns'])->name('bulkApproveReturns');
         

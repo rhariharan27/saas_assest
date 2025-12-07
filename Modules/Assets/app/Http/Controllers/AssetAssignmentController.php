@@ -81,12 +81,16 @@ class AssetAssignmentController extends Controller
             ], 409);
         }
 
-        // --- Fourth check - Prevent immediate reassignment to user who just rejected ---
+        // --- Fourth check - Prevent immediate reassignment to user who just rejected (optional - commented for admin flexibility) ---
+        // Note: Removed 24-hour wait for admin cancellations. Admins can reassign immediately after cancellation.
+        // If you want to keep this check, uncomment the code below:
+        /*
         $recentRejection = AssetAssignment::where('asset_id', $asset->id)
             ->where('user_id', $request->user_id)
             ->where('employee_approval_status', ApprovalStatus::REJECTED)
             ->whereNull('returned_at')
             ->where('employee_responded_at', '>', now()->subHours(24)) // Within last 24 hours
+            ->where('cancelled_by_admin', false) // Only apply to employee rejections, not admin cancellations
             ->first();
 
         if ($recentRejection) {
@@ -98,6 +102,7 @@ class AssetAssignmentController extends Controller
                 'rejection_reason' => $recentRejection->employee_approval_notes,
             ], 409);
         }
+        */
 
         // --- Validation ---
         $validator = Validator::make($request->all(), [
@@ -826,8 +831,20 @@ class AssetAssignmentController extends Controller
         }
 
         try {
-            // TODO: Send notification to employee
-            // You can implement this using Laravel's notification system
+            // Send notification to employee mobile app
+            if ($assignment->user) {
+                $this->sendNotificationToMobileApp(
+                    $assignment->user,
+                    'Assignment Approval Reminder',
+                    "Please review and respond to your pending assignment for {$assignment->asset->name} ({$assignment->asset->asset_tag}).",
+                    [
+                        'type' => 'assignment_reminder',
+                        'assignment_id' => $assignment->id,
+                        'asset_id' => $assignment->asset_id,
+                        'asset_name' => $assignment->asset->name,
+                    ]
+                );
+            }
 
             $this->logAssetActivity(
                 $assignment->asset,
@@ -837,7 +854,7 @@ class AssetAssignmentController extends Controller
                 $assignment
             );
 
-            return response()->json(['success' => true, 'message' => 'Reminder sent successfully.']);
+            return response()->json(['success' => true, 'message' => 'Reminder sent successfully. Employee will receive a notification.']);
 
         } catch (Exception $e) {
             Log::error("Error sending reminder for assignment {$assignment->id}: ".$e->getMessage());
@@ -870,7 +887,19 @@ class AssetAssignmentController extends Controller
 
             $sentCount = 0;
             foreach ($assignments as $assignment) {
-                // TODO: Send notification to employee
+                // Send mobile app notification to employee
+                if ($assignment->user) {
+                    $this->sendNotificationToMobileApp(
+                        $assignment->user,
+                        'Assignment Approval Reminder',
+                        "Please review and respond to your pending assignment for {$assignment->asset->name} ({$assignment->asset->asset_tag}).",
+                        [
+                            'type' => 'assignment_reminder',
+                            'assignment_id' => $assignment->id,
+                            'asset_id' => $assignment->asset_id,
+                        ]
+                    );
+                }
 
                 $this->logAssetActivity(
                     $assignment->asset,
@@ -1249,6 +1278,206 @@ class AssetAssignmentController extends Controller
                     'avg_response' => 0,
                 ],
             ]);
+        }
+    }
+
+    /**
+     * Cancel a pending assignment.
+     * Route: POST /assignments/{assignment}/cancel
+     * Name: tenant.assignments.cancel
+     */
+    public function cancelAssignment(Request $request, AssetAssignment $assignment): JsonResponse
+    {
+        try {
+            // Check if assignment is in pending state
+            if ($assignment->employee_approval_status !== ApprovalStatus::PENDING) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Can only cancel pending assignments.',
+                    'error_code' => 'INVALID_STATUS',
+                ], 409);
+            }
+
+            // Mark assignment as rejected
+            $assignment->update([
+                'employee_approval_status' => ApprovalStatus::REJECTED,
+                'employee_approval_notes' => 'Cancelled by ' . Auth::user()->getFullName(),
+                'employee_responded_at' => now(),
+            ]);
+
+            // Revert asset status if no other active assignments
+            $hasOtherActiveAssignments = AssetAssignment::where('asset_id', $assignment->asset_id)
+                ->where('id', '!=', $assignment->id)
+                ->whereNull('returned_at')
+                ->where('employee_approval_status', '!=', ApprovalStatus::REJECTED)
+                ->exists();
+
+            if (!$hasOtherActiveAssignments) {
+                $assignment->asset->update(['status' => AssetStatus::AVAILABLE]);
+            }
+
+            // Log activity
+            $this->logAssetActivity(
+                $assignment->asset,
+                'assignment_cancelled',
+                "Assignment to {$assignment->user->getFullName()} has been cancelled",
+                null,
+                $assignment
+            );
+
+            // Send notification to employee
+            if ($assignment->user) {
+                $this->sendNotificationToMobileApp(
+                    $assignment->user,
+                    'Assignment Cancelled',
+                    "Your assignment for {$assignment->asset->name} ({$assignment->asset->asset_tag}) has been cancelled.",
+                    [
+                        'type' => 'assignment_cancelled',
+                        'assignment_id' => $assignment->id,
+                        'asset_id' => $assignment->asset_id,
+                    ]
+                );
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Assignment cancelled successfully. The employee has been notified.',
+            ]);
+        } catch (Exception $e) {
+            Log::error('Error cancelling assignment: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error cancelling assignment',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Update assignment details.
+     * Route: PUT /assignments/{assignment}/update
+     * Name: tenant.assignments.update
+     */
+    public function updateAssignment(Request $request, AssetAssignment $assignment): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'expected_return_date' => 'nullable|date|after:today',
+            'notes' => 'nullable|string|max:1000',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        try {
+            $oldExpectedReturnDate = $assignment->expected_return_date;
+
+            // Update assignment
+            $assignment->update([
+                'expected_return_date' => $request->expected_return_date,
+                'notes' => $request->notes ?? $assignment->notes,
+            ]);
+
+            // Log activity
+            $changes = [];
+            if ($oldExpectedReturnDate !== $request->expected_return_date) {
+                $changes[] = "Expected return date updated to {$request->expected_return_date}";
+            }
+            if ($request->notes && $request->notes !== $assignment->notes) {
+                $changes[] = "Notes updated";
+            }
+
+            if (!empty($changes)) {
+                $this->logAssetActivity(
+                    $assignment->asset,
+                    'assignment_updated',
+                    'Assignment details updated: ' . implode(', ', $changes),
+                    null,
+                    $assignment
+                );
+            }
+
+            // Send notification to employee if expected return date changed
+            if ($oldExpectedReturnDate !== $request->expected_return_date && $assignment->user) {
+                $this->sendNotificationToMobileApp(
+                    $assignment->user,
+                    'Assignment Updated',
+                    "The expected return date for {$assignment->asset->name} has been updated to {$request->expected_return_date}.",
+                    [
+                        'type' => 'assignment_updated',
+                        'assignment_id' => $assignment->id,
+                        'asset_id' => $assignment->asset_id,
+                    ]
+                );
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Assignment updated successfully.',
+                'assignment' => $assignment,
+            ]);
+        } catch (Exception $e) {
+            Log::error('Error updating assignment: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error updating assignment',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Send notification to mobile app user
+     * 
+     * @param User $user
+     * @param string $title
+     * @param string $message
+     * @param array $data
+     */
+    private function sendNotificationToMobileApp(User $user, string $title, string $message, array $data = []): void
+    {
+        try {
+            // Check if user has Firebase tokens stored
+            if (!$user->fcm_token && !$user->firebase_tokens) {
+                Log::info("No FCM token available for user {$user->id}");
+                return;
+            }
+
+            // Firebase Cloud Messaging notification
+            $notificationData = [
+                'title' => $title,
+                'body' => $message,
+                'data' => json_encode($data),
+                'click_action' => 'FLUTTER_NOTIFICATION_CLICK',
+            ];
+
+            // Check if Firebase service is configured
+            if (function_exists('sendFirebaseNotification')) {
+                sendFirebaseNotification($user->fcm_token ?? $user->firebase_tokens, $notificationData);
+            } else if (class_exists(\Kreait\Firebase\Factory::class)) {
+                // Alternative: use Firebase PHP SDK
+                $messaging = app(\Kreait\Firebase\Messaging::class);
+                $messaging->sendMulticast(
+                    new \Kreait\Firebase\Messaging\MulticastMessage(
+                        [$user->fcm_token ?? $user->firebase_tokens],
+                        null,
+                        new \Kreait\Firebase\Messaging\Notification($title, $message, null),
+                        new \Kreait\Firebase\Messaging\WebNotification(),
+                        null,
+                        $data
+                    )
+                );
+            }
+
+            Log::info("Mobile notification sent to user {$user->id}: {$title}");
+        } catch (Exception $e) {
+            Log::error("Error sending mobile notification: {$e->getMessage()}");
         }
     }
 } // End Controller Class

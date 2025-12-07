@@ -435,18 +435,50 @@ $(function() {
     }
 
     function handleModalEditAssignment() {
-        // TODO: Implement edit assignment functionality
-        showNotification('Edit assignment feature coming soon', 'info');
-        $('#quickActionModal').modal('hide');
+        const assignmentId = $('#actionAssignmentId').val();
+        if (!assignmentId) return;
+
+        // Load current assignment details and show edit form
+        const url = assignmentDetailsUrl.replace(':id', assignmentId);
+        
+        $.ajax({
+            url: url,
+            method: 'GET',
+            success: function(response) {
+                // Parse response to get expected return date
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(response, 'text/html');
+                const expectedReturnDateElem = doc.querySelector('[data-expected-return-date]');
+                const currentNotesElem = doc.querySelector('[data-assignment-notes]');
+                
+                const expectedReturnDate = expectedReturnDateElem?.dataset.expectedReturnDate || '';
+                const currentNotes = currentNotesElem?.dataset.assignmentNotes || '';
+                
+                // Show edit modal
+                showEditAssignmentModal(assignmentId, expectedReturnDate, currentNotes);
+                $('#quickActionModal').modal('hide');
+            },
+            error: function(xhr) {
+                console.error('Error loading assignment for edit:', xhr);
+                showNotification('Error loading assignment details', 'error');
+            }
+        });
     }
 
     function handleModalCancelAssignment() {
         const assignmentId = $('#actionAssignmentId').val();
+        const employeeName = $('#actionEmployeeName').text();
+        const assetInfo = $('#actionAssetInfo').text();
+        
         if (!assignmentId) return;
 
         Swal.fire({
             title: 'Cancel Assignment?',
-            text: 'This will cancel the pending assignment. This action cannot be undone.',
+            html: `<div class="text-start">
+                        <p><strong>Employee:</strong> ${employeeName}</p>
+                        <p><strong>Asset:</strong> ${assetInfo}</p>
+                        <p class="text-danger mt-2">This action will notify the employee that their assignment has been cancelled. This action cannot be undone.</p>
+                    </div>`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Cancel Assignment',
@@ -454,9 +486,149 @@ $(function() {
             cancelButtonText: 'Keep Assignment'
         }).then((result) => {
             if (result.isConfirmed) {
-                // TODO: Implement cancel assignment functionality
-                showNotification('Cancel assignment feature coming soon', 'info');
+                cancelAssignmentRequest(assignmentId);
                 $('#quickActionModal').modal('hide');
+            }
+        });
+    }
+
+    /**
+     * Show edit assignment modal
+     */
+    function showEditAssignmentModal(assignmentId, expectedReturnDate, notes) {
+        const modalHtml = `
+            <div class="modal fade" id="editAssignmentModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">@lang('Edit Assignment')</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="editAssignmentForm">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="editExpectedReturnDate" class="form-label">@lang('Expected Return Date')</label>
+                                    <input type="date" class="form-control" id="editExpectedReturnDate" name="expected_return_date" value="${expectedReturnDate}">
+                                    <small class="text-muted">@lang('Optional: Leave blank if no specific return date')</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editAssignmentNotes" class="form-label">@lang('Notes')</label>
+                                    <textarea class="form-control" id="editAssignmentNotes" name="notes" rows="3" placeholder="Optional notes about this assignment">${notes || ''}</textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('Cancel')</button>
+                                <button type="submit" class="btn btn-primary" id="saveEditAssignmentBtn">
+                                    <span id="btnText">@lang('Save Changes')</span>
+                                    <span id="spinner" style="display:none;">
+                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Remove existing modal if present
+        $('#editAssignmentModal').remove();
+        
+        // Add new modal to body
+        $('body').append(modalHtml);
+        
+        // Setup form submission
+        $('#editAssignmentForm').on('submit', function(e) {
+            e.preventDefault();
+            updateAssignmentRequest(assignmentId);
+        });
+
+        // Show modal
+        const modal = new bootstrap.Modal(document.getElementById('editAssignmentModal'));
+        modal.show();
+
+        // Remove modal from DOM when hidden
+        $('#editAssignmentModal').on('hidden.bs.modal', function() {
+            $(this).remove();
+        });
+    }
+
+    /**
+     * Update assignment via AJAX
+     */
+    function updateAssignmentRequest(assignmentId) {
+        const expectedReturnDate = $('#editExpectedReturnDate').val();
+        const notes = $('#editAssignmentNotes').val();
+
+        // Show loading state
+        $('#btnText').hide();
+        $('#spinner').show();
+        $('#saveEditAssignmentBtn').prop('disabled', true);
+
+        const url = `${assignmentDetailsUrl.split(':id')[0]}${assignmentId}/update`;
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: {
+                _token: csrfToken,
+                expected_return_date: expectedReturnDate,
+                notes: notes
+            },
+            success: function(response) {
+                if (response.success) {
+                    showNotification(response.message, 'success');
+                    $('#editAssignmentModal').modal('hide');
+                    
+                    // Reload table
+                    if (pendingApprovalsTable) {
+                        pendingApprovalsTable.ajax.reload();
+                    }
+                } else {
+                    showNotification(response.message || 'Error updating assignment', 'error');
+                }
+            },
+            error: function(xhr) {
+                console.error('Error updating assignment:', xhr);
+                const errorMsg = xhr.responseJSON?.message || 'Error updating assignment';
+                showNotification(errorMsg, 'error');
+            },
+            complete: function() {
+                // Hide loading state
+                $('#btnText').show();
+                $('#spinner').hide();
+                $('#saveEditAssignmentBtn').prop('disabled', false);
+            }
+        });
+    }
+
+    /**
+     * Cancel assignment via AJAX
+     */
+    function cancelAssignmentRequest(assignmentId) {
+        const url = `${assignmentDetailsUrl.split(':id')[0]}${assignmentId}/cancel`;
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: { _token: csrfToken },
+            success: function(response) {
+                if (response.success) {
+                    showNotification(response.message, 'success');
+                    
+                    // Reload table
+                    if (pendingApprovalsTable) {
+                        pendingApprovalsTable.ajax.reload();
+                    }
+                    loadStats();
+                } else {
+                    showNotification(response.message || 'Error cancelling assignment', 'error');
+                }
+            },
+            error: function(xhr) {
+                console.error('Error cancelling assignment:', xhr);
+                const errorMsg = xhr.responseJSON?.message || 'Error cancelling assignment';
+                showNotification(errorMsg, 'error');
             }
         });
     }
