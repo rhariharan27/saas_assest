@@ -23,7 +23,7 @@ return [
     'showDropdownOnHover' => true, // true, false (for horizontal layout only),
     'displayQuickCreate' => true, // true, false (quick create dropdown for horizontal layout only),
     'displayShortcut' => false, // true, false (shortcut dropdown for horizontal layout only),
-    'displayLanguage' => false, // true, false (language dropdown for horizontal layout only),
+    'displayLanguage' => true, // true, false (language dropdown for horizontal layout only),
     'displayNotification' => true, // true, false (notification dropdown for horizontal layout only),
     'displaySearch' => true, // true, false (search dropdown for horizontal layout only),
     'displayAddon' => true, // true, false (addon dropdown for horizontal layout only),
