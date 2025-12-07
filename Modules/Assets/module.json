@@ -1,0 +1,13 @@
+{
+    "name": "Assets",
+    "alias": "assets",
+    "displayName": "Assets Management",
+    "description": "This module is used to manage assets.",
+    "version": "1.0.2",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Assets\\app\\Providers\\AssetsServiceProvider"
+    ],
+    "files": []
+}
