@@ -190,7 +190,7 @@
         {{-- Activity Timeline Card --}}
         <div class="card mb-4">
           <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="card-title mb-0"><i class="bx bx-list-ul me-2 text-muted"></i>Activity Timeline</h5>
+            <h5 class="card-title mb-0"><i class="bx bx-list-ul me-2 text-muted"></i>{{ __('Activity Timeline') }}</h5>
           </div>
           <div class="card-body">
             <ul class="timeline ms-2">

@@ -64,7 +64,7 @@ $(function () {
           }
         },
         title: {
-          text: 'Department Attendance Overview',
+          text: window.__('Department Attendance Overview'),
           align: 'left',
           style: {
             fontSize: '18px',
@@ -74,18 +74,18 @@ $(function () {
         },
         series: [
           {
-            name: 'Present Employees',
+            name: window.__('Present Employees'),
             data: presentEmployees
           },
           {
-            name: 'Absent Employees',
+            name: window.__('Absent Employees'),
             data: absentEmployees
           }
         ],
         xaxis: {
           categories: departmentNames,
           title: {
-            text: 'Departments'
+            text: window.__('Departments')
           },
           labels: {
             style: {
@@ -96,7 +96,7 @@ $(function () {
         },
         yaxis: {
           title: {
-            text: 'Number of Employees'
+            text: window.__('Number of Employees')
           }
         },
         colors: ['#2ECC71', '#E74C3C'], // Green for Present, Red for Absent
@@ -140,7 +140,7 @@ $(function () {
     },
     error: function (response) {
       console.error('Error:', response);
-      $('#topDepartmentsChart').html('<p class="text-danger">Failed to load data.</p>');
+      $('#topDepartmentsChart').html('<p class="text-danger">' + window.__('Failed to load data.') + '</p>');
     }
   });
 
@@ -152,7 +152,7 @@ $(function () {
         height: 390,
         type: 'donut'
       },
-      labels: ['Present', 'Absent', 'On Leave'],
+      labels: [window.__('Present'), window.__('Absent'), window.__('On Leave')],
       series: [42, 7, 25],
       colors: [
         chartColors.donut.series1,
@@ -204,7 +204,7 @@ $(function () {
                 show: true,
                 fontSize: '1.5rem',
                 color: headingColor,
-                label: 'Present',
+                label: window.__('Present'),
                 formatter: function (w) {
                   return '42%';
                 }
@@ -308,7 +308,7 @@ $(function () {
           <span class="timeline-point timeline-point-primary"></span>
           <div class="timeline-event">
             <div class="timeline-header d-flex justify-content-between align-items-center mb-2">
-              <h6 class="mb-0">${activity.type} by <strong>${user.name || 'Unknown User'}</strong></h6>
+              <h6 class="mb-0">${activity.type} by <strong>${user.name || window.__('Unknown User')}</strong></h6>
               <small class="text-muted">${activity.created_at_human}</small>
             </div>
               </div>
@@ -326,7 +326,7 @@ $(function () {
         });
       } else {
         recentActivities.innerHTML = `
-    <li class="list-group-item text-center text-muted">No recent activities found.</li>
+    <li class="list-group-item text-center text-muted">${window.__('No recent activities found.')}</li>
   `;
       }
     },

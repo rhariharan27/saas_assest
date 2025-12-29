@@ -172,7 +172,7 @@
     <div class="col-lg-6 mb-4">
         <div class="card">
             <div class="card-header">
-                <h6 class="card-title mb-0">Approval Timeline</h6>
+                <h6 class="card-title mb-0">{{ __('Approval Timeline') }}</h6>
             </div>
             <div class="card-body">
                 <div class="timeline timeline-advance">
@@ -183,7 +183,7 @@
                         </span>
                         <div class="timeline-event">
                             <div class="timeline-header">
-                                <h6 class="mb-1">Assignment Created</h6>
+                                <h6 class="mb-1">{{ __('Assignment Created') }}</h6>
                                 <small class="text-muted">{{ $assignment->assigned_at->format('M d, Y H:i') }}</small>
                             </div>
                             <p class="mb-0">

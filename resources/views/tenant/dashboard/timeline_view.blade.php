@@ -99,7 +99,7 @@
             <p class="text-muted text-center">No visits data available.</p>
           </div>
           <div class="tab-pane fade" id="breaks">
-            <p class="text-muted text-center">No breaks data available.</p>
+            <p class="text-muted text-center">{{ __('No breaks data available.') }}</p>
           </div>
           <div class="tab-pane fade" id="orders">
             <p class="text-muted text-center">No orders data available.</p>
