@@ -55,13 +55,13 @@
           <li class="nav-item mb-1">
             <a class="nav-link active" href="#saGeneralSettings" data-bs-toggle="pill">
               <i class="bx bx-cog bx-sm me-1_5"></i>
-              <span class="align-middle">General</span>
+              <span class="align-middle">{{ __('General') }}</span>
             </a>
           </li>
           <li class="nav-item mb-1">
             <a class="nav-link" href="#paymentGatewaysSettings" data-bs-toggle="pill">
               <i class="bx bx-money bx-sm me-1_5"></i>
-              <span class="align-middle">Payment Gateways</span>
+              <span class="align-middle">{{ __('Payment Gateways') }}</span>
             </a>
           </li>
         </ul>
@@ -78,15 +78,15 @@
             <form action="{{ route('saSettings.update') }}" method="POST">
               @csrf
               <div class="card-header">
-                <h5 class="card-title m-0">General Settings</h5>
+                <h5 class="card-title m-0">{{ __('General Settings') }}</h5>
               </div>
               <div class="card-body">
                 <div class="row g-6">
                   <!-- App Version -->
                   <div class="col-12 col-md-6">
-                    <label class="form-label mb-1" for="appVersion">App Version</label>
+                    <label class="form-label mb-1" for="appVersion">{{ __('App Version') }}</label>
                     <input type="text" class="form-control" id="appVersion" name="appVersion"
-                           value="{{ $settings->app_version ?? '1.0.0' }}" placeholder="Enter app version">
+                           value="{{ $settings->app_version ?? '1.0.0' }}" placeholder="{{ __('Enter app version') }}">
                   </div>
 
                   {{--<!-- Per Tenant Map Key -->
@@ -103,31 +103,31 @@
 
                   <!-- Currency -->
                   <div class="col-12 col-md-6">
-                    <label class="form-label mb-1" for="currency">Currency</label>
+                    <label class="form-label mb-1" for="currency">{{ __('Currency') }}</label>
                     <input type="text" class="form-control" id="currency" name="currency"
-                           value="{{ $settings->currency ?? 'USD' }}" placeholder="Enter currency code (e.g., USD)">
+                           value="{{ $settings->currency ?? 'USD' }}" placeholder="{{ __('Enter currency code (e.g., USD)') }}">
                   </div>
 
                   <!-- Currency Symbol -->
                   <div class="col-12 col-md-6">
-                    <label class="form-label mb-1" for="currencySymbol">Currency Symbol</label>
+                    <label class="form-label mb-1" for="currencySymbol">{{ __('Currency Symbol') }}</label>
                     <input type="text" class="form-control" id="currencySymbol" name="currencySymbol"
-                           value="{{ $settings->currency_symbol ?? '$' }}" placeholder="Enter currency symbol">
+                           value="{{ $settings->currency_symbol ?? '$' }}" placeholder="{{ __('Enter currency symbol') }}">
                   </div>
 
                   <!-- Privacy Policy URL -->
                   <div class="col-12 col-md-6">
-                    <label class="form-label mb-1" for="privacyPolicyUrl">Privacy Policy URL</label>
+                    <label class="form-label mb-1" for="privacyPolicyUrl">{{ __('Privacy Policy URL') }}</label>
                     <input type="text" class="form-control" id="privacyPolicyUrl" name="privacyPolicyUrl"
-                           value="{{ $settings->privacy_policy_url }}" placeholder="Enter privacy policy URL">
+                           value="{{ $settings->privacy_policy_url }}" placeholder="{{ __('Enter privacy policy URL') }}">
                   </div>
 
                   <!-- Currency Position -->
                   <div class="col-12 col-md-6">
-                    <label class="form-label mb-1" for="currencyPosition">Currency Position</label>
+                    <label class="form-label mb-1" for="currencyPosition">{{ __('Currency Position') }}</label>
                     <select class="form-control" id="currencyPosition" name="currencyPosition">
-                      <option value="left" {{ $settings->currency_position === 'left' ? 'selected' : '' }}>Left</option>
-                      <option value="right" {{ $settings->currency_position === 'right' ? 'selected' : '' }}>Right
+                      <option value="left" {{ $settings->currency_position === 'left' ? 'selected' : '' }}>{{ __('Left') }}</option>
+                      <option value="right" {{ $settings->currency_position === 'right' ? 'selected' : '' }}>{{ __('Right') }}
                       </option>
                     </select>
                   </div>
@@ -135,7 +135,7 @@
               </div>
 
               <div class="card-footer text-end">
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="submit" class="btn btn-primary">{{ __('Save Changes') }}</button>
               </div>
             </form>
           </div>
@@ -149,13 +149,13 @@
         <div class="tab-pane fade" id="paymentGatewaysSettings" role="tabpanel">
           <div class="card mb-4">
             <div class="card-header">
-              <h5 class="card-title m-0">Payment Gateways</h5>
+              <h5 class="card-title m-0">{{ __('Payment Gateways') }}</h5>
             </div>
             <div class="card-body">
               <!-- PayPal Gateway -->
               <div class="border rounded p-3 mb-4">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h6 class="mb-0">PayPal</h6>
+                  <h6 class="mb-0">{{ __('PayPal') }}</h6>
                   <div class="form-check form-switch">
                     <input class="form-check-input gateway-toggle" type="checkbox" id="paypalEnabled"
                            data-target="#paypalSettings"
@@ -166,24 +166,24 @@
                   <form action="{{ route('saSettings.paymentGatewayUpdate', 'paypal') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                      <label for="paypalMode" class="form-label">Mode</label>
+                      <label for="paypalMode" class="form-label">{{ __('Mode') }}</label>
                       <select class="form-select" id="paypalMode" name="paypalMode">
-                        <option value="sandbox" {{ $settings->paypal_mode === 'sandbox' ? 'selected' : '' }}>Sandbox
+                        <option value="sandbox" {{ $settings->paypal_mode === 'sandbox' ? 'selected' : '' }}>{{ __('Sandbox') }}
                         </option>
-                        <option value="live" {{ $settings->paypal_mode === 'live' ? 'selected' : '' }}>Live</option>
+                        <option value="live" {{ $settings->paypal_mode === 'live' ? 'selected' : '' }}>{{ __('Live') }}</option>
                       </select>
                     </div>
                     <div class="mb-3">
-                      <label for="paypalClientId" class="form-label">Client ID</label>
+                      <label for="paypalClientId" class="form-label">{{ __('Client ID') }}</label>
                       <input type="text" class="form-control" id="paypalClientId" name="paypalClientId"
                              value="{{ $settings->paypal_client_id }}">
                     </div>
                     <div class="mb-3">
-                      <label for="paypalSecret" class="form-label">Secret</label>
+                      <label for="paypalSecret" class="form-label">{{ __('Secret') }}</label>
                       <input type="text" class="form-control" id="paypalSecret" name="paypalSecret"
                              value="{{ $settings->paypal_secret }}">
                     </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Save Changes') }}</button>
                   </form>
                 </div>
               </div>
@@ -191,7 +191,7 @@
               <!-- Razorpay Gateway -->
               <div class="border rounded p-3 mb-4">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h6 class="mb-0">Razorpay</h6>
+                  <h6 class="mb-0">{{ __('Razorpay') }}</h6>
                   <div class="form-check form-switch">
                     <input class="form-check-input gateway-toggle" type="checkbox" id="razorpayEnabled"
                            data-target="#razorpaySettings"
@@ -202,16 +202,16 @@
                   <form action="{{ route('saSettings.paymentGatewayUpdate', 'razorpay') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                      <label for="razorpayKey" class="form-label">Key</label>
+                      <label for="razorpayKey" class="form-label">{{ __('Key') }}</label>
                       <input type="text" class="form-control" id="razorpayKey" name="razorpayKey"
                              value="{{ $settings->razorpay_key }}">
                     </div>
                     <div class="mb-3">
-                      <label for="razorpaySecret" class="form-label">Secret</label>
+                      <label for="razorpaySecret" class="form-label">{{ __('Secret') }}</label>
                       <input type="text" class="form-control" id="razorpaySecret" name="razorpaySecret"
                              value="{{ $settings->razorpay_secret }}">
                     </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Save Changes') }}</button>
                   </form>
                 </div>
               </div>
@@ -220,7 +220,7 @@
               @if($isStripGatewayEnabled)
                 <div class="border rounded p-3 mb-4">
                   <div class="d-flex justify-content-between align-items-center">
-                    <h6 class="mb-0">Stripe</h6>
+                  <h6 class="mb-0">{{ __('Stripe') }}</h6>
                     <div class="form-check form-switch">
                       <input class="form-check-input gateway-toggle" type="checkbox"
                              id="stripeEnabled" data-target="#stripeSettings"
@@ -239,16 +239,16 @@
                          </select>
                        </div>--}}
                       <div class="mb-3">
-                        <label for="stripePublishableKey" class="form-label">Publishable Key</label>
+                        <label for="stripePublishableKey" class="form-label">{{ __('Publishable Key') }}</label>
                         <input type="text" class="form-control" id="stripePublishableKey" name="stripePublishableKey"
                                value="{{ $settings->stripe_publishable_key }}">
                       </div>
                       <div class="mb-3">
-                        <label for="stripeSecretKey" class="form-label">Secret Key</label>
+                        <label for="stripeSecretKey" class="form-label">{{ __('Secret Key') }}</label>
                         <input type="text" class="form-control" id="stripeSecretKey" name="stripeSecretKey"
                                value="{{ $settings->stripe_secret_key }}">
                       </div>
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                      <button type="submit" class="btn btn-primary">{{ __('Save Changes') }}</button>
                     </form>
                   </div>
                 </div>
@@ -258,7 +258,7 @@
               <!-- Offline Payments Gateway -->
               <div class="border rounded p-3 mb-4">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h6 class="mb-0">Offline Payments</h6>
+                  <h6 class="mb-0">{{ __('Offline Payments') }}</h6>
                   <div class="form-check form-switch">
                     <input class="form-check-input gateway-toggle" type="checkbox" id="offlineEnabled"
                            name="offlineEnabled" data-target="#offlineSettings"
@@ -269,11 +269,11 @@
                   <form action="{{ route('saSettings.paymentGatewayUpdate', 'offline') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                      <label for="offlineInstructions" class="form-label">Payment Instructions</label>
+                      <label for="offlineInstructions" class="form-label">{{ __('Payment Instructions') }}</label>
                       <textarea class="form-control" id="offlineInstructions" name="offlineInstructions"
                                 rows="3">{{ $settings->offline_payment_instructions }}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Save Changes') }}</button>
                   </form>
                 </div>
               </div>
