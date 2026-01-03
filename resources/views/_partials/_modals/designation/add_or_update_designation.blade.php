@@ -12,26 +12,26 @@
 
             <div class="mb-6">
                 <label class="form-label" for="name">@lang('Name') <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="name" placeholder="@lang('Enter Designation Name')" name="name"
+                <input type="text" class="form-control" id="name" placeholder="{{ __("Enter Designation Name") }}" name="name"
                     required />
             </div>
 
             <div class="mb-6">
                 <label class="form-label" for="name">@lang('Department')</label>
                 <select class="form-select " id="department_id" name="department_id">
-                    <option value="" disabled selected>Select department</option>
+                    <option value="" disabled selected>{{ __("Select department") }}</option>
                 </select>
             </div>
 
             <div class="mb-6">
                 <label class="form-label" for="code">@lang('Code') <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="code" placeholder="@lang('Enter Department Code')" name="code"
+                <input type="text" class="form-control" id="code" placeholder="{{ __("Enter Department Code") }}" name="code"
                     required />
             </div>
 
             <div class="mb-6">
                 <label class="form-label" for="notes">@lang('Description')</label>
-                <textarea class="form-control" id="notes" name="notes" placeholder="@lang('Enter Description')" rows="3"></textarea>
+                <textarea class="form-control" id="notes" name="notes" placeholder="{{ __("Enter Description") }}" rows="3"></textarea>
             </div>
 
           <div class="mb-6">
@@ -41,8 +41,8 @@
             </div>
           </div>
 
-            <button type="submit" class="btn btn-primary me-3 data-submit">@lang('Submit')</button>
-            <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">@lang('Cancel')</button>
+            <button type="submit" class="btn btn-primary me-3 data-submit">{{ __("Submit") }}</button>
+            <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">{{ __("Cancel") }}</button>
         </form>
     </div>
 </div>

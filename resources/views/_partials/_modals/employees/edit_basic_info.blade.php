@@ -15,16 +15,16 @@
         <label class="form-label" for="firstName">@lang('First Name')<span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="firstName" name="firstName"
                value="{{ $user->first_name }}"
-               placeholder="@lang('Enter first name')" />
+               placeholder="{{ __("Enter first name") }}" />
       </div>
 
       <div class="mb-6">
         <label class="form-label" for="lastName">@lang('Last Name')<span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="lastName" name="lastName" value="{{ $user->last_name }}"
-               placeholder="@lang('Enter last name')" />
+               placeholder="{{ __("Enter last name") }}" />
       </div>
       <div class="mb-6">
-        <label class="form-label" for="dob">Date of Birth <span class="text-danger">*</span></label>
+        <label class="form-label" for="dob">{{ __("Date of Birth") }} <span class="text-danger">*</span></label>
         <input type="date" name="dob" id="dob" class="form-control"
                value="{{ Carbon::parse($user->dob)->format('Y-m-d') }}" />
       </div>
@@ -32,7 +32,7 @@
         <label class="form-label" for="gender">Gender <span class="text-danger">*</span></label>
         <select class="form-control select2" id="gender" data-style="btn-transparent"
                 data-icon-base="bx" data-tick-icon="bx-check text-white" name="gender">
-          <option value="" selected>Select Gender</option>
+          <option value="" selected>{{ __("Select Gender") }}</option>
           @foreach(Gender::cases() as $gender)
             <option
               value="{{$gender->value}}" {{$user->gender == $gender->value ? 'selected':''}} >{{$gender->value}}</option>
@@ -43,28 +43,28 @@
         <label class="form-label" for="email">@lang('Email')<span class="text-danger">*</span></label>
         <input type="email" class="form-control" id="email" name="email"
                value="{{ $user->email }}"
-               placeholder="@lang('Enter email')" />
+               placeholder="{{ __("Enter email") }}" />
       </div>
       <div class="mb-6">
         <label class="form-label" for="phone">Phone Number <span class="text-danger">*</span></label>
         <input type="number" name="phone" id="phone" class="form-control"
                value="{{$user->phone}}"
-               placeholder="Enter phone number" />
+               placeholder="{{ __("Enter phone number") }}" />
       </div>
       <div class="mb-6">
         <label class="form-label" for="altPhone">Alternative Mobile No</label>
         <input type="number" name="altPhone" id="altPhone" class="form-control"
                value="{{$user->alternate_number}}"
-               placeholder="Enter alternate number" />
+               placeholder="{{ __("Enter alternate number") }}" />
       </div>
       <div class="mb-6">
         <label class="form-label" for="address">@lang('Address')</label>
         <textarea class="form-control" id="address" name="address"
-                  placeholder="@lang('Enter address')">{{ $user->address }}</textarea>
+                  placeholder="{{ __("Enter address") }}">{{ $user->address }}</textarea>
       </div>
 
-      <button type="submit" class="btn btn-primary me-3 data-submit">@lang('Save Changes')</button>
-      <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">@lang('Cancel')</button>
+      <button type="submit" class="btn btn-primary me-3 data-submit">{{ __("Save Changes") }}</button>
+      <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">{{ __("Cancel") }}</button>
     </form>
   </div>
 </div>

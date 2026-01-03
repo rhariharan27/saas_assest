@@ -82,7 +82,7 @@ $(function () {
           targets: 4,
           className: 'text-start',
           render: function (data, type, full, meta) {
-            var $parentName = full.parent_department ? full.parent_department : 'No Parent';
+            var $parentName = full.parent_department ? full.parent_department : (window.translations?.noParent || 'No Parent');
             return `<span class="department-parent">${$parentName}</span>`;
           }
         },
@@ -150,8 +150,8 @@ $(function () {
       language: {
         sLengthMenu: '_MENU_',
         search: '',
-        searchPlaceholder: 'Search Department',
-        info: 'Displaying _START_ to _END_ of _TOTAL_ entries',
+        searchPlaceholder: window.translations?.searchDepartment || 'Search Department',
+        info: (window.translations?.displaying || 'Displaying') + ' _START_ to _END_ of _TOTAL_ entries',
         paginate: {
           next: '<i class="bx bx-chevron-right bx-sm"></i>',
           previous: '<i class="bx bx-chevron-left bx-sm"></i>'

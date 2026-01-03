@@ -9,7 +9,7 @@
 @endphp
 @extends('layouts.layoutMaster')
 
-@section('title', 'Employee Details')
+@section('title', __('Employee Details'))
 
 @section('vendor-style')
     @vite(['resources/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.scss', 'resources/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.scss', 'resources/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.scss', 'resources/assets/vendor/libs/animate-css/animate.scss', 'resources/assets/vendor/libs/sweetalert2/sweetalert2.scss', 'resources/assets/vendor/libs/select2/select2.scss', 'resources/assets/vendor/libs/@form-validation/form-validation.scss', 'resources/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.scss', 'resources/assets/vendor/libs/flatpickr/flatpickr.scss'])
@@ -75,7 +75,7 @@
             {{-- Check if Terminated First --}}
             @if ($user->status == UserAccountStatus::TERMINATED)
                 <div class="alert alert-danger" role="alert">
-                    <h4 class="alert-heading">Terminated</h4>
+                    <h4 class="alert-heading">{{ __('Terminated') }}</h4>
                     <p>
                         This employee's employment was terminated on
                         <strong>{{ $user->exit_date ? Carbon::parse($user->exit_date)->format('d M Y') : 'N/A' }}</strong>.
@@ -88,13 +88,13 @@
                 {{-- Check other inactive statuses --}}
             @elseif($user->status == UserAccountStatus::RELIEVED)
                 <div class="alert alert-danger" role="alert">
-                    <h4 class="alert-heading">Relieved</h4>
+                    <h4 class="alert-heading">{{ __('Relieved') }}</h4>
                     <p>This employee has been relieved from the organization
                         on {{ Carbon::parse($user->relieved_at)->format('d M Y') }}.</p>
                 </div>
             @elseif($user->status == UserAccountStatus::RETIRED)
                 <div class="alert alert-warning" role="alert">
-                    <h4 class="alert-heading">Retired</h4>
+                    <h4 class="alert-heading">{{ __('Retired') }}</h4>
                     <p>This employee has been retired from the organization on
                         {{ Carbon::parse($user->retired_at)->format('d M Y') }}.</p>
                 </div>
@@ -136,7 +136,7 @@
                                 {{-- NEW: Initiate Termination Button --}}
                                 <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#terminateEmployeeModal">
-                                    <i class="bx bx-block me-1"></i> Initiate Termination
+                                    <i class="bx bx-block me-1"></i> {{ __('Initiate Termination') }}
                                 </button>
                             </div>
                         @endif
@@ -147,41 +147,41 @@
             <div class="card mb-6">
                 <div class="card-body">
                     <h5 class="card-title mb-4">
-                        <i class="bx bx-briefcase text-muted"></i> Work Information
+                        <i class="bx bx-briefcase text-muted"></i> {{ __('Work Information') }}
                     </h5>
 
                     <ul class="list-unstyled mb-4">
                         <li class="mb-2 d-flex align-items-center">
                             <i class="bx bx-user-check text-muted me-2"></i>
-                            <strong>Designation:</strong> <span
+                            <strong>{{ __('Designation') }}:</strong> <span
                                 class="ms-2">{{ $user->designation ? $user->designation->name : 'N/A' }}</span>
                         </li>
                         <li class="mb-2 d-flex align-items-center">
                             <i class="bx bx-id-card text-muted me-2"></i>
-                            <strong>Role:</strong> <span class="ms-2">{{ $user->roles()->first()->name ?? 'N/A' }}</span>
+                            <strong>{{ __('Role') }}:</strong> <span class="ms-2">{{ $user->roles()->first()->name ?? 'N/A' }}</span>
                         </li>
                         <li class="mb-2 d-flex align-items-center">
                             <i class="bx bx-group text-muted me-2"></i>
-                            <strong>Team:</strong> <span class="ms-2">{{ $user->team->name ?? 'N/A' }}</span>
+                            <strong>{{ __('Team') }}:</strong> <span class="ms-2">{{ $user->team->name ?? 'N/A' }}</span>
                         </li>
                         <li class="mb-2 d-flex align-items-center">
                             <i class="bx bx-time text-muted me-2"></i>
-                            <strong>Shift:</strong> <span class="ms-2">{{ $user->shift->name ?? 'N/A' }}</span>
+                            <strong>{{ __('Shift') }}:</strong> <span class="ms-2">{{ $user->shift->name ?? 'N/A' }}</span>
                         </li>
                         <li class="mb-2 d-flex align-items-center">
                             <i class="bx bx-user text-muted me-2"></i>
-                            <strong>Reporting To:</strong> <span
+                            <strong>{{ __('Reporting To') }}:</strong> <span
                                 class="ms-2">{{ $user->reporting_to_id != null ? $user->getReportingToUserName() : 'N/A' }}</span>
                         </li>
                         <li class="mb-2 d-flex align-items-center">
                             <i class="bx bx-calendar text-muted me-2"></i>
-                            <strong>Joining Date:</strong> <span
+                            <strong>{{ __('Joining Date') }}:</strong> <span
                                 class="ms-2">{{ Carbon::parse($user->date_of_joining)->format('d M Y') }}</span>
                         </li>
                         <!-- Attendance Type -->
                         <li class="mb-2 d-flex align-items-center">
                             <i class="bx bx-calendar text-muted me-2"></i>
-                            <strong>Attendance Type:</strong> <span class="ms-2">{{ $user->attendance_type }}</span>
+                            <strong>{{ __('Attendance Type') }}:</strong> <span class="ms-2">{{ $user->attendance_type }}</span>
                         </li>
                     </ul>
 
@@ -191,7 +191,7 @@
                             $user->status != UserAccountStatus::TERMINATED)
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasEditWorkInfo" onclick="loadSelectList()">
-                            <i class="bx bx-edit-alt me-1"></i> Edit
+                            <i class="bx bx-edit-alt me-1"></i> {{ __('Edit') }}
                         </button>
                     @endif
                 </div>
@@ -203,16 +203,16 @@
             <!-- Probation Details Card -->
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0"><i class="bx bx-hourglass text-muted me-2"></i>Probation Details</h5>
+                    <h5 class="mb-0"><i class="bx bx-hourglass text-muted me-2"></i>{{ __('Probation Details') }}</h5>
                     {{-- Show action buttons only if currently under probation --}}
                     @if ($user->isUnderProbation())
                         <div class="btn-group btn-group-sm" role="group" aria-label="Probation Actions">
                             <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#confirmProbationModal">Confirm</button>
+                                data-bs-target="#confirmProbationModal">{{ __('Confirm') }}</button>
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#extendProbationModal">Extend</button>
+                                data-bs-target="#extendProbationModal">{{ __('Extend') }}</button>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#failProbationModal">Fail</button> {{-- Fail might trigger termination modal directly later --}}
+                                data-bs-target="#failProbationModal">{{ __('Fail') }}</button> {{-- Fail might trigger termination modal directly later --}}
                         </div>
                     @endif
                 </div>
@@ -261,23 +261,23 @@
             <div class="nav-align-top mb-6">
                 <ul class="nav nav-pills flex-column flex-md-row">
                     <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#basic-info"><i
-                                class="bx bx-info-circle me-1"></i> Basic</a></li>
+                                class="bx bx-info-circle me-1"></i> {{ __('Basic Information') }}</a></li>
                     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#device"><i
                                 class="bx bx-devices me-1"></i>
-                            Device</a></li>
+                            {{ __('Device') }}</a></li>
                     @if ($addonService->isAddonEnabled(ModuleConstants::PAYROLL))
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#bankAccount"><i
                                     class="bx bx-building me-1"></i>
-                                Bank Account</a></li>
+                                {{ __('Bank Account') }}</a></li>
                     @endif
                     @if ($addonService->isAddonEnabled(ModuleConstants::SALES_TARGET))
                     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#salesTargets"><i
                                 class="bx bx-target-lock me-1"></i>
-                            Sales Targets</a></li>
+                            {{ __('Sales Targets') }}</a></li>
                     @endif
                     @if ($addonService->isAddonEnabled(ModuleConstants::PAYROLL))
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#payroll"><i
-                                    class="bx bx-money me-1"></i> Payroll</a></li>
+                                    class="bx bx-money me-1"></i> {{ __('Payroll') }}</a></li>
                     @endif
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5 class="card-title mb-4">
-                                <i class="bx bx-info-circle text-muted"></i> Basic Information
+                                <i class="bx bx-info-circle text-muted"></i> {{ __('Basic Information') }}
                             </h5>
 
                             <!-- Information List -->
@@ -369,7 +369,7 @@
                     @if ($addonService->isAddonEnabled(ModuleConstants::ASSETS))
                         <div class="card mb-3">
                             <div class="card-body">
-                                <h5 class="card-title mb-4"> Assets
+                                <h5 class="card-title mb-4"> {{ __('Assets') }}
                                 </h5>
                                 @include('assets::_employee_assets_card', ['userId' => $user->id])
                             </div>
@@ -385,7 +385,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title mb-4">
-                                <i class="bx bx-devices text-muted"></i> Device Information
+                                <i class="bx bx-devices text-muted"></i> {{ __('Device Information') }}
                             </h5>
                             @if ($user->userDevice)
                                 <!-- Display Device Details -->
@@ -398,53 +398,53 @@
                                         <ul class="list-unstyled mb-4">
                                             <li class="mb-2 d-flex align-items-center">
                                                 <i class="bx bx-barcode text-muted me-2"></i>
-                                                <strong>Device ID:</strong> <span
+                                                <strong>{{ __('Device ID') }}:</strong> <span
                                                     class="ms-2">{{ $user->userDevice->device_id }}</span>
                                             </li>
                                             <li class="mb-2 d-flex align-items-center">
                                                 <i class="bx bx-mobile text-muted me-2"></i>
-                                                <strong>Brand:</strong> <span
+                                                <strong>{{ __('Brand') }}:</strong> <span
                                                     class="ms-2">{{ $user->userDevice->brand ?? 'N/A' }}</span>
                                             </li>
                                             <li class="mb-2 d-flex align-items-center">
                                                 <i class="bx bx-cog text-muted me-2"></i>
-                                                <strong>SDK Version:</strong> <span
+                                                <strong>{{ __('SDK Version') }}:</strong> <span
                                                     class="ms-2">{{ $user->userDevice->sdk_version ?? 'N/A' }}</span>
                                             </li>
                                             <li class="mb-2 d-flex align-items-center">
                                                 <i class="bx bx-battery text-muted me-2"></i>
-                                                <strong>Battery:</strong> <span
+                                                <strong>{{ __('Battery') }}:</strong> <span
                                                     class="ms-2">{{ $user->userDevice->battery_percentage }}%</span>
                                             </li>
                                             <li class="mb-2 d-flex align-items-center">
                                                 <i class="bx bx-wifi text-muted me-2"></i>
-                                                <strong>WiFi:</strong> <span class="ms-2">
+                                                <strong>{{ __('WiFi') }}:</strong> <span class="ms-2">
                                                     @if ($user->userDevice->is_wifi_on)
-                                                        <span class="badge bg-success">On</span>
+                                                        <span class="badge bg-success">{{ __('On') }}</span>
                                                     @else
-                                                        <span class="badge bg-danger">Off</span>
+                                                        <span class="badge bg-danger">{{ __('Off') }}</span>
                                                     @endif
                                                 </span>
                                             </li>
                                             <li class="mb-2 d-flex align-items-center">
                                                 <i class="bx bx-location-plus text-muted me-2"></i>
-                                                <strong>GPS:</strong> <span class="ms-2">
+                                                <strong>{{ __('GPS') }}:</strong> <span class="ms-2">
                                                     @if ($user->userDevice->is_gps_on)
-                                                        <span class="badge bg-success">On</span>
+                                                        <span class="badge bg-success">{{ __('On') }}</span>
                                                     @else
-                                                        <span class="badge bg-danger">Off</span>
+                                                        <span class="badge bg-danger">{{ __('Off') }}</span>
                                                     @endif
                                                 </span>
                                             </li>
                                             <li class="mb-2 d-flex align-items-center">
                                                 <i class="bx bx-flag text-muted me-2"></i>
-                                                <strong>Location:</strong> <span
+                                                <strong>{{ __('Location') }}:</strong> <span
                                                     class="ms-2">{{ $user->userDevice->latitude }},
                                                     {{ $user->userDevice->longitude }}</span>
                                             </li>
                                             <li class="mb-2 d-flex align-items-center">
                                                 <i class="bx bx-cog text-muted me-2"></i>
-                                                <strong>App Version:</strong> <span
+                                                <strong>{{ __('App Version') }}:</strong> <span
                                                     class="ms-2">{{ $user->userDevice->app_version ?? 'N/A' }}</span>
                                             </li>
                                         </ul>
@@ -456,15 +456,13 @@
                                     @csrf
                                     <button type="submit" onclick="showDeleteDeviceConfirmation()"
                                         class="btn btn-outline-danger">
-                                        <i class="bx bx-trash me-1"></i> Remove Device
+                                        <i class="bx bx-trash me-1"></i> {{ __('Remove Device') }}
                                     </button>
                                 </form>
                                 @if ($settings->is_helper_text_enabled)
                                     <div class="alert alert-primary alert-dismissible mt-5" role="alert">
-                                        <h6 class="text-primary"><strong>Note</strong></h6>
-                                        <p class="mb-0">If you remove the device, the user will not be able to use the
-                                            application until
-                                            they register a new device.</p>
+                                        <h6 class="text-primary"><strong>{{ __('Note') }}</strong></h6>
+                                        <p class="mb-0">{{ __('If you remove the device, the user will not be able to use the application until they register a new device.') }}</p>
                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close">
                                         </button>
@@ -474,7 +472,7 @@
                                 <!-- No Device Registered Message -->
                                 <div class="text-center py-5">
                                     <i class="bx bx-mobile-alt text-muted" style="font-size: 4em;"></i>
-                                    <p class="text-muted mt-3">No device registered</p>
+                                    <p class="text-muted mt-3">{{ __('No device registered') }}</p>
                                 </div>
                             @endif
                         </div>

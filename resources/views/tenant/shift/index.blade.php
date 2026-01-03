@@ -55,6 +55,10 @@
     const shiftStoreUrl = "{{ route('shifts.store') }}"
     const shiftBaseUrl = "{{ url('shifts') }}" // Base URL for /shifts/{id}/edit, /shifts/{id} (PUT/DELETE), /shifts/{id}/toggle-status
     const csrfToken = "{{ csrf_token() }}"
+    // Pass translations to JavaScript
+    window.translations = {
+      searchShifts: '{{ __("Search Shifts") }}'
+    };
   </script>
   @vite(['resources/assets/js/app/shift-index.js']) {{-- Link to the refactored JS file --}}
 @endsection
@@ -64,12 +68,12 @@
   <div class="container-fluid flex-grow-1 container-p-y"> {{-- Added container --}}
 
     <div class="d-flex justify-content-between align-items-center py-3 mb-4">
-      <h4 class="mb-0">@lang('Shifts Management')</h4>
+      <h4 class="mb-0">{{ __('Shifts Management') }}</h4>
       {{-- Add Button --}}
       <button type="button" class="btn btn-primary add-new" data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasAddOrUpdateShift">
         <i class="bx bx-plus bx-sm me-0 me-sm-1"></i><span
-          class="d-none d-sm-inline-block">@lang('Add New Shift')</span>
+          class="d-none d-sm-inline-block">{{ __('Add New Shift') }}</span>
       </button>
     </div>
 
@@ -86,12 +90,12 @@
           <tr>
             {{-- Remove empty first column unless using DataTables responsive control --}}
             {{-- <th></th> --}}
-            <th>@lang('Id')</th>
-            <th>@lang('Name')</th>
-            <th>@lang('Code')</th>
-            <th>@lang('Shift Days')</th>
-            <th>@lang('Status')</th>
-            <th>@lang('Actions')</th>
+            <th>{{ __('Id') }}</th>
+            <th>{{ __('Name') }}</th>
+            <th>{{ __('Code') }}</th>
+            <th>{{ __('Shift Days') }}</th>
+            <th>{{ __('Status') }}</th>
+            <th>{{ __('Actions') }}</th>
           </tr>
           </thead>
           <tbody>

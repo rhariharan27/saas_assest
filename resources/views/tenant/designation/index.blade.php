@@ -28,6 +28,12 @@
 @section('page-script')
   @vite(['resources/js/main-datatable.js'])
   @vite(['resources/js/main-helper.js'])
+  <script>
+    // Pass translations to JavaScript
+    window.translations = {
+      searchDesignation: '{{ __("Search Designation") }}'
+    };
+  </script>
   @vite(['resources/assets/js/app/designation-index.js'])
 @endsection
 
@@ -35,12 +41,12 @@
 @section('content')
   <div class="row">
     <div class="col">
-      <h4>@lang('Designations')</h4>
+      <h4>{{ __('Designations') }}</h4>
     </div>
     <div class="col text-end">
       <button type="button" class="btn btn-primary add-new-designation" data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasAddOrUpdateDesignation">
-        <i class="bx bx-plus bx-sm me-0 me-sm-2"></i> @lang('Add New')
+        <i class="bx bx-plus bx-sm me-0 me-sm-2"></i> {{ __('Add New') }}
       </button>
     </div>
   </div>
@@ -50,15 +56,15 @@
       <table class="datatables-designations table border-top">
         <thead>
         <tr>
-          <th>@lang('')</th>
-          <th>@lang('Id')</th>
-          <th>@lang('Name')</th>
-          <th>@lang('Code')</th>
-          <th>@lang('Department')
-          <th>@lang('Description')</th>
-          <th>@lang('Approver')</th>
-          <th>@lang('Status')</th>
-          <th>@lang('Actions')</th>
+          <th>{{ __('') }}</th>
+          <th>{{ __('Id') }}</th>
+          <th>{{ __('Name') }}</th>
+          <th>{{ __('Code') }}</th>
+          <th>{{ __('Department') }}
+          <th>{{ __('Description') }}</th>
+          <th>{{ __('Approver') }}</th>
+          <th>{{ __('Status') }}</th>
+          <th>{{ __('Actions') }}</th>
         </tr>
         </thead>
       </table>

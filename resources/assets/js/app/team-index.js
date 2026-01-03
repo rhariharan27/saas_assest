@@ -149,7 +149,7 @@ $(function () {
       language: {
         sLengthMenu: '_MENU_',
         search: '',
-        searchPlaceholder: 'Search Team',
+        searchPlaceholder: window.translations?.searchTeam || 'Search Team',
         info: 'Displaying _START_ to _END_ of _TOTAL_ entries',
         paginate: {
           next: '<i class="bx bx-chevron-right bx-sm"></i>',
