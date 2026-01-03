@@ -52,7 +52,7 @@
                 <h4 class="mb-0 me-2">{{$totalUser}}</h4>
                 {{--  <p class="text-success mb-0">(100%)</p>--}}
               </div>
-              <small class="mb-0">Total Users</small>
+              <small class="mb-0">{{ __('Total Users') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-primary">
@@ -73,7 +73,7 @@
                 <h4 class="mb-0 me-2">{{$active}}</h4>
                 {{--  <p class="text-success mb-0">(+95%)</p>--}}
               </div>
-              <small class="mb-0">Total Active Users </small>
+              <small class="mb-0">{{ __('Total Active Users') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-success">
@@ -89,12 +89,12 @@
         <div class="card-body">
           <div class="d-flex align-items-start justify-content-between">
             <div class="content-left">
-              <span class="text-heading">InActive</span>
+              <span class="text-heading">{{ __('Inactive') }}</span>
               <div class="d-flex align-items-center my-1">
                 <h4 class="mb-0 me-2">{{$inactive}}</h4>
                 <p class="text-success mb-0">(0%)</p>
               </div>
-              <small class="mb-0">Tota</small>
+              <small class="mb-0">{{ __('Total Inactive Users') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-danger">
@@ -159,7 +159,7 @@
     {{--<!-- Total Users Limit -->
     <div class="col-md-3 col-lg-6 text-md-end align-self-center">
     <span class="d-inline-block mt-2 mt-md-0">
-      <span class="fw-bold">Total Users Limit:</span>
+      <span class="fw-bold">{{ __('Total Users Limit:') }}</span>
       <span class="badge bg-primary fs-6">{{$settings->employees_limit}}</span>
     </span>
     </div>--}}
@@ -188,7 +188,7 @@
   <div class="row mt-3">
     <div class="col-md-12">
       <div class="alert alert-primary" role="alert">
-        <h5 class="alert-heading">Available Employees Limit</h5>
+        <h5 class="alert-heading">{{ __('Available Employees Limit') }}</h5>
         <p class="mb-0">You have <strong>{{$settings->employees_limit}}</strong> employees limit available. You can add more employees by upgrading your plan.</p>
       </div>
     </div>

@@ -63,7 +63,7 @@
                             @if($client->status == 'active')
                                 <span class="badge bg-success">Active</span>
                             @else
-                                <span class="badge bg-danger">Inactive</span>
+                                <span class="badge bg-danger">{{ __('Inactive') }}</span>
                             @endif
                         </td>
                     </tr>

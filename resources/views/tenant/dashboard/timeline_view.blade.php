@@ -1,5 +1,5 @@
 @php
-  $title = 'Timeline';
+  $title = __('Timeline');
 @endphp
 
 @extends('layouts/layoutMaster')
@@ -42,22 +42,22 @@
   <!-- 🗓️ Filters Section -->
   <div class="row mb-4 g-3">
     <div class="col-md-3">
-      <label for="date" class="form-label">Filter by date</label>
+      <label for="date" class="form-label">{{ __('Filter by date') }}</label>
       <input type="date" id="date" class="form-control" value="{{ now()->format('Y-m-d') }}">
     </div>
     <div class="col-md-4">
-      <label for="emp" class="form-label">Filter by employee</label>
+      <label for="emp" class="form-label">{{ __('Filter by employee') }}</label>
       <select class="form-select select2" id="emp">
-        <option selected disabled>Please select an employee</option>
+        <option selected disabled>{{ __('Please select an employee') }}</option>
         @foreach($employees as $employee)
           <option value="{{ $employee->id }}">{{ $employee->first_name }} {{ $employee->last_name }}</option>
         @endforeach
       </select>
     </div>
     <div class="col-md-3 d-none mb-3" id="attendanceLogFilterDiv">
-      <label for="attendanceLogFilter">Filter by Check-In/Out</label>
+      <label for="attendanceLogFilter">{{ __('Filter by Check-In/Out') }}</label>
       <select id="attendanceLogFilter" class="form-select">
-        <option value="">All Check-Ins</option>
+        <option value="">{{ __('All Check-Ins') }}</option>
       </select>
     </div>
     <div class="col-auto justify-content-end float-end">
@@ -70,7 +70,7 @@
   <!-- 📊 Stats Section -->
   <div class="row mb-4 g-3" id="statsSection">
     <div class="col-md-12 text-center text-muted">
-      <p class="mt-3">Please select an employee and date to view their daily activity.</p>
+      <p class="mt-3">{{ __('Please select an employee and date to view their daily activity.') }}</p>
     </div>
   </div>
 
@@ -84,25 +84,25 @@
     <!-- 📋 Left Column: Tabs Section -->
     <div class="col-md-4">
       <div class="card shadow-sm p-3" style="height: 700px; overflow-y: auto;">
-        <h5 id="employeeName" class="text-center">Employee Details</h5>
+        <h5 id="employeeName" class="text-center">{{ __('Employee Details') }}</h5>
         <ul class="nav nav-tabs mb-3">
-          <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#timeline">Timeline</a></li>
-          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#visits">Visits</a></li>
-          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#breaks">Breaks</a></li>
-          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#orders">Orders</a></li>
+          <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#timeline">{{ __('Timeline') }}</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#visits">{{ __('Visits') }}</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#breaks">{{ __('Breaks') }}</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#orders">{{ __('Orders') }}</a></li>
         </ul>
         <div class="tab-content" style="max-height: 700px; overflow-y: auto;">
           <div class="tab-pane fade show active" id="timeline">
-            <p class="text-muted text-center">No timeline data available.</p>
+            <p class="text-muted text-center">{{ __('No timeline data available.') }}</p>
           </div>
           <div class="tab-pane fade" id="visits">
-            <p class="text-muted text-center">No visits data available.</p>
+            <p class="text-muted text-center">{{ __('No visits data available.') }}</p>
           </div>
           <div class="tab-pane fade" id="breaks">
             <p class="text-muted text-center">{{ __('No breaks data available.') }}</p>
           </div>
           <div class="tab-pane fade" id="orders">
-            <p class="text-muted text-center">No orders data available.</p>
+            <p class="text-muted text-center">{{ __('No orders data available.') }}</p>
           </div>
         </div>
       </div>
@@ -120,22 +120,22 @@
             <h2 class="accordion-header" id="headingMarkers">
               <button class="accordion-button" type="button" data-bs-toggle="collapse"
                       data-bs-target="#collapseMarkers">
-                Markers
+                {{ __('Markers') }}
               </button>
             </h2>
             <div id="collapseMarkers" class="accordion-collapse collapse show">
               <div class="accordion-body">
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="toggleDeviceMarkers" checked>
-                  <label class="form-check-label" for="toggleDeviceMarkers">Device Markers</label>
+                  <label class="form-check-label" for="toggleDeviceMarkers">{{ __('Device Markers') }}</label>
                 </div>
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="toggleVisitsMarkers" checked>
-                  <label class="form-check-label" for="toggleVisitsMarkers">Visit Markers</label>
+                  <label class="form-check-label" for="toggleVisitsMarkers">{{ __('Visit Markers') }}</label>
                 </div>
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="toggleActivityMarkers" checked>
-                  <label class="form-check-label" for="toggleActivityMarkers">Activity Markers</label>
+                  <label class="form-check-label" for="toggleActivityMarkers">{{ __('Activity Markers') }}</label>
                 </div>
               </div>
             </div>
@@ -146,14 +146,14 @@
             <h2 class="accordion-header" id="headingHeatmap">
               <button class="accordion-button" type="button" data-bs-toggle="collapse"
                       data-bs-target="#collapseHeatmap">
-                Heatmap
+                {{ __('Heatmap') }}
               </button>
             </h2>
             <div id="collapseHeatmap" class="accordion-collapse collapse show">
               <div class="accordion-body">
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="toggleDeviceHeatmap" checked>
-                  <label class="form-check-label" for="toggleDeviceHeatmap">Device Heatmap</label>
+                  <label class="form-check-label" for="toggleDeviceHeatmap">{{ __('Device Heatmap') }}</label>
                 </div>
               </div>
             </div>
@@ -164,14 +164,14 @@
             <h2 class="accordion-header" id="headingPolyline">
               <button class="accordion-button" type="button" data-bs-toggle="collapse"
                       data-bs-target="#collapsePolyline">
-                Polyline
+                {{ __('Polyline') }}
               </button>
             </h2>
             <div id="collapsePolyline" class="accordion-collapse collapse show">
               <div class="accordion-body">
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="togglePolyline" checked>
-                  <label class="form-check-label" for="togglePolyline">Show Polyline</label>
+                  <label class="form-check-label" for="togglePolyline">{{ __('Show Polyline') }}</label>
                 </div>
               </div>
             </div>
@@ -180,7 +180,7 @@
         <!-- Map Container -->
         <div id="map" style="height: 700px;"
              class="text-muted text-center d-flex align-items-center justify-content-center">
-          <p>Please select an employee to load the map.</p>
+          <p>{{ __('Please select an employee to load the map.') }}</p>
         </div>
       </div>
     </div>
@@ -192,13 +192,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Map Controls Help</h5>
+          <h5 class="modal-title">{{ __('Map Controls Help') }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p><strong>Device Markers:</strong> Show/hide device markers.</p>
-          <p><strong>Device Heatmap:</strong> Display heatmap for device locations.</p>
-          <p><strong>Polyline:</strong> Show/hide route path.</p>
+          <p><strong>{{ __('Device Markers') }}:</strong> Show/hide device markers.</p>
+          <p><strong>{{ __('Device Heatmap') }}:</strong> Display heatmap for device locations.</p>
+          <p><strong>{{ __('Polyline') }}:</strong> Show/hide route path.</p>
         </div>
       </div>
     </div>

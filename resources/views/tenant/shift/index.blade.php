@@ -78,7 +78,7 @@
 
     <div class="card">
       <div class="card-header">
-        <h5 class="card-title mb-0">Shift List</h5>
+        <h5 class="card-title mb-0">{{ __('Shift List') }}</h5>
       </div>
       <div class="card-datatable table-responsive pt-0">
         <table class="datatables-shifts table table-bordered"> {{-- Use specific class --}}

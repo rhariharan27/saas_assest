@@ -45,7 +45,7 @@
     <div class="col-md-3 mb-3">
       <label for="employeeFilter" class="form-label">Filter by employee</label>
       <select id="employeeFilter" name="employeeFilter" class="form-select select2">
-        <option value="" selected>All Employees</option>
+        <option value="" selected>{{ __('All Employees') }}</option>
         @foreach($employees as $employee)
           <option value="{{ $employee->id }}">{{ $employee->first_name }} {{ $employee->last_name }}</option>
         @endforeach
