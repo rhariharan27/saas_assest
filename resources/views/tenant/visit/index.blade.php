@@ -34,7 +34,7 @@
   </div>
   <!--Date Filter -->
   <div class="mb-4">
-    <label for="dateFilter" class="form-label">Filter by date</label>
+    <label for="dateFilter" class="form-label">{{ __('Filter by date') }}</label>
     <input type="date" id="dateFilter" name="dateFilter" class="form-control w-auto">
   </div>
   <!-- Visits table card -->
@@ -44,12 +44,12 @@
         <thead>
         <tr>
           <th>@lang('')</th>
-          <th>@lang('Sl.No')</th>
-          <th>@lang('User')</th>
-          <th>@lang('Client')</th>
-          <th>@lang('Created At')</th>
-          <th>@lang('Image')</th>
-          <th>@lang('Actions')</th>
+          <th>{{ __('Sl.No') }}</th>
+          <th>{{ __('User') }}</th>
+          <th>{{ __('Client') }}</th>
+          <th>{{ __('Created At') }}</th>
+          <th>{{ __('Image') }}</th>
+          <th>{{ __('Actions') }}</th>
         </tr>
         </thead>
       </table>

@@ -66,7 +66,7 @@
             <li class="list-group-item d-flex align-items-center mb-3">
               <i class="bx bx-check-circle me-2"></i>
               <strong>@lang('Is Proof Required'):</strong> <span
-                class="ms-2">{{ $expenseType['is_proof_required'] ? 'Yes' : 'No' }}</span>
+                class="ms-2">{{ $expenseType['is_proof_required'] ? __('Yes') : __('No') }}</span>
             </li>
 
             <li class="list-group-item d-flex align-items-center mb-3">

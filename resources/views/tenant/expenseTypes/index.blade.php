@@ -26,12 +26,12 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <h4>@lang('Expense Type')</h4>
+            <h4>{{ __('Expense Types') }}</h4>
         </div>
         <div class="col text-end">
             <button type="button" class="btn btn-primary add-new" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasAddOrUpdateExpenseType">
-                <i class="bx bx-plus bx-sm me-0 me-sm-2"></i> @lang('Add New')
+                <i class="bx bx-plus bx-sm me-0 me-sm-2"></i> {{ __('Add New') }}
             </button>
         </div>
     </div>
@@ -42,12 +42,12 @@
                 <thead>
                     <tr>
                         <th>@lang('')</th>
-                        <th>@lang('Id')</th>
-                        <th>@lang('Name')</th>
-                        <th>@lang('Code')</th>
-                        <th>@lang('Description')</th>
-                        <th>@lang('Status')</th>
-                        <th>@lang('Actions')</th>
+                        <th>{{ __('Id') }}</th>
+                        <th>{{ __('Name') }}</th>
+                        <th>{{ __('Code') }}</th>
+                        <th>{{ __('Description') }}</th>
+                        <th>{{ __('Status') }}</th>
+                        <th>{{ __('Actions') }}</th>
                     </tr>
                 </thead>
             </table>
