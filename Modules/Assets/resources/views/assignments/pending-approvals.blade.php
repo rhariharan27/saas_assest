@@ -3,7 +3,7 @@
 @endphp
 @extends('layouts.layoutMaster')
 
-@section('title', 'Pending Assignment Approvals')
+@section('title', __('Pending Assignment Approvals'))
 
 @section('vendor-style')
     @vite([
@@ -68,7 +68,7 @@
         <div class="row mb-4">
             <div class="col-12">
                 <h4 class="py-3 mb-0">
-                    <span class="text-muted fw-light">Asset Management /</span> Pending Employee Approvals
+                    <span class="text-muted fw-light">{{ __('Asset Management') }} /</span> {{ __('Pending Employee Approvals') }}
                 </h4>
             </div>
         </div>
@@ -81,8 +81,8 @@
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-column">
                                 <div class="card-title mb-auto">
-                                    <h5 class="mb-1 text-nowrap">Total Pending</h5>
-                                    <p class="text-muted">Awaiting Response</p>
+                                    <h5 class="mb-1 text-nowrap">{{ __('Total Pending') }}</h5>
+                                    <p class="text-muted">{{ __('Awaiting Response') }}</p>
                                 </div>
                                 <div class="chart-statistics">
                                     <h3 class="card-title mb-1" id="totalPending">0</h3>
@@ -103,8 +103,8 @@
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-column">
                                 <div class="card-title mb-auto">
-                                    <h5 class="mb-1 text-nowrap">Overdue</h5>
-                                    <p class="text-muted">Beyond 7 Days</p>
+                                    <h5 class="mb-1 text-nowrap">{{ __('Overdue') }}</h5>
+                                    <p class="text-muted">{{ __('Beyond 7 Days') }}</p>
                                 </div>
                                 <div class="chart-statistics">
                                     <h3 class="card-title mb-1 text-danger" id="totalOverdue">0</h3>
@@ -125,8 +125,8 @@
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-column">
                                 <div class="card-title mb-auto">
-                                    <h5 class="mb-1 text-nowrap">This Week</h5>
-                                    <p class="text-muted">New Assignments</p>
+                                    <h5 class="mb-1 text-nowrap">{{ __('This Week') }}</h5>
+                                    <p class="text-muted">{{ __('New Assignments') }}</p>
                                 </div>
                                 <div class="chart-statistics">
                                     <h3 class="card-title mb-1" id="thisWeek">0</h3>
@@ -147,8 +147,8 @@
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-column">
                                 <div class="card-title mb-auto">
-                                    <h5 class="mb-1 text-nowrap">Avg Response</h5>
-                                    <p class="text-muted">Time in Days</p>
+                                    <h5 class="mb-1 text-nowrap">{{ __('Avg Response') }}</h5>
+                                    <p class="text-muted">{{ __('Time in Days') }}</p>
                                 </div>
                                 <div class="chart-statistics">
                                     <h3 class="card-title mb-1" id="avgResponse">0</h3>
@@ -170,37 +170,37 @@
             <div class="card-body">
                 <div class="row gy-3">
                     <div class="col-md-3">
-                        <label for="filter_employee" class="form-label">Employee</label>
+                        <label for="filter_employee" class="form-label">{{ __('Employee') }}</label>
                         <select id="filter_employee" class="form-select select2" data-allow-clear="true">
-                            <option value="">All Employees</option>
+                            <option value="">{{ __('All Employees') }}</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label for="filter_category" class="form-label">Asset Category</label>
+                        <label for="filter_category" class="form-label">{{ __('Asset Category') }}</label>
                         <select id="filter_category" class="form-select select2" data-allow-clear="true">
-                            <option value="">All Categories</option>
+                            <option value="">{{ __('All Categories') }}</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label for="filter_overdue" class="form-label">Overdue Status</label>
+                        <label for="filter_overdue" class="form-label">{{ __('Overdue Status') }}</label>
                         <select id="filter_overdue" class="form-select">
-                            <option value="">All Assignments</option>
-                            <option value="overdue">Overdue Only</option>
-                            <option value="normal">Normal Only</option>
+                            <option value="">{{ __('All Assignments') }}</option>
+                            <option value="overdue">{{ __('Overdue Only') }}</option>
+                            <option value="normal">{{ __('Normal Only') }}</option>
                         </select>
                     </div>
                     <div class="col-md-3 d-flex align-items-end">
                         <button type="button" class="btn btn-primary me-2" id="refreshTable">
-                            <i class="bx bx-refresh me-1"></i>Refresh
+                            <i class="bx bx-refresh me-1"></i>{{ __('Refresh') }}
                         </button>
                         <button type="button" class="btn btn-outline-secondary" id="clearFilters">
-                            <i class="bx bx-x me-1"></i>Clear
+                            <i class="bx bx-x me-1"></i>{{ __('Clear') }}
                         </button>
                     </div>
                 </div>
@@ -210,13 +210,13 @@
         <!-- Pending Approvals Table -->
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Pending Assignment Approvals</h5>
+                <h5 class="card-title mb-0">{{ __('Pending Assignment Approvals') }}</h5>
                 <div>
                     <button type="button" class="btn btn-outline-primary btn-sm" id="bulkRemindBtn" disabled>
-                        <i class="bx bx-bell me-1"></i>Send Reminders
+                        <i class="bx bx-bell me-1"></i>{{ __('Send Reminders') }}
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm ms-2" id="exportBtn">
-                        <i class="bx bx-download me-1"></i>Export
+                        <i class="bx bx-download me-1"></i>{{ __('Export') }}
                     </button>
                 </div>
             </div>
@@ -227,15 +227,15 @@
                             <th class="no-sort">
                                 <input type="checkbox" class="form-check-input" id="selectAll">
                             </th>
-                            <th>Employee</th>
-                            <th>Asset</th>
-                            <th>Category</th>
-                            <th>Assigned By</th>
-                            <th>Assigned Date</th>
-                            <th>Expected Return</th>
-                            <th>Days Pending</th>
-                            <th>Status</th>
-                            <th class="no-sort">Actions</th>
+                            <th>{{ __('Employee') }}</th>
+                            <th>{{ __('Name') }}</th>
+                            <th>{{ __('Category') }}</th>
+                            <th>{{ __('Assigned By') }}</th>
+                            <th>{{ __('Assigned Date') }}</th>
+                            <th>{{ __('Expected Return') }}</th>
+                            <th>{{ __('Days Pending') }}</th>
+                            <th>{{ __('Status') }}</th>
+                            <th class="no-sort">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -250,7 +250,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Quick Actions</h5>
+                        <h5 class="modal-title">{{ __('Quick Actions') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -261,33 +261,33 @@
                                     <i class="bx bx-user fs-2"></i>
                                 </div>
                             </div>
-                            <h6 class="mb-1" id="actionEmployeeName">Employee Name</h6>
-                            <p class="text-muted mb-0" id="actionAssetInfo">Asset Information</p>
+                            <h6 class="mb-1" id="actionEmployeeName">{{ __('Employee Name') }}</h6>
+                            <p class="text-muted mb-0" id="actionAssetInfo">{{ __('Asset Information') }}</p>
                         </div>
                         
                         <div class="row g-3">
                             <div class="col-6">
                                 <button type="button" class="btn btn-outline-info w-100" id="sendReminderBtn">
                                     <i class="bx bx-bell me-2"></i>
-                                    Send Reminder
+                                    {{ __('Send Reminder') }}
                                 </button>
                             </div>
                             <div class="col-6">
                                 <button type="button" class="btn btn-outline-primary w-100" id="viewDetailsBtn">
                                     <i class="bx bx-show me-2"></i>
-                                    View Details
+                                    {{ __('View Details') }}
                                 </button>
                             </div>
                             <div class="col-6">
                                 <button type="button" class="btn btn-outline-warning w-100" id="editAssignmentBtn">
                                     <i class="bx bx-edit me-2"></i>
-                                    Edit Assignment
+                                    {{ __('Edit Assignment') }}
                                 </button>
                             </div>
                             <div class="col-6">
                                 <button type="button" class="btn btn-outline-danger w-100" id="cancelAssignmentBtn">
                                     <i class="bx bx-x me-2"></i>
-                                    Cancel Assignment
+                                    {{ __('Cancel Assignment') }}
                                 </button>
                             </div>
                         </div>
@@ -301,7 +301,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Assignment Details</h5>
+                        <h5 class="modal-title">{{ __('Assignment Details') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

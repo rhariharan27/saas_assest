@@ -6,7 +6,7 @@
 @endphp
 @extends('layouts.layoutMaster')
 
-@section('title', 'Asset Details: ' . $asset->asset_tag)
+@section('title', __('Asset Details') . ': ' . $asset->asset_tag)
 
 @section('vendor-style')
   @vite([
@@ -85,23 +85,23 @@
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-style1 mb-0">
-          <li class="breadcrumb-item"><a href="{{ route('assets.index') }}">Asset List</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('assets.index') }}">{{ __('Asset List') }}</a></li>
           <li class="breadcrumb-item active">{{ $asset->asset_tag }} - {{ $asset->name }}</li>
         </ol>
       </nav>
       <div class="d-flex gap-2">
         {{-- Edit Asset Button (Triggers Offcanvas) --}}
         <button class="btn btn-primary" type="button" id="editAssetBtnDetailsPage" data-asset-id="{{ $asset->id }}">
-          <i class="bx bx-pencil me-1"></i>Edit Asset
+          <i class="bx bx-pencil me-1"></i>{{ __('Edit Asset') }}
         </button>
         {{-- Assign Button (Return handled through approval workflow) --}}
         @if ($asset->status == AssetStatus::AVAILABLE)
           <button class="btn btn-success" type="button" id="assignAssetBtnDetailsPage" data-asset-id="{{ $asset->id }}" data-asset-name="{{e($asset->name)}}" data-asset-tag="{{e($asset->asset_tag)}}">
-            <i class="bx bx-user-plus me-1"></i>Assign
+            <i class="bx bx-user-plus me-1"></i>{{ __('Assign') }}
           </button>
         @endif
         <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#maintenanceLogModal">
-          <i class="bx bx-wrench me-1"></i>Add Maintenance Log
+          <i class="bx bx-wrench me-1"></i>{{ __('Add Maintenance Log') }}
         </button>
       </div>
     </div>
@@ -111,42 +111,42 @@
       <div class="col-lg-5 col-xl-4">
         {{-- Asset Details Card --}}
         <div class="card mb-4">
-          <div class="card-header"><h5 class="card-title mb-0">Asset Details</h5></div>
+          <div class="card-header"><h5 class="card-title mb-0">{{ __('Asset Details') }}</h5></div>
           <div class="card-body">
             <dl class="row">
-              <dt class="col-sm-4">Name</dt><dd class="col-sm-8">{{ $asset->name }}</dd>
-              <dt class="col-sm-4">Asset Tag</dt><dd class="col-sm-8">{{ $asset->asset_tag }}</dd>
-              <dt class="col-sm-4">Category</dt><dd class="col-sm-8">{{ $asset->category?->name ?? 'N/A' }}</dd>
-              <dt class="col-sm-4">Serial No.</dt><dd class="col-sm-8">{{ $asset->serial_number ?? 'N/A' }}</dd>
-              <dt class="col-sm-4">Manufacturer</dt><dd class="col-sm-8">{{ $asset->manufacturer ?? 'N/A' }}</dd>
-              <dt class="col-sm-4">Model</dt><dd class="col-sm-8">{{ $asset->model ?? 'N/A' }}</dd>
-              <dt class="col-sm-4">Location</dt><dd class="col-sm-8">{{ $asset->location ?? 'N/A' }}</dd>
-              <dt class="col-sm-4">Condition</dt>
+              <dt class="col-sm-4">{{ __('Name') }}</dt><dd class="col-sm-8">{{ $asset->name }}</dd>
+              <dt class="col-sm-4">{{ __('Asset Tag') }}</dt><dd class="col-sm-8">{{ $asset->asset_tag }}</dd>
+              <dt class="col-sm-4">{{ __('Category') }}</dt><dd class="col-sm-8">{{ $asset->category?->name ?? 'N/A' }}</dd>
+              <dt class="col-sm-4">{{ __('Serial No.') }}</dt><dd class="col-sm-8">{{ $asset->serial_number ?? 'N/A' }}</dd>
+              <dt class="col-sm-4">{{ __('Manufacturer') }}</dt><dd class="col-sm-8">{{ $asset->manufacturer ?? 'N/A' }}</dd>
+              <dt class="col-sm-4">{{ __('Model') }}</dt><dd class="col-sm-8">{{ $asset->model ?? 'N/A' }}</dd>
+              <dt class="col-sm-4">{{ __('Location') }}</dt><dd class="col-sm-8">{{ $asset->location ?? 'N/A' }}</dd>
+              <dt class="col-sm-4">{{ __('Condition') }}</dt>
               <dd class="col-sm-8">
                 @if($asset->condition)
                   @php $condBadge = match($asset->condition) { AssetCondition::NEW => 'bg-label-info', AssetCondition::GOOD => 'bg-label-success', \Modules\Assets\Enums\AssetCondition::FAIR => 'bg-label-warning', \Modules\Assets\Enums\AssetCondition::POOR => 'bg-label-danger', \Modules\Assets\Enums\AssetCondition::BROKEN => 'bg-label-dark', default => 'bg-label-light' }; @endphp
                   <span class="badge {{ $condBadge }}">{{ $asset->condition->label() }}</span>
                 @else N/A @endif
               </dd>
-              <dt class="col-sm-4">Notes</dt><dd class="col-sm-8" style="white-space: pre-wrap;">{{ $asset->notes ?? 'N/A' }}</dd>
+              <dt class="col-sm-4">{{ __('Notes') }}</dt><dd class="col-sm-8" style="white-space: pre-wrap;">{{ $asset->notes ?? 'N/A' }}</dd>
             </dl>
           </div>
         </div>
         {{-- Purchase & Warranty Card --}}
         <div class="card mb-4">
-          <div class="card-header"><h5 class="card-title mb-0">Purchase & Warranty</h5></div>
+          <div class="card-header"><h5 class="card-title mb-0">{{ __('Purchase & Warranty') }}</h5></div>
           <div class="card-body">
             <dl class="row">
-              <dt class="col-sm-5">Purchase Date</dt><dd class="col-sm-7">{{ $asset->purchase_date?->format('M d, Y') ?? 'N/A' }}</dd>
-              <dt class="col-sm-5">Purchase Cost</dt><dd class="col-sm-7">{{ $asset->purchase_cost ? ($settings->currency_symbol ?? '$') . number_format($asset->purchase_cost, 2) : 'N/A' }}</dd> {{-- Assuming $settings available --}}
-              <dt class="col-sm-5">Supplier</dt><dd class="col-sm-7">{{ $asset->supplier ?? 'N/A' }}</dd>
-              <dt class="col-sm-5">Warranty Expiry</dt><dd class="col-sm-7">{{ $asset->warranty_expiry_date?->format('M d, Y') ?? 'N/A' }}</dd>
+              <dt class="col-sm-5">{{ __('Purchase Date') }}</dt><dd class="col-sm-7">{{ $asset->purchase_date?->format('M d, Y') ?? 'N/A' }}</dd>
+              <dt class="col-sm-5">{{ __('Purchase Cost') }}</dt><dd class="col-sm-7">{{ $asset->purchase_cost ? ($settings->currency_symbol ?? '$') . number_format($asset->purchase_cost, 2) : 'N/A' }}</dd>
+              <dt class="col-sm-5">{{ __('Supplier') }}</dt><dd class="col-sm-7">{{ $asset->supplier ?? 'N/A' }}</dd>
+              <dt class="col-sm-5">{{ __('Warranty Expiry') }}</dt><dd class="col-sm-7">{{ $asset->warranty_expiry_date?->format('M d, Y') ?? 'N/A' }}</dd>
             </dl>
           </div>
         </div>
         {{-- Current Status Card --}}
         <div class="card mb-4">
-          <div class="card-header"><h5 class="card-title mb-0">Current Status</h5></div>
+          <div class="card-header"><h5 class="card-title mb-0">{{ __('Current Status') }}</h5></div>
           <div class="card-body">
             @php
               // Assuming $asset->status is an instance of Modules\Assets\Enums\AssetStatus Enum
