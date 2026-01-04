@@ -1150,6 +1150,7 @@
   "Out Time": "وقت المغادرة",
   "Open in Maps": "فتح في الخرائط",
   "Last Updated": "آخر تحديث",
+  "Last updated": "آخر تحديث",
   "WiFi": "الإنترنت اللاسلكي",
   "GPS": "نظام تحديد المواقع",
   "No breaks data available.": "لا توجد بيانات فترات راحة متاحة.",
@@ -1509,5 +1510,6 @@
   "Bulk Approval Notes (Optional)": "ملاحظات الموافقة الجماعية (اختيارية)",
   "Notes to be added to all approved requests...": "ملاحظات سيتم إضافتها لجميع الطلبات الموافق عليها...",
   "Approve All Selected": "موافقة على الكل المحددة",
-  "Pending Assignments": "التعيينات المعلقة"
+  "Pending Assignments": "التعيينات المعلقة",
+  "Welcome back": "أهلا بعودتك"
 }

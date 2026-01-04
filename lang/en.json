@@ -1150,6 +1150,7 @@
   "Out Time": "Out Time",
   "Open in Maps": "Open in Maps",
   "Last Updated": "Last Updated",
+  "Last updated": "Last updated",
   "WiFi": "WiFi",
   "GPS": "GPS",
   "No breaks data available.": "No breaks data available.",
@@ -1512,5 +1513,6 @@
   "Bulk Approval Notes (Optional)": "Bulk Approval Notes (Optional)",
   "Notes to be added to all approved requests...": "Notes to be added to all approved requests...",
   "Approve All Selected": "Approve All Selected",
-  "Pending Assignments": "Pending Assignments"
+  "Pending Assignments": "Pending Assignments",
+  "Welcome back": "Welcome back"
 }

@@ -332,7 +332,7 @@
   <div class="card bg-transparent shadow-none my-6 border-0">
     <div class="card-body row p-0 pb-6 g-6">
       <div class="col-12 col-lg-8 card-separator">
-        <h5 class="mb-2">Welcome back,<span class="h4"> {{ auth()->user()->getFullName() }} 👋🏻</span></h5>
+        <h5 class="mb-2">{{ __('Welcome back') }},<span class="h4"> {{ auth()->user()->getFullName() }} 👋🏻</span></h5>
         <div class="col-12 col-lg-5">
           <p>{{$quoteText}}</p>
         </div>
@@ -344,7 +344,7 @@
               </div>
             </div>
             <div class="content-right">
-              <p class="mb-0 fw-medium">Hours Logged</p>
+              <p class="mb-0 fw-medium">{{ __('Hours Logged') }}</p>
               <h4 class="text-primary mb-0">{{ $todayHours ?? 0 }}h</h4>
             </div>
           </div>
@@ -355,7 +355,7 @@
               </div>
             </div>
             <div class="content-right">
-              <p class="mb-0 fw-medium">Pending Tasks</p>
+              <p class="mb-0 fw-medium">{{ __('Pending Tasks') }}</p>
               <h4 class="text-info mb-0">{{ $tasks ?? 0 }}</h4>
             </div>
           </div>
@@ -366,7 +366,7 @@
               </div>
             </div>
             <div class="content-right">
-              <p class="mb-0 fw-medium">On Going Tasks</p>
+              <p class="mb-0 fw-medium">{{ __('On Going Tasks') }}</p>
               <h4 class="text-warning mb-0">{{ $onGoingTasks ?? 0 }}</h4>
             </div>
           </div>
@@ -375,13 +375,13 @@
       <div class="col-12 col-lg-4 ps-md-4 ps-lg-6">
         <div class="d-flex justify-content-between align-items-center">
           <div>
-            <h5 class="mb-1">Time Spending</h5>
-            <p class="mb-9">Weekly Overview</p>
+            <h5 class="mb-1">{{ __('Time Spending') }}</h5>
+            <p class="mb-9">{{ __('Weekly Overview') }}</p>
             <div class="time-spending-chart">
               <h4 class="mb-2">{{ $thisWeekWorkingHours }}<span
                   class="text-body">h</span>
               </h4>
-              <span class="badge bg-label-success"> Your weekly working hours</span>
+              <span class="badge bg-label-success">{{ __('Your weekly working hours') }}</span>
             </div>
           </div>
           <div id="weeklyReportChart"></div>
@@ -394,10 +394,10 @@
     <div class="col-sm-6 col-xl-3 mb-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5>Total Employees</h5>
+          <h5>{{ __('Total Employees') }}</h5>
           <h2>{{ $totalUser }}</h2>
           @if($totalUser > 0)
-            <small class="text-success">100% of total employees</small>
+            <small class="text-success">{{ __('100% of total employees') }}</small>
           @endif
         </div>
       </div>
@@ -405,13 +405,13 @@
     <div class="col-sm-6 col-xl-3 mb-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5>On Leave</h5>
+          <h5>{{ __('On Leave') }}</h5>
           <h2>{{ $onLeaveUsersCount  }}</h2>
           <small class="text-warning">
             @if($onLeaveUsersCount > 0)
-              {{ round(($onLeaveUsersCount / $totalUser) * 100, 2) }}% of total employees
+              {{ round(($onLeaveUsersCount / $totalUser) * 100, 2) }}{{ __('% of total employees') }}
             @else
-              0% of total employees
+              0{{ __('% of total employees') }}
             @endif
           </small>
         </div>
@@ -420,13 +420,13 @@
     <div class="col-sm-6 col-xl-3 mb-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5>Today's Present</h5>
+          <h5>{{ __('Today\'s Present') }}</h5>
           <h2>{{ $todayPresentUsers }}</h2>
           <small class="text-primary">
             @if($todayPresentUsers > 0)
-              {{ round(($todayPresentUsers / $totalUser) * 100, 2) }}% of total employees
+              {{ round(($todayPresentUsers / $totalUser) * 100, 2) }}{{ __('% of total employees') }}
             @else
-              0% of total employees
+              0{{ __('% of total employees') }}
             @endif
           </small>
         </div>
@@ -435,13 +435,13 @@
     <div class="col-sm-6 col-xl-3 mb-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5>Today's Absentees</h5>
+          <h5>{{ __('Today\'s Absentees') }}</h5>
           <h2>{{ $todayAbsentUsers }}</h2>
           <small class="text-danger">
             @if($todayAbsentUsers > 0)
-              {{ round(($todayAbsentUsers / $totalUser) * 100, 2) }}% of total employees
+              {{ round(($todayAbsentUsers / $totalUser) * 100, 2) }}{{ __('% of total employees') }}
             @else
-              0% of total employees
+              0{{ __('% of total employees') }}
             @endif
           </small>
         </div>
@@ -467,40 +467,40 @@
     <div class="col-lg-4 col-md-6">
       <div class="card h-100 text-center shadow-sm">
         <div class="card-body">
-          <h5 class="card-title">Pending Requests</h5>
+          <h5 class="card-title">{{ __('Pending Requests') }}</h5>
           <div class="list-group">
             @if(\Illuminate\Support\Facades\Route::has('leaveRequests.index'))
               <a href="{{ route('leaveRequests.index') }}"
                  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                Leave Requests
+                {{ __('Leave Requests') }}
                 <span class="badge bg-primary rounded-pill">{{ $pendingLeaveRequests }}</span>
               </a>
             @endif
             @if(\Illuminate\Support\Facades\Route::has('expenseRequests.index'))
               <a href="{{ route('expenseRequests.index') }}"
                  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                Expense Requests
+                {{ __('Expense Requests') }}
                 <span class="badge bg-success rounded-pill">{{ $pendingExpenseRequests }}</span>
               </a>
             @endif
             @if(\Illuminate\Support\Facades\Route::has('documentmanagement.index'))
               <a href="{{ route('documentmanagement.index') }}"
                  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                Document Requests
+                {{ __('Document Requests') }}
                 <span class="badge bg-warning rounded-pill">{{ $pendingDocumentRequests }}</span>
               </a>
             @endif
             @if(\Illuminate\Support\Facades\Route::has('loan.index'))
               <a href="{{ route('loan.index') }}"
                  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                Loan Requests
+                {{ __('Loan Requests') }}
                 <span class="badge bg-danger rounded-pill">{{ $pendingLoanRequests }}</span>
               </a>
             @endif
           </div>
         </div>
         <div class="card-footer text-muted">
-          <small>Last updated {{ now()->diffForHumans() }}</small>
+          <small>{{ __('Last updated') }} {{ now()->diffForHumans() }}</small>
         </div>
       </div>
     </div>
@@ -509,8 +509,8 @@
       <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
           <div>
-            <h5 class="card-title mb-0">Recent Activities</h5>
-            <p class="card-subtitle my-0">Latest activities of users</p>
+            <h5 class="card-title mb-0">{{ __('Recent Activities') }}</h5>
+            <p class="card-subtitle my-0">{{ __('Latest activities of users') }}</p>
           </div>
         </div>
         <div class="card-body">
