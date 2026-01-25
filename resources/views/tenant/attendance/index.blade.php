@@ -24,6 +24,23 @@
 @endsection
 
 @section('page-script')
+  <script>
+    // Pass translations to JavaScript
+    window.translations = {
+      attendanceRecords: '{{ __("Attendance Records") }}',
+      search: '{{ __("Search") }}',
+      show: '{{ __("Show") }}',
+      entries: '{{ __("entries") }}',
+      selectEmployee: '{{ __("Select an Employee") }}',
+      noDataAvailable: '{{ __("No data available in table") }}',
+      info: '{{ __("Showing _START_ to _END_ of _TOTAL_ entries") }}',
+      infoEmpty: '{{ __("Showing 0 to 0 of 0 entries") }}',
+      firstPage: '{{ __("First Page") }}',
+      previous: '{{ __("Previous") }}',
+      next: '{{ __("Next") }}',
+      lastPage: '{{ __("Last Page") }}'
+    };
+  </script>
   @vite([
     'resources/js/main-select2.js',
     'resources/assets/js/app/attendance-index.js',

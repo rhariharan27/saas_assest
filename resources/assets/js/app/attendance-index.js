@@ -17,7 +17,7 @@ $(function () {
 
   // Initialize Select2 for the user dropdown
   const userSelect = $('#userId').select2({
-    placeholder: "Select an Employee",
+    placeholder: window.translations?.selectEmployee || 'Select an Employee',
     allowClear: true
   });
 
@@ -48,6 +48,19 @@ $(function () {
     dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>', // Standard DataTables DOM structure
     displayLength: 10,
     lengthMenu: [10, 25, 50, 100],
+    language: {
+      lengthMenu: (window.translations?.show || 'Show') + ' _MENU_ ' + (window.translations?.entries || 'entries'),
+      info: window.translations?.info || 'Showing _START_ to _END_ of _TOTAL_ entries',
+      infoEmpty: window.translations?.infoEmpty || 'Showing 0 to 0 of 0 entries',
+      search: window.translations?.search || 'Search',
+      paginate: {
+        first: window.translations?.firstPage || 'First Page',
+        previous: window.translations?.previous || 'Previous',
+        next: window.translations?.next || 'Next',
+        last: window.translations?.lastPage || 'Last Page'
+      },
+      emptyTable: window.translations?.noDataAvailable || 'No data available in table'
+    },
     buttons: [
       // Add export buttons etc. if needed
       // {
@@ -78,7 +91,7 @@ $(function () {
   });
 
   // Set the title in the DataTable header
-  $('div.head-label').html('<h5 class="card-title mb-0">Attendance Records</h5>');
+  $('div.head-label').html('<h5 class="card-title mb-0">' + (window.translations?.attendanceRecords || 'Attendance Records') + '</h5>');
 
   // --- Event Listeners for Filters ---
 
