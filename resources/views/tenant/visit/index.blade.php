@@ -22,6 +22,21 @@
 @endsection
 
 @section('page-script')
+  <script>
+    // Pass translations to JavaScript
+    window.translations = {
+      searchVisits: '{{ __("Search Visits") }}',
+      noDataAvailable: '{{ __("No data available in table") }}',
+      displayingEntries: '{{ __("Displaying") }}',
+      showEntries: '{{ __("Show") }}',
+      entries: '{{ __("entries") }}',
+      info: '{{ __("Displaying _START_ to _END_ of _TOTAL_ entries") }}',
+      next: '{{ __("Next") }}',
+      previous: '{{ __("Previous") }}',
+      firstPage: '{{ __("First Page") }}',
+      lastPage: '{{ __("Last Page") }}'
+    };
+  </script>
   @vite(['resources/assets/js/app/visits-index.js'])
 @endsection
 
