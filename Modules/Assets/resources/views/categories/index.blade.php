@@ -36,6 +36,17 @@
     const categoriesStoreUrl = "{{ route('assetCategories.store') }}"; // Adjust route name
     const categoriesBaseUrl = "{{ url('asset-categories') }}"; // Base URL for update/delete/edit
     const csrfToken = "{{ csrf_token() }}";
+    // Pass translations to JavaScript
+    window.translations = {
+      searchCategories: '{{ __("Search Categories") }}',
+      addNewCategory: '{{ __("Add New Category") }}',
+      addCategory: '{{ __("Add Category") }}',
+      editCategory: '{{ __("Edit Category") }}',
+      loadingCategoryData: '{{ __("Loading Category Data...") }}',
+      submit: '{{ __("Submit") }}',
+      update: '{{ __("Update") }}',
+      processing: '{{ __("Processing") }}'
+    };
   </script>
   @vite(['resources/assets/js/app/assets-categories-admin.js']) {{-- Link to specific JS --}}
 @endsection
