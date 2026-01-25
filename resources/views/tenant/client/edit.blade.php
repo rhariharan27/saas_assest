@@ -100,7 +100,7 @@
             <div class="form-group col-md-12">
               <label for="locationSearch" class="control-label">{{ __('Location Search') }}</label>
               <input id="locationSearch" name="locationSearch" class="form-control"
-                     placeholder="Search for a location" />
+                     placeholder="{{ __('Search for a location') }}" />
             </div>
           </div>
           <div id="map" style="height: 400px; width: 100%;"></div>

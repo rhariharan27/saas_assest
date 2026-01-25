@@ -103,12 +103,27 @@
 @endsection
 
 @section('page-script')
+  <script>
+    window.translations = {
+      searchClient: '{{ __("Search Client") }}',
+      noDataAvailable: '{{ __("No data available in table") }}',
+      info: '{{ __("Displaying _START_ to _END_ of _TOTAL_ entries") }}'
+    };
+  </script>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
   <script>
 
     $(function () {
-      $('#datatable').dataTable();
+      $('#datatable').dataTable({
+        language: {
+          searchPlaceholder: window.translations?.searchClient || 'Search Client',
+          emptyTable: window.translations?.noDataAvailable || 'No data available in table',
+          info: window.translations?.info || 'Displaying _START_ to _END_ of _TOTAL_ entries',
+          infoEmpty: window.translations?.noDataAvailable || 'No data available in table'
+        }
+      });
     });
 
     function changeStatus(id) {

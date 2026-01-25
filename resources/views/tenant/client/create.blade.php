@@ -83,8 +83,8 @@
                                         </div>
                                         <div class="row mt-4">
                                             <div class="form-group col-md-12">
-                                                <label for="remarks" class="control-label">Remarks</label>
-                                                <textarea id="remarks" rows="5" name="remar{{ __('Remarks') }}ss="form-control">{{ old('remarks') }}</textarea>
+                                                <label for="remarks" class="control-label">{{ __('Remarks') }}</label>
+                                                <textarea id="remarks" rows="5" name="remarks" class="form-control">{{ old('remarks') }}</textarea>
                                                 <span
                                                     class="text-danger">{{ $errors->first('remarks', ':message') }}</span>
                                             </div>
@@ -94,8 +94,8 @@
                             </div>
                             <div class=" mt-3">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Create</button>
-                                </div>{{ __('Create Client') }}
+                                    <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -103,9 +103,9 @@
                 <div class="col-6">
                     <div class="form-group row mb-3">
                         <div class="form-group col-md-12">
-                            <label for="locationSearch" class="control-label">Location Search</label>
-                            <input id="locationSearch" name="locationSearch" c{{ __('Location Search') }}rol"
-                                placeholder="Search for a location" />
+                            <label for="locationSearch" class="control-label">{{ __('Location Search') }}</label>
+                            <input id="locationSearch" name="locationSearch" class="form-control"
+                                placeholder="{{ __('Search for a location') }}" />
                         </div>
                     </div>
                     <div id="map" style="height: 400px; width: 100%;"></div>
