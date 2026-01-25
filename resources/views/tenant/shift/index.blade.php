@@ -59,7 +59,17 @@
     window.translations = {
       searchShifts: '{{ __("Search Shifts") }}',
       addNewShift: '{{ __("Add New Shift") }}',
-      editShift: '{{ __("Edit Shift") }}'
+      editShift: '{{ __("Edit Shift") }}',
+      loadingShiftData: '{{ __("Loading Shift Data...") }}',
+      operationFailed: '{{ __("Operation failed.") }}',
+      updateFailed: '{{ __("Update failed.") }}',
+      cannotDeleteShift: '{{ __("Cannot delete shift: It is currently assigned to users.") }}',
+      areYouSure: '{{ __("Are you sure?") }}',
+      deleteConfirmation: '{{ __("Delete this shift?") }}',
+      yesDeleteIt: '{{ __("Yes, delete it!") }}',
+      submit: '{{ __("Submit") }}',
+      update: '{{ __("Update") }}',
+      processing: '{{ __("Processing") }}'
     };
   </script>
   @vite(['resources/assets/js/app/shift-index.js']) {{-- Link to the refactored JS file --}}
