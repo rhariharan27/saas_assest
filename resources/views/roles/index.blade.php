@@ -27,6 +27,22 @@
 @endsection
 
 @section('page-script')
+  <script>
+    // Pass translations to JavaScript
+    window.translations = {
+      addNewRole: '{{ __("Add New Role") }}',
+      updateRole: '{{ __("Update Role") }}',
+      roleName: '{{ __("Role Name") }}',
+      multiCheckInOut: '{{ __("Multi Check-In/Out") }}',
+      mobileAppAccess: '{{ __("Mobile App Access") }}',
+      webAppAccess: '{{ __("Web App Access") }}',
+      locationActivityTracking: '{{ __("Location Activity Tracking") }}',
+      enable: '{{ __("Enable") }}',
+      submit: '{{ __("Submit") }}',
+      cancel: '{{ __("Cancel") }}',
+      pleaseEnterRoleName: '{{ __("Please enter role name") }}'
+    };
+  </script>
   @vite([
     'resources/assets/js/app/role-index.js',
     ])
