@@ -383,7 +383,7 @@ $(function () {
     }
 
     // changing the title of offcanvas
-    $('#offcanvasTeamLabel').html('Edit Team');
+    $('#offcanvasTeamLabel').html(window.translations?.editTeam || 'Edit Team');
 
     // get data
     $.get(`${baseUrl}teams\/getTeamAjax\/${id}`, function (data) {

@@ -365,7 +365,7 @@ $(function () {
     loadDepartmentList();
 
     // changing the title of offcanvas
-    $('#offcanvasAddDepartmentLabel').html('Edit Department');
+    $('#offcanvasAddDepartmentLabel').html(window.translations?.editDepartment || 'Edit Department');
 
     // set department data
     setDepartmentData(departmentId);

@@ -143,7 +143,7 @@ $(function () {
     $('#notes').val('');
     $('#department_id').val('');
     $('#is_approver').prop('checked', false);
-    $('#offcanvasDesignationLabel').html('Add Designation');
+    $('#offcanvasDesignationLabel').html(window.translations?.addDesignation || 'Add Designation');
     fv.resetForm(true);
   });
 
@@ -161,7 +161,7 @@ $(function () {
     }
 
     // changing the title of offcanvas
-    $('#offcanvasDesignationLabel').html('Edit Leave Type');
+    $('#offcanvasDesignationLabel').html(window.translations?.editDesignation || 'Edit Designation');
 
     // get data
     $.get(`${baseUrl}designations\/getByIdAjax\/${id}`, function (data) {

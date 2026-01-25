@@ -32,9 +32,13 @@
 @section('page-script')
   @vite(['resources/js/main-datatable.js'])
   @vite(['resources/js/main-helper.js'])
-  @vite(['resources/assets/js/app/leave-type-index.js'])
-@endsection
-
+    <script>
+      // Pass translations to JavaScript
+      window.translations = {
+        addLeaveType: '{{ __('Add Leave Type') }}',
+        editLeaveType: '{{ __('Edit Leave Type') }}'
+      };
+    </script>
 
 @section('content')
   <div class="row">

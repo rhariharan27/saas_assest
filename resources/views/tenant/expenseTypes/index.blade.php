@@ -19,6 +19,13 @@
 @section('page-script')
     @vite(['resources/js/main-datatable.js'])
     @vite(['resources/js/main-helper.js'])
+    <script>
+      // Pass translations to JavaScript
+      window.translations = {
+        addExpenseType: '{{ __('Add Expense Type') }}',
+        editExpenseType: '{{ __('Edit Expense Type') }}'
+      };
+    </script>
     @vite(['resources/assets/js/app/expense-type-index.js'])
 @endsection
 

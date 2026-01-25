@@ -1,7 +1,7 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddOrUpdateExpenseType"
     aria-labelledby="offcanvasCreateExpenseTypeLabel">
     <div class="offcanvas-header border-bottom">
-        <h5 id="offcanvasExpenseTypeLabel" class="offcanvas-title">@lang('Create Expense Type')</h5>
+        <h5 id="offcanvasExpenseTypeLabel" class="offcanvas-title">{{ __('Add Expense Type') }}</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0 p-6 h-100">

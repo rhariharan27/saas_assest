@@ -57,7 +57,7 @@ $(function () {
     ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].forEach(day => {
       $(`#${day}Toggle`).prop('checked', true); // Check Mon-Fri
     });
-    offcanvasLabel.text('Add Shift');
+    offcanvasLabel.text(window.translations?.addNewShift || 'Add New Shift');
     submitBtn.text('Submit').prop('disabled', false);
   }
 
@@ -151,7 +151,7 @@ $(function () {
   $('.add-new').on('click', function () {
     // Target '.add-new' class from Blade
     resetShiftForm();
-    offcanvasLabel.text('Add New Shift');
+    offcanvasLabel.text(window.translations?.addNewShift || 'Add New Shift');
     shiftOffcanvas?.show();
   });
 
@@ -170,7 +170,7 @@ $(function () {
       success: function (response) {
         if (response.success && response.shift) {
           const data = response.shift;
-          offcanvasLabel.text('Edit Shift: ' + data.name);
+          offcanvasLabel.text((window.translations?.editShift || 'Edit Shift') + ': ' + data.name);
           shiftIdInput.val(data.id);
           shiftMethodInput.val('PUT'); // Set method for update
 

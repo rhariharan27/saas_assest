@@ -1,7 +1,7 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddOrUpdateLeaveType"
     aria-labelledby="offcanvasCreateLeaveTypeLabel">
     <div class="offcanvas-header border-bottom">
-        <h5 id="offcanvasLeaveTypeLabel" class="offcanvas-title">@lang('Create Leave Type')</h5>
+        <h5 id="offcanvasLeaveTypeLabel" class="offcanvas-title">{{ __('Add Leave Type') }}</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0 p-6 h-100">

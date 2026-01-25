@@ -35,7 +35,9 @@
   <script>
     // Pass translations to JavaScript
     window.translations = {
-      searchTeam: '{{ __("Search Team") }}'
+      searchTeam: '{{ __("Search Team") }}',
+      addTeam: '{{ __("Add Team") }}',
+      editTeam: '{{ __("Edit Team") }}'
     };
   </script>
   @vite(['resources/assets/js/app/team-index.js'])

@@ -19,6 +19,13 @@
 @section('page-script')
     @vite(['resources/js/main-datatable.js'])
     @vite(['resources/js/main-helper.js'])
+    <script>
+      // Pass translations to JavaScript
+      window.translations = {
+        addHoliday: '{{ __("Add Holiday") }}',
+        editHoliday: '{{ __("Edit Holiday") }}'
+      };
+    </script>
     @vite(['resources/assets/js/app/holidays-index.js'])
 @endsection
 

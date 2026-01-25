@@ -33,7 +33,9 @@
     window.translations = {
       searchDepartment: '{{ __("Search Department") }}',
       noParent: '{{ __("No Parent") }}',
-      displaying: '{{ __("Displaying") }}'
+      displaying: '{{ __("Displaying") }}',
+      addDepartment: '{{ __("Add Department") }}',
+      editDepartment: '{{ __("Edit Department") }}'
     };
   </script>
   @vite(['resources/assets/js/app/department-index.js'])

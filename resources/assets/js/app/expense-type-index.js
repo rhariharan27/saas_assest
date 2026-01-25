@@ -330,7 +330,7 @@ $(function () {
     $('#notes').val('');
     $('#isProofRequired').val('0');
     $('#isProofRequiredToggle').prop('checked', false);
-    $('#offcanvasExpenseTypeLabel').html('Add Expense Type');
+    $('#offcanvasExpenseTypeLabel').html(window.translations?.addExpenseType || 'Add Expense Type');
     fv.resetForm(true);
   });
 
@@ -347,7 +347,7 @@ $(function () {
       dtrModal.modal('hide');
     }
     // changing the title of offcanvas
-    $('#offcanvasExpenseTypeLabel').html('Edit Expense Type');
+    $('#offcanvasExpenseTypeLabel').html(window.translations?.editExpenseType || 'Edit Expense Type');
     // get data
     $.get(`${baseUrl}expenseTypes\/getExpenseTypeAjax\/${id}`, function (data) {
       $('#id').val(data.id);

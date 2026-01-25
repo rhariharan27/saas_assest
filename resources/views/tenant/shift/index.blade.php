@@ -57,7 +57,9 @@
     const csrfToken = "{{ csrf_token() }}"
     // Pass translations to JavaScript
     window.translations = {
-      searchShifts: '{{ __("Search Shifts") }}'
+      searchShifts: '{{ __("Search Shifts") }}',
+      addNewShift: '{{ __("Add New Shift") }}',
+      editShift: '{{ __("Edit Shift") }}'
     };
   </script>
   @vite(['resources/assets/js/app/shift-index.js']) {{-- Link to the refactored JS file --}}

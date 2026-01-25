@@ -1,7 +1,7 @@
 {{-- File: resources/views/_partials/_modals/shift/add_or_update_shift.blade.php --}}
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddOrUpdateShift" aria-labelledby="offcanvasShiftLabel">
   <div class="offcanvas-header">
-    <h5 id="offcanvasShiftLabel" class="offcanvas-title">{{ __("Add Shift") }}</h5>
+    <h5 id="offcanvasShiftLabel" class="offcanvas-title">{{ __('Add New Shift') }}</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body mx-0 flex-grow-0">

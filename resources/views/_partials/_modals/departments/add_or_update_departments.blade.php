@@ -2,7 +2,7 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddDepartment"
      aria-labelledby="offcanvasAddDepartmentLabel">
   <div class="offcanvas-header border-bottom">
-    <h5 id="offcanvasAddDepartmentLabel" class="offcanvas-title">@lang('Add Department')</h5>
+    <h5 id="offcanvasAddDepartmentLabel" class="offcanvas-title">{{ __('Add Department') }}</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body mx-0 flex-grow-0 p-6 h-100">

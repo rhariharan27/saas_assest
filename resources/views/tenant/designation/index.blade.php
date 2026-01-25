@@ -31,7 +31,9 @@
   <script>
     // Pass translations to JavaScript
     window.translations = {
-      searchDesignation: '{{ __("Search Designation") }}'
+      searchDesignation: '{{ __('Search Designation') }}',
+      addDesignation: '{{ __('Add Designation') }}',
+      editDesignation: '{{ __('Edit Designation') }}'
     };
   </script>
   @vite(['resources/assets/js/app/designation-index.js'])
