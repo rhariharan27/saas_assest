@@ -249,7 +249,15 @@ $(function () {
     language: {
       searchPlaceholder: window.translations?.searchEmployee || 'Search employee...',
       search: '',
-      lengthMenu: window.translations?.show + ' _MENU_ ' + window.translations?.entries || '_MENU_ entries'
+      lengthMenu: window.translations?.show + ' _MENU_ ' + window.translations?.entries || '_MENU_ entries',
+      info: window.translations?.info || 'Showing _START_ to _END_ of _TOTAL_ entries',
+      infoEmpty: window.translations?.infoEmpty || 'Showing 0 to 0 of 0 entries',
+      paginate: {
+        first: window.translations?.firstPage || 'First Page',
+        previous: window.translations?.previous || 'Previous',
+        next: window.translations?.next || 'Next',
+        last: window.translations?.lastPage || 'Last Page'
+      }
     }
   });
 

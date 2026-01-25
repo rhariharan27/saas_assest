@@ -46,7 +46,13 @@
       copy: '{{ __("Copy") }}',
       create: '{{ __("Create") }}',
       show: '{{ __("Show") }}',
-      entries: '{{ __("entries") }}'
+      entries: '{{ __("entries") }}',
+      firstPage: '{{ __("First Page") }}',
+      previous: '{{ __("Previous") }}',
+      next: '{{ __("Next") }}',
+      lastPage: '{{ __("Last Page") }}',
+      info: '{{ __("Showing _START_ to _END_ of _TOTAL_ entries") }}',
+      infoEmpty: '{{ __("Showing 0 to 0 of 0 entries") }}'
     };
   </script>
   @vite([
@@ -206,7 +212,7 @@
     <div class="col-md-12">
       <div class="alert alert-primary" role="alert">
         <h5 class="alert-heading">{{ __('Available Employees Limit') }}</h5>
-        <p class="mb-0">You have <strong>{{$settings->employees_limit}}</strong> employees limit available. You can add more employees by upgrading your plan.</p>
+        <p class="mb-0">{{ __('You have') }} <strong>{{$settings->employees_limit}}</strong> {{ __('employees limit available. You can add more employees by upgrading your plan.') }}</p>
       </div>
     </div>
   </div>
