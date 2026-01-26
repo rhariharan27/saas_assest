@@ -178,7 +178,7 @@
                         @csrf
                         <div class="card mb-6">
                             <div class="card-header">
-                                <h5 class="card-title m-0">Mobile App Settings</h5>
+                                <h5 class="card-title m-0">{{ __('Mobile App Settings') }}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row g-6">
