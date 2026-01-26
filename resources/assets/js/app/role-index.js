@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
           //Get Response
           var response = err.responseJSON;
           Swal.fire({
-            title: 'Failed',
+            title: window.getErrorTitle?.() || 'Error',
             text: response.data,
             icon: 'error',
             customClass: {

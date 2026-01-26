@@ -201,10 +201,26 @@ if (document.getElementById('layout-menu')) {
     directionChange(dropdownActiveItem.dataset.textDirection);
 
     for (let i = 0; i < dropdownItems.length; i++) {
-      dropdownItems[i].addEventListener('click', function () {
+      dropdownItems[i].addEventListener('click', function (e) {
+        e.preventDefault();
         let textDirection = this.getAttribute('data-text-direction');
-        window.templateCustomizer.setLang(this.getAttribute('data-language'));
+        const locale = this.getAttribute('data-language');
+        
+        // Update direction immediately
         directionChange(textDirection);
+        
+        // Call the template customizer
+        if (window.templateCustomizer) {
+          window.templateCustomizer.setLang(locale);
+        }
+        
+        // Switch language dynamically (calls switchLanguageDynamic from toaster.blade.php)
+        if (window.switchLanguageDynamic) {
+          window.switchLanguageDynamic(locale);
+        } else {
+          // Fallback to simple navigation if dynamic function not available
+          window.location.href = '/lang/' + locale;
+        }
       });
     }
 

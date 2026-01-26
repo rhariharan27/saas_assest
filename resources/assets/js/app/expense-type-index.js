@@ -413,8 +413,8 @@ $(function () {
           // sweetalert
           Swal.fire({
             icon: 'success',
-            title: `Successfully ${response.message}!`,
-            text: `Expense Type ${response.message} Successfully.`,
+            title: window.getSuccessTitle?.() || 'Success',
+            text: `Expense Type ${response.message} ${window.trans('Successfully', 'Successfully')}.`,
             customClass: {
               confirmButton: 'btn btn-success'
             }
@@ -427,7 +427,7 @@ $(function () {
         console.log('Error Response: ' + JSON.stringify(responseJson));
         if (err.code === 400) {
           Swal.fire({
-            title: 'Unable to create Leave Type',
+            title: window.getErrorTitle?.() || 'Error',
             text: `${responseJson.data}`,
             icon: 'error',
             customClass: {
@@ -436,8 +436,8 @@ $(function () {
           });
         } else {
           Swal.fire({
-            title: 'Unable to create Expense Type',
-            text: 'Please try again',
+            title: window.getErrorTitle?.() || 'Error',
+            text: window.trans('Please try again', 'Please try again'),
             icon: 'error',
             customClass: {
               confirmButton: 'btn btn-success'
@@ -463,11 +463,12 @@ $(function () {
     }
     // sweetalert for confirmation of delete
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: window.getConfirmTitle?.() || 'Are you sure?',
+      text: window.getDeleteConfirmText?.() || "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: window.getYesDeleteButton?.() || 'Yes, delete it!',
+      cancelButtonText: window.getCancelButton?.() || 'Cancel',
       customClass: {
         confirmButton: 'btn btn-primary me-3',
         cancelButton: 'btn btn-label-secondary'
@@ -483,8 +484,8 @@ $(function () {
             // success sweetalert
             Swal.fire({
               icon: 'success',
-              title: 'Deleted!',
-              text: 'The Expense Type has been deleted!',
+              title: window.trans('Deleted!', 'Deleted!'),
+              text: window.trans('The Expense Type has been deleted!', 'The Expense Type has been deleted!'),
               customClass: {
                 confirmButton: 'btn btn-success'
               }
