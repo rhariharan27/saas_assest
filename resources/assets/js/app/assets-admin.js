@@ -364,13 +364,13 @@ $(function () { // jQuery document ready
 
     // Prevent deletion if assigned
     if (isAssigned) {
-      Swal.fire({ icon: 'error', title: 'Cannot Delete', text: 'This asset is currently assigned to an employee. Please return it first.' });
+      Swal.fire({ icon: 'error', title: window.translations?.cannotDelete || 'Cannot Delete', text: window.translations?.assetAssignedWarning || 'This asset is currently assigned to an employee. Please return it first.' });
       return;
     }
 
     Swal.fire({
-      title: 'Are you sure?', text: "Delete this asset? This action cannot be undone.", icon: 'warning',
-      showCancelButton: true, confirmButtonText: 'Yes, delete it!',
+      title: window.translations?.areYouSure || 'Are you sure?', text: window.translations?.deleteAssetWarning || "Delete this asset? This action cannot be undone.", icon: 'warning',
+      showCancelButton: true, confirmButtonText: window.translations?.yesDeleteIt || 'Yes, delete it!',
       customClass: { confirmButton: 'btn btn-danger me-3', cancelButton: 'btn btn-label-secondary' },
       buttonsStyling: false
     }).then(function (result) {

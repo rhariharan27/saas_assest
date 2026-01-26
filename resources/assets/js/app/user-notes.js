@@ -371,7 +371,7 @@ $(function () { // jQuery document ready
           console.error("Error fetching notes:", textStatus, errorThrown);
           showLoading(false);
           showNoNotesMessage(true); // Show no notes message on error
-          Swal.fire({ icon: 'error', title: 'Error', text: 'Could not load notes. Please try again.' });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: window.translations?.couldNotLoadNotes || 'Could not load notes. Please try again.' });
         }
       });
     }
@@ -520,14 +520,14 @@ $(function () { // jQuery document ready
         }else {
           // Handle case where backend returned success:false or no data
           noteOffcanvas?.hide();
-          Swal.fire({ icon: 'error', title: 'Error', text: response.message || 'Failed to load note data for editing.' });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: response.message || window.translations?.failedToLoadNoteData || 'Failed to load note data for editing.' });
         }
       },
       error: function (jqXHR) {
         console.error("Error fetching note for edit:", jqXHR);
         noteModalLabel.text('Edit Note'); // Reset title
         noteOffcanvas?.hide();
-        Swal.fire({ icon: 'error', title: 'Error', text: jqXHR.responseJSON?.message || 'Could not load note data.' });
+        Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: jqXHR.responseJSON?.message || window.translations?.couldNotLoadNoteData || 'Could not load note data.' });
       }
     });
   });

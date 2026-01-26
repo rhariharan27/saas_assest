@@ -180,15 +180,15 @@ $(function () {
 
           offcanvas.show();
         } else {
-          Swal.fire({ icon: 'error', title: 'Error', text: response.message || 'Failed to load job opening data.' });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: response.message || window.translations?.failedToLoadJobOpening || 'Failed to load job opening data.' });
         }
       },
       error: function (jqXHR) {
-        let message = 'An error occurred while fetching data.';
+        let message = window.translations?.errorFetchingData || 'An error occurred while fetching data.';
         if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
           message = jqXHR.responseJSON.message;
         }
-        Swal.fire({ icon: 'error', title: 'Error', html: message });
+        Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', html: message });
       },
       complete: function() {
         // Optional: Hide loading indicator
@@ -227,7 +227,7 @@ $(function () {
         if (response.success) {
           Swal.fire({
             icon: 'success',
-            title: 'Success',
+            title: window.translations?.success || 'Success',
             text: response.message,
             timer: 1500,
             showConfirmButton: false
@@ -236,7 +236,7 @@ $(function () {
           dtJobOpening.ajax.reload(null, false); // Reload table, stay on current page
         } else {
           // This case might happen if server returns success=false but status 2xx
-          Swal.fire({ icon: 'error', title: 'Error', text: response.message || 'Operation failed.' });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: response.message || window.translations?.operationFailed || 'Operation failed.' });
         }
       },
       error: function (jqXHR) {
@@ -260,9 +260,9 @@ $(function () {
 
         } else if (jqXHR.responseJSON?.message) {
           message = jqXHR.responseJSON.message;
-          Swal.fire({ icon: 'error', title: 'Error', html: message });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', html: message });
         } else {
-          Swal.fire({ icon: 'error', title: 'Error', html: message + ' (' + jqXHR.status + ' ' + jqXHR.statusText + ')' });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', html: message + ' (' + jqXHR.status + ' ' + jqXHR.statusText + ')' });
         }
 
       },

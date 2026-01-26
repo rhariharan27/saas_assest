@@ -178,8 +178,8 @@ $(function () { // jQuery document ready
   categoriesDataTableElement.on('click', '.delete-category', function () {
     const button = $(this); const deleteUrl = button.data('url');
     const courseCount = parseInt(button.data('count') || 0, 10);
-    if (courseCount > 0) { Swal.fire({ icon: 'error', title: 'Cannot Delete', text: `Category has ${courseCount} course(s). Please reassign first.` }); return; }
-    Swal.fire({ title: 'Are you sure?', text: "You won't be able to revert this!", icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes, delete it!', customClass: { confirmButton: 'btn btn-danger me-3', cancelButton: 'btn btn-label-secondary' }, buttonsStyling: false
+    if (courseCount > 0) { Swal.fire({ icon: 'error', title: window.translations?.cannotDelete || 'Cannot Delete', text: `${window.translations?.categoryHas || 'Category has'} ${courseCount} ${window.translations?.coursesReassignFirst || 'course(s). Please reassign first.'}` }); return; }
+    Swal.fire({ title: window.translations?.areYouSure || 'Are you sure?', text: window.translations?.youWontBeAbleToRevert || "You won't be able to revert this!", icon: 'warning', showCancelButton: true, confirmButtonText: window.translations?.yesDeleteIt || 'Yes, delete it!', customClass: { confirmButton: 'btn btn-danger me-3', cancelButton: 'btn btn-label-secondary' }, buttonsStyling: false
     }).then(function (result) {
       if (result.isConfirmed) {
         $.ajax({ url: deleteUrl, method: 'POST', data: { _method: 'DELETE' }, dataType: 'json',
