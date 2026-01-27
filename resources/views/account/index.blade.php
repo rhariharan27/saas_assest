@@ -44,12 +44,12 @@
         <div class="card-body">
           <div class="d-flex align-items-start justify-content-between">
             <div class="content-left">
-              <span class="text-heading">Users</span>
+              <span class="text-heading">{{ __('Users') }}</span>
               <div class="d-flex align-items-center my-1">
                 <h4 class="mb-0 me-2">{{$totalUser}}</h4>
                 <p class="text-success mb-0">(100%)</p>
               </div>
-              <small class="mb-0">Total Users</small>
+              <small class="mb-0">{{ __('Total Users') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-primary">
@@ -65,12 +65,12 @@
         <div class="card-body">
           <div class="d-flex align-items-start justify-content-between">
             <div class="content-left">
-              <span class="text-heading">Verified Users</span>
+              <span class="text-heading">{{ __('Verified Users') }}</span>
               <div class="d-flex align-items-center my-1">
                 <h4 class="mb-0 me-2">{{$verified}}</h4>
                 <p class="text-success mb-0">(+95%)</p>
               </div>
-              <small class="mb-0">Recent analytics </small>
+              <small class="mb-0">{{ __('Recent analytics') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-success">
@@ -86,12 +86,12 @@
         <div class="card-body">
           <div class="d-flex align-items-start justify-content-between">
             <div class="content-left">
-              <span class="text-heading">Duplicate Users</span>
+              <span class="text-heading">{{ __('Duplicate Users') }}</span>
               <div class="d-flex align-items-center my-1">
                 <h4 class="mb-0 me-2">{{$userDuplicates}}</h4>
                 <p class="text-success mb-0">(0%)</p>
               </div>
-              <small class="mb-0">Recent analytics</small>
+              <small class="mb-0">{{ __('Recent analytics') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-danger">
@@ -107,12 +107,12 @@
         <div class="card-body">
           <div class="d-flex align-items-start justify-content-between">
             <div class="content-left">
-              <span class="text-heading">Verification Pending</span>
+              <span class="text-heading">{{ __('Verification Pending') }}</span>
               <div class="d-flex align-items-center my-1">
                 <h4 class="mb-0 me-2">{{$notVerified}}</h4>
                 <p class="text-danger mb-0">(+6%)</p>
               </div>
-              <small class="mb-0">Recent analytics</small>
+              <small class="mb-0">{{ __('Recent analytics') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-warning">
@@ -131,11 +131,11 @@
         <thead>
         <tr>
           <th></th>
-          <th>Id</th>
-          <th>User</th>
-          <th>Email</th>
-          <th>Verified</th>
-          <th>Actions</th>
+          <th>{{ __('Id') }}</th>
+          <th>{{ __('User') }}</th>
+          <th>{{ __('Email') }}</th>
+          <th>{{ __('Verified') }}</th>
+          <th>{{ __('Actions') }}</th>
         </tr>
         </thead>
       </table>

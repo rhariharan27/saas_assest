@@ -1,5 +1,5 @@
 @php
-  $title = 'Card View';
+  $title = __('Card View');
 @endphp
 @extends('layouts/layoutMaster')
 
@@ -172,15 +172,15 @@
   <!-- Filters -->
   <div class="filter-tabs d-flex align-items-center justify-content-between mb-4">
     <div>
-      <button class="btn btn-outline-primary active" data-filter="all">All</button>
-      <button class="btn btn-outline-success" data-filter="on-duty">On Duty</button>
-      <button class="btn btn-outline-warning" data-filter="inactive">Inactive</button>
-      <button class="btn btn-outline-danger" data-filter="off-duty">Off Duty</button>
+      <button class="btn btn-outline-primary active" data-filter="all">{{ __('All') }}</button>
+      <button class="btn btn-outline-success" data-filter="on-duty">{{ __('On Duty') }}</button>
+      <button class="btn btn-outline-warning" data-filter="inactive">{{ __('Inactive') }}</button>
+      <button class="btn btn-outline-danger" data-filter="off-duty">{{ __('Off Duty') }}</button>
     </div>
     <div>
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" id="autoRefreshSwitch" checked>
-        <label class="form-check-label" for="autoRefreshSwitch">Auto Refresh</label>
+        <label class="form-check-label" for="autoRefreshSwitch">{{ __('Auto Refresh') }}</label>
       </div>
     </div>
   </div>
@@ -189,7 +189,7 @@
   <div class="row g-4">
     @foreach($teams as $team)
       <div class="col-12">
-        <h5 class="mb-3">{{ $team['name'] }} ({{ $team['totalEmployees'] }} Employees)</h5>
+        <h5 class="mb-3">{{ $team['name'] }} ({{ $team['totalEmployees'] }} {{ __('Employees') }})</h5>
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3">
           @foreach($team['cardItems'] as $cardItem)
             <div class="col">
@@ -207,7 +207,7 @@
                   </div>
                   <div class="details">
                     <h6>{{ $cardItem['name'] }}</h6>
-                    <small>Code: {{ $cardItem['employeeCode'] }}</small>
+                    <small>{{ __('Code') }}: {{ $cardItem['employeeCode'] }}</small>
                   </div>
                 </div>
 
@@ -219,34 +219,34 @@
                   </div>
                   <div id="{{ $cardItem['id'].'IsWifiOn' }}">
                     <i class="bi {{ $cardItem['isWifiOn'] ? 'bi-wifi text-success' : 'bi-wifi-off text-danger' }}"></i>
-                    <span>WiFi</span>
+                    <span>{{ __('WiFi') }}</span>
                   </div>
                   <div id="{{ $cardItem['id'].'IsGpsOn' }}">
                     <i
                       class="bi {{ $cardItem['isGpsOn'] ? 'bi-geo-alt-fill text-success' : 'bi-geo-alt-fill text-danger' }}"></i>
-                    <span>GPS</span>
+                    <span>{{ __('GPS') }}</span>
                   </div>
                 </div>
 
                 <!-- Attendance Info -->
                 <div class="attendance-info">
-                  <span class="d-flex justify-content-between align-items-center"><strong>In Time:</strong> {{ $cardItem['attendanceInAt'] ?? 'N/A' }}</span>
-                  <span class="d-flex justify-content-between align-items-center mt-1"><strong>Out Time:</strong> {{ $cardItem['attendanceOutAt'] ?? 'N/A' }}</span>
+                  <span class="d-flex justify-content-between align-items-center"><strong>{{ __('In Time') }}:</strong> {{ $cardItem['attendanceInAt'] ?? 'N/A' }}</span>
+                  <span class="d-flex justify-content-between align-items-center mt-1"><strong>{{ __('Out Time') }}:</strong> {{ $cardItem['attendanceOutAt'] ?? 'N/A' }}</span>
                 </div>
 
                 <!-- Metrics -->
                 <div class="metrics">
-                  <span><i class="bi bi-geo-alt text-primary"></i> {{ $cardItem['visitsCount'] }} Visits</span>
-                  <span><i class="bi bi-cart text-success"></i> {{ $cardItem['ordersCount'] }} Orders</span>
-                  <span><i class="bi bi-clipboard text-info"></i> {{ $cardItem['formsFilled'] }} Forms</span>
+                  <span><i class="bi bi-geo-alt text-primary"></i> {{ $cardItem['visitsCount'] }} {{ __('Visits') }}</span>
+                  <span><i class="bi bi-cart text-success"></i> {{ $cardItem['ordersCount'] }} {{ __('Orders') }}</span>
+                  <span><i class="bi bi-clipboard text-info"></i> {{ $cardItem['formsFilled'] }} {{ __('Forms') }}</span>
                 </div>
 
                 <!-- Footer -->
                 <div class="card-footer">
                   <a href="{{route('liveLocationView')}}">
-                    <i class="bi bi-map"></i> Open in Maps
+                    <i class="bi bi-map"></i> {{ __('Open in Maps') }}
                   </a>
-                  <span>Last Updated: {{ $cardItem['updatedAt'] }}</span>
+                  <span>{{ __('Last Updated') }}: {{ $cardItem['updatedAt'] }}</span>
                 </div>
 
               </div>

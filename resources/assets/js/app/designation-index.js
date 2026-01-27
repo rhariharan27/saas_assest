@@ -102,7 +102,7 @@ $(function () {
       language: {
         sLengthMenu: '_MENU_',
         search: '',
-        searchPlaceholder: 'Search Designation',
+        searchPlaceholder: window.translations?.searchDesignation || 'Search Designation',
         info: 'Displaying _START_ to _END_ of _TOTAL_ entries',
         paginate: {
           next: '<i class="bx bx-chevron-right bx-sm"></i>',
@@ -143,7 +143,7 @@ $(function () {
     $('#notes').val('');
     $('#department_id').val('');
     $('#is_approver').prop('checked', false);
-    $('#offcanvasDesignationLabel').html('Add Designation');
+    $('#offcanvasDesignationLabel').html(window.translations?.addDesignation || 'Add Designation');
     fv.resetForm(true);
   });
 
@@ -161,7 +161,7 @@ $(function () {
     }
 
     // changing the title of offcanvas
-    $('#offcanvasDesignationLabel').html('Edit Leave Type');
+    $('#offcanvasDesignationLabel').html(window.translations?.editDesignation || 'Edit Designation');
 
     // get data
     $.get(`${baseUrl}designations\/getByIdAjax\/${id}`, function (data) {

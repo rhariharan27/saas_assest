@@ -5,7 +5,7 @@
 @endphp
 @extends('layouts.layoutMaster')
 
-@section('title', 'Asset Management')
+@section('title', __('Asset Management'))
 
 @section('vendor-style')
     @vite([
@@ -61,7 +61,7 @@
     <div class="container-fluid flex-grow-1 container-p-y">
 
         <h4 class="py-3 mb-4">
-            <span class="text-muted fw-light">Manage /</span> Assets
+            <span class="text-muted fw-light">{{ __('Manage') }} /</span> {{ __('Assets') }}
         </h4>
 
         <div class="card mb-4">
@@ -70,9 +70,9 @@
                     <div class="row gy-4 gy-sm-1">
                         {{-- Filter by Category --}}
                         <div class="col-md-3 col-sm-6 col-12">
-                            <label for="filter_category_id" class="form-label">Category</label>
+                            <label for="filter_category_id" class="form-label">{{ __('Category') }}</label>
                             <select id="filter_category_id" class="form-select select2" data-allow-clear="true">
-                                <option value="">All Categories</option>
+                                <option value="">{{ __('All Categories') }}</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -80,9 +80,9 @@
                         </div>
                         {{-- Filter by Status --}}
                         <div class="col-md-3 col-sm-6 col-12">
-                            <label for="filter_status" class="form-label">Status</label>
+                            <label for="filter_status" class="form-label">{{ __('Status') }}</label>
                             <select id="filter_status" class="form-select select2" data-allow-clear="true">
-                                <option value="">All Statuses</option>
+                                <option value="">{{ __('All Statuses') }}</option>
                                 @foreach ($statuses as $status)
                                     {{-- Passed from controller --}}
                                     <option value="{{ $status->value }}">{{ $status->label() }}</option>
@@ -91,10 +91,10 @@
                         </div>
                         {{-- Filter by Assigned User --}}
                         <div class="col-md-3 col-sm-6 col-12">
-                            <label for="filter_user_id" class="form-label">Assigned To</label>
+                            <label for="filter_user_id" class="form-label">{{ __('Assigned To') }}</label>
                             <select id="filter_user_id" class="form-select select2" data-allow-clear="true">
-                                <option value="">Any User</option>
-                                <option value="unassigned">Unassigned</option>
+                                <option value="">{{ __('Any User') }}</option>
+                                <option value="unassigned">{{ __('Unassigned') }}</option>
                                 @foreach ($users as $user)
                                     {{-- Passed from controller --}}
                                     <option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}
@@ -105,8 +105,7 @@
                         {{-- Add Button --}}
                         <div class="col-md-3 col-sm-6 col-12 d-flex align-items-end justify-content-end">
                             <button type="button" class="btn btn-primary w-100 w-md-auto" id="addAssetBtn">
-                                <i class="bx bx-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Add New
-                                    Asset</span>
+                                <i class="bx bx-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">{{ __('Add New Asset') }}</span>
                             </button>
                         </div>
                     </div>
@@ -118,21 +117,21 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-0">Asset List</h5>
-            </div>
+            </div>{{ __('Asset List') }}
             <div class="card-datatable table-responsive pt-0">
                 <table class="datatables-assets table table-bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Asset Tag</th>
-                            <th>Category</th>
-                            <th>Serial No.</th>
-                            <th>Status</th>
-                            <th>Condition</th>
-                            <th>Assigned To</th>
-                            <th>Actions</th>
-                        </tr>
+                            <th>{{ __('ID') }}</th>
+                            <th>{{ __('Name') }}</th>
+                            <th>{{ __('Asset Tag') }}</th>
+                            <th>{{ __('Category') }}</th>
+                            <th>{{ __('Serial No.') }}</th>
+                            <th>{{ __('Status') }}</th>
+                            <th>{{ __('Condition') }}</th>
+                            <th>{{ __('Assigned To') }}</th>
+                            <th>{{ __('Actions') }}
                     </thead>
                     <tbody>
                         {{-- DataTables will populate this --}}

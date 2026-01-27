@@ -98,12 +98,12 @@ $(function () {
 
           offcanvas.show();
         } else {
-          Swal.fire({ icon: 'error', title: 'Error', text: response.message || 'Failed to load task data.' });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: response.message || window.translations?.failedToLoadTask || 'Failed to load task data.' });
           $('#offcanvasAddEditTaskLabel').text('Edit Task Template');
         }
       },
       error: function (jqXHR) {
-        Swal.fire({ icon: 'error', title: 'Error', text: 'An error occurred while fetching data.' });
+        Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: window.translations?.errorFetchingData || 'An error occurred while fetching data.' });
         $('#offcanvasAddEditTaskLabel').text('Edit Task Template');
       }
     });
@@ -139,11 +139,11 @@ $(function () {
       data: formData, processData: false, contentType: false,
       success: function (response) {
         if (response.success) {
-          Swal.fire({ icon: 'success', title: 'Success', text: response.message, timer: 1500, showConfirmButton: false });
+          Swal.fire({ icon: 'success', title: window.translations?.success || 'Success', text: response.message, timer: 1500, showConfirmButton: false });
           offcanvas.hide();
           if (dtTask) dtTask.ajax.reload(null, false);
         } else {
-          Swal.fire({ icon: 'error', title: 'Error', text: response.message || 'Operation failed.' });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: response.message || window.translations?.operationFailed || 'Operation failed.' });
         }
       },
       error: function (jqXHR) {
@@ -154,7 +154,7 @@ $(function () {
           });
           $('.is-invalid').first().focus();
         } else {
-          Swal.fire({ icon: 'error', title: 'Error', text: jqXHR.responseJSON?.message || 'An error occurred.' });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: jqXHR.responseJSON?.message || window.translations?.errorOccurred || 'An error occurred.' });
         }
       },
       complete: function () { submitButton.prop('disabled', false).text('Submit'); }
@@ -184,14 +184,14 @@ $(function () {
           // Revert checkbox and show error
           checkbox.prop('checked', !status);
           label.text(status ? 'Inactive' : 'Active'); // Revert label
-          Swal.fire({ icon: 'error', title: 'Error', text: response.message || 'Failed to update status.' });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: response.message || window.translations?.failedToUpdateStatus || 'Failed to update status.' });
         }
       },
       error: function(jqXHR) {
         // Revert checkbox and show error
         checkbox.prop('checked', !status);
         label.text(status ? 'Inactive' : 'Active'); // Revert label
-        Swal.fire({ icon: 'error', title: 'Error', text: 'An error occurred.' });
+        Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: window.translations?.errorOccurred || 'An error occurred.' });
       }
     });
   });

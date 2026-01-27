@@ -15,9 +15,19 @@ class LocaleMiddleware
    */
   public function handle(Request $request, Closure $next): Response
   {
-    // Locale is enabled and allowed to be change
+    // Check session first, then cookie
+    $locale = null;
+    
     if (session()->has('locale') && in_array(session()->get('locale'), ['en', 'fr', 'ar', 'de'])) {
-      app()->setLocale(session()->get('locale'));
+      $locale = session()->get('locale');
+    } elseif ($request->hasCookie('appLocale') && in_array($request->cookie('appLocale'), ['en', 'fr', 'ar', 'de'])) {
+      $locale = $request->cookie('appLocale');
+      // Sync cookie locale back to session
+      session()->put('locale', $locale);
+    }
+    
+    if ($locale) {
+      app()->setLocale($locale);
     }
 
     return $next($request);

@@ -1,10 +1,10 @@
 @php
-  $title = 'Edit Client';
+  $title = __('Edit Client');
 @endphp
 
 @extends('layouts/layoutMaster')
 
-@section('title', __($title))
+@section('title', __('Edit Client'))
 
 @section('content')
   <div class="row mb-3">
@@ -24,16 +24,16 @@
             @csrf
             <div class="">
               <div class="mt-2">
-                <h5> Basic Details</h5>
+                <h5> {{ __('Basic Details') }}</h5>
                 <div class="">
                   <div class="form-group row">
                     <div class="form-group col-md-12 mb-3">
-                      <label for="name" class="control-label">Name</label>
+                      <label for="name" class="control-label">{{ __('Name') }}</label>
                       <input id="name" name="name" class="form-control" value="{{ old('name', $client->name) }}" />
                       <span class="text-danger">{{ $errors->first('name', ':message') }}</span>
                     </div>
                     <div class="form-group col-md-12 mb-3">
-                      <label for="address" class="control-label">Address</label>
+                      <label for="address" class="control-label">{{ __('Address') }}</label>
                       <input id="address" name="address" class="form-control"
                              value="{{ old('address', $client->address) }}" />
                       <span class="text-danger">{{ $errors->first('address', ':message') }}</span>
@@ -41,12 +41,12 @@
                   </div>
                   <div class="row mt-4">
                     <div class="form-group col-md-6">
-                      <label for="city" class="control-label">City</label>
+                      <label for="city" class="control-label">{{ __('City') }}</label>
                       <input id="city" name="city" class="form-control" value="{{ old('city', $client->city) }}" />
                       <span class="text-danger">{{ $errors->first('city', ':message') }}</span>
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="radius" class="control-label">Radius (in meters)</label>
+                      <label for="radius" class="control-label">{{ __('Radius (in meters)') }}</label>
                       <input id="radius" name="radius" class="form-control" type="number"
                              value="{{ old('radius', $client->radius) }}" />
                       <span class="text-danger">{{ $errors->first('radius', ':message') }}</span>
@@ -56,23 +56,23 @@
               </div>
               <hr>
               <div class="mt-2">
-                <h5> Personal Details</h5>
+                <h5> {{ __('Personal Details') }}</h5>
                 <div class="">
                   <div class="form-group row">
                     <div class="form-group col-md-12 mb-3">
-                      <label for="phone" class="control-label">Phone Number</label>
+                      <label for="phone" class="control-label">{{ __('Phone Number') }}</label>
                       <input id="phone" name="phone" type="number" class="form-control"
                              value="{{ old('phone', $client->phone) }}" />
                       <span class="text-danger">{{ $errors->first('phone', ':message') }}</span>
                     </div>
                     <div class="form-group col-md-12 mb-3">
-                      <label for="email" class="control-label">Email</label>
+                      <label for="email" class="control-label">{{ __('Email') }}</label>
                       <input id="email" name="email" type="email" class="form-control"
                              value="{{ old('email', $client->email) }}" />
                       <span class="text-danger">{{ $errors->first('email', ':message') }}</span>
                     </div>
                     <div class="form-group col-md-12 mb-3">
-                      <label for="contactPersonName" class="control-label">Contact Person Name</label>
+                      <label for="contactPersonName" class="control-label">{{ __('Contact Person Name') }}</label>
                       <input id="contactPersonName" name="contactPersonName" class="form-control"
                              value="{{ old('contactPersonName', $client->contact_person_name) }}" />
                       <span class="text-danger">{{ $errors->first('contactPersonName', ':message') }}</span>
@@ -80,7 +80,7 @@
                   </div>
                   <div class="row mt-4">
                     <div class="form-group col-md-12">
-                      <label for="remarks" class="control-label">Remarks</label>
+                      <label for="remarks" class="control-label">{{ __('Remarks') }}</label>
                       <textarea id="remarks" rows="5" name="remarks" class="form-control">{{ old('remarks', $client->remarks) }}</textarea>
                       <span class="text-danger">{{ $errors->first('remarks', ':message') }}</span>
                     </div>
@@ -89,7 +89,7 @@
               </div>
               <div class="mt-3">
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                  <button type="submit" class="btn btn-primary">{{ __('Save Changes') }}</button>
                 </div>
               </div>
             </div>
@@ -98,9 +98,9 @@
         <div class="col-6">
           <div class="form-group row mb-3">
             <div class="form-group col-md-12">
-              <label for="locationSearch" class="control-label">Location Search</label>
+              <label for="locationSearch" class="control-label">{{ __('Location Search') }}</label>
               <input id="locationSearch" name="locationSearch" class="form-control"
-                     placeholder="Search for a location" />
+                     placeholder="{{ __('Search for a location') }}" />
             </div>
           </div>
           <div id="map" style="height: 400px; width: 100%;"></div>

@@ -332,7 +332,7 @@ $(function () {
     $('#notes').val('');
     $('#isProofRequired').val('0');
     $('#isProofRequiredToggle').prop('checked', false);
-    $('#offcanvasLeaveTypeLabel').html('Add Leave Type');
+    $('#offcanvasLeaveTypeLabel').html(window.translations?.addLeaveType || 'Add Leave Type');
     fv.resetForm(true);
   });
   $('#isProofRequiredToggle').on('change', function () {
@@ -347,7 +347,7 @@ $(function () {
       dtrModal.modal('hide');
     }
     // changing the title of offcanvas
-    $('#offcanvasLeaveTypeLabel').html('Edit Leave Type');
+    $('#offcanvasLeaveTypeLabel').html(window.translations?.editLeaveType || 'Edit Leave Type');
     // get data
     $.get(`${baseUrl}leaveTypes\/getLeaveTypeAjax\/${id}`, function (data) {
       console.log(data);

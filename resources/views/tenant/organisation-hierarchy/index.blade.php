@@ -1,10 +1,10 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Organization Hierarchy')
+@section('title', __('Organization Hierarchy'))
 
 @section('content')
   <div class="container mt-4">
-    <h2 class="text-center mb-4">Organization Hierarchy</h2>
+    <h2 class="text-center mb-4">{{ __('Organization Hierarchy') }}</h2>
 
     <div class="p-4">
       <div class="org-chart-container text-center">
@@ -15,7 +15,7 @@
             @endforeach
           </div>
         @else
-          <p class="text-center">No hierarchy data available.</p>
+          <p class="text-center">{{ __('No hierarchy data available.') }}</p>
         @endif
       </div>
     </div>

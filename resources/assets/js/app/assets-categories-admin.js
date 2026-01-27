@@ -46,15 +46,15 @@ $(function () { // jQuery document ready
     categoryIdInput.val('');
     isActiveCheckbox.prop('checked', true);
     categoryMethodInput.val('POST'); // Default to POST for create
-    categoryOffcanvasLabel.text('Add Category');
-    submitCategoryBtn.text('Submit').prop('disabled', false);
+    categoryOffcanvasLabel.text(window.translations?.addCategory || 'Add Category');
+    submitCategoryBtn.text(window.translations?.submit || 'Submit').prop('disabled', false);
   }
 
   // Set Button Loading State
   function setCategoryButtonLoading(isLoading) {
-    const buttonText = categoryIdInput.val() ? 'Update' : 'Submit'; // Dynamic button text
+    const buttonText = categoryIdInput.val() ? (window.translations?.update || 'Update') : (window.translations?.submit || 'Submit'); // Dynamic button text
     submitCategoryBtn.prop('disabled', isLoading);
-    submitCategoryBtn.html(isLoading ? '<span class="spinner-border spinner-border-sm"></span> Processing...' : buttonText);
+    submitCategoryBtn.html(isLoading ? '<span class="spinner-border spinner-border-sm"></span> ' + (window.translations?.processing || 'Processing...') : buttonText);
   }
 
   // Display Validation Errors in Form
@@ -121,7 +121,7 @@ $(function () { // jQuery document ready
         { targets: 5, className: 'text-center' }, // actions
       ],
       dom: '<"row me-2"<"col-md-2"<"me-3"l>><"col-md-10"<"dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0"fB>>>t<"row mx-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-      language: { sLengthMenu: '_MENU_', search: '', searchPlaceholder: 'Search Categories...' },
+      language: { sLengthMenu: '_MENU_', search: '', searchPlaceholder: window.translations?.searchCategories || 'Search Categories...' },
       buttons: [], // Add export buttons etc. if needed
       // responsive: true, // Add responsive extension if needed
     });
@@ -137,7 +137,7 @@ $(function () { // jQuery document ready
   // Add Category Button Click
   $('#addCategoryBtn').on('click', function () {
     resetCategoryForm(); // Ensure form is clean
-    categoryOffcanvasLabel.text('Add New Category');
+    categoryOffcanvasLabel.text(window.translations?.addNewCategory || 'Add New Category');
     categoryOffcanvas?.show();
   });
 
@@ -147,7 +147,7 @@ $(function () { // jQuery document ready
     const editUrl = $(this).data('url'); // Get URL from button's data-url attribute
 
     resetCategoryForm();
-    categoryOffcanvasLabel.text('Loading Data...');
+    categoryOffcanvasLabel.text(window.translations?.loadingCategoryData || 'Loading Data...');
     categoryOffcanvas?.show();
 
     $.ajax({
@@ -157,7 +157,7 @@ $(function () { // jQuery document ready
       success: function (response) {
         if (response.success && response.category) {
           const data = response.category;
-          categoryOffcanvasLabel.text('Edit Category: ' + data.name);
+          categoryOffcanvasLabel.text((window.translations?.editCategory || 'Edit Category') + ': ' + data.name);
           categoryIdInput.val(data.id);
           categoryMethodInput.val('PUT'); // Set method override for update
           categoryNameInput.val(data.name || '');
@@ -170,7 +170,7 @@ $(function () { // jQuery document ready
       },
       error: function (jqXHR) {
         console.error("Error fetching category for edit:", jqXHR);
-        categoryOffcanvasLabel.text('Edit Category'); // Reset title
+        categoryOffcanvasLabel.text(window.translations?.editCategory || 'Edit Category'); // Reset title
         categoryOffcanvas?.hide();
         showNotification('error', jqXHR.responseJSON?.message || 'Could not load category data.');
       }

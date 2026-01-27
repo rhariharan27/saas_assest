@@ -43,9 +43,9 @@
   <div class="row mb-4">
     <!-- Employee Filter -->
     <div class="col-md-3 mb-3">
-      <label for="employeeFilter" class="form-label">Filter by employee</label>
+      <label for="employeeFilter" class="form-label">{{ __('Filter by employee') }}</label>
       <select id="employeeFilter" name="employeeFilter" class="form-select select2">
-        <option value="" selected>All Employees</option>
+        <option value="" selected>{{ __('All Employees') }}</option>
         @foreach($employees as $employee)
           <option value="{{ $employee->id }}">{{ $employee->first_name }} {{ $employee->last_name }}</option>
         @endforeach
@@ -54,15 +54,15 @@
 
     <!--Date Filter -->
     <div class="col-md-3 mb-3">
-      <label for="dateFilter" class="form-label">Filter by date</label>
+      <label for="dateFilter" class="form-label">{{ __('Filter by date') }}</label>
       <input type="date" id="dateFilter" name="dateFilter" class="form-control">
     </div>
 
     <!-- Leave Type Filter -->
     <div class="col-md-3 mb-3">
-      <label for="leaveTypeFilter" class="form-label ">Filter by leave type</label>
+      <label for="leaveTypeFilter" class="form-label">{{ __('Filter by leave type') }}</label>
       <select id="leaveTypeFilter" name="leaveTypeFilter" class="form-select select2">
-        <option value="" selected>All Leave Types</option>
+        <option value="" selected>{{ __('All Leave Types') }}</option>
         @foreach($leaveTypes as $leaveType)
           <option value="{{ $leaveType->id }}">{{ $leaveType->name }}</option>
         @endforeach
@@ -71,9 +71,9 @@
 
     <!-- Status Filter -->
     <div class="col-md-3 mb-3">
-      <label for="statusFilter" class="form-label">Filter by status</label>
+      <label for="statusFilter" class="form-label">{{ __('Filter by status') }}</label>
       <select id="statusFilter" name="statusFilter" class="form-select select2">
-        <option value="" selected>All Statuses</option>
+        <option value="" selected>{{ __('All Statuses') }}</option>
         @foreach(LeaveRequestStatus::cases() as $gender)
           <option value="{{ $gender->value }}">{{ $gender->name }}</option>
         @endforeach
@@ -88,13 +88,13 @@
         <thead>
         <tr>
           <th>@lang('')</th>
-          <th>@lang('Id')</th>
-          <th>@lang('User')</th>
-          <th>@lang('Leave Type')</th>
-          <th>@lang('Leave Date')</th>
-          <th>@lang('Status')</th>
-          <th>@lang('Attachment')</th>
-          <th>@lang('Actions')</th>
+          <th>{{ __('Id') }}</th>
+          <th>{{ __('User') }}</th>
+          <th>{{ __('Leave Type') }}</th>
+          <th>{{ __('Leave Date') }}</th>
+          <th>{{ __('Status') }}</th>
+          <th>{{ __('Attachment') }}</th>
+          <th>{{ __('Actions') }}</th>
         </tr>
         </thead>
       </table>

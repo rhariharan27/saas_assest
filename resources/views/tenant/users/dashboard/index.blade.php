@@ -394,10 +394,10 @@
     <div class="col-sm-6 col-xl-3 mb-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5>Total Employees</h5>
+          <h5>{{ __('Total Employees') }}</h5>
           <h2>{{ $totalUser }}</h2>
           @if($totalUser > 0)
-            <small class="text-success">100% of total employees</small>
+            <small class="text-success">{{ __('100% of total employees') }}</small>
           @endif
         </div>
       </div>

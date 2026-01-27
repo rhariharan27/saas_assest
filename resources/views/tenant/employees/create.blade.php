@@ -7,7 +7,7 @@
 @endphp
 @extends('layouts/layoutMaster')
 
-@section('title', 'Create Employee')
+@section('title', __('Create Employee'))
 
 <!-- Vendor Styles -->
 @section('vendor-style')
@@ -205,14 +205,14 @@
   @endif
 
   <div class="col-12 mb-6">
-    <h4 class="">Employee Creation</h4>
+    <h4 class="">{{ __('Employee Creation') }}</h4>
     <div id="wizard-validation" class="bs-stepper mt-2">
       <div class="bs-stepper-header">
         <div class="step" data-target="#personal-details-validation">
           <button type="button" class="step-trigger">
             <span class="bs-stepper-circle">1</span>
             <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Personal Information</span>
+            <span class="bs-stepper-title">{{ __('Personal Information') }}</span>
           </span>
           </button>
         </div>
@@ -223,7 +223,7 @@
           <button type="button" class="step-trigger">
             <span class="bs-stepper-circle">2</span>
             <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Employment Details</span>
+            <span class="bs-stepper-title">{{ __('Employment Details') }}</span>
           </span>
           </button>
         </div>
@@ -234,7 +234,7 @@
           <button type="button" class="step-trigger">
             <span class="bs-stepper-circle">3</span>
             <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Compensation & Benefits</span>
+            <span class="bs-stepper-title">{{ __('Compensation & Benefits') }}</span>
           </span>
           </button>
         </div>
@@ -247,95 +247,95 @@
           <!-- Personal details -->
           <div id="personal-details-validation" class="content">
             <div class="content-header mb-4">
-              <h6 class="mb-0">Personal Information</h6>
-              <small>Enter Your Personal Details.</small>
+              <h6 class="mb-0">{{ __('Personal Information') }}</h6>
+              <small>{{ __('Enter Your Personal Details.') }}</small>
             </div>
             <div class="row g-6">
               <div class="col-sm-6">
-                <label class="form-label" for="file">Profile Picture</label>
+                <label class="form-label" for="file">{{ __("Profile Picture") }}</label>
                 <input type="file" name="file" id="file" class="form-control"
-                       placeholder="Upload profile picture"/>
-                <span class="text-muted">Upload a profile picture (Only .jpg, .jpeg, .png and <=
+                       placeholder="{{ __("Profile Picture") }}"/>
+                <span class="text-muted">{{ __("Upload profile picture (Only .jpg, .jpeg, .png and <= 5MB)") }} (Only .jpg, .jpeg, .png and <=
                   5MB)</span>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="firstName">First Name <span class="text-danger">*</span> </label>
+                <label class="form-label" for="firstName">{{ __("First Name") }} <span class="text-danger">*</span> </label>
                 <input type="text" name="firstName" id="firstName" class="form-control"
-                       placeholder="Enter first name"/>
+                       placeholder="{{ __("Enter first name") }}"/>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="lastName">Last Name <span class="text-danger">*</span></label>
+                <label class="form-label" for="lastName">{{ __("Last Name") }} <span class="text-danger">*</span></label>
                 <input type="text" name="lastName" id="lastName" class="form-control"
-                       placeholder="Enter last name"/>
+                       placeholder="{{ __("Enter last name") }}"/>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="gender">Gender <span class="text-danger">*</span></label>
+                <label class="form-label" for="gender">{{ __("Gender") }} <span class="text-danger">*</span></label>
                 <select class="selectpicker w-auto" id="gender" data-style="btn-transparent"
                         data-icon-base="bx" data-tick-icon="bx-check text-white" name="gender">
-                  <option value="" selected>Select Gender</option>
+                  <option value="" selected>{{ __("Select Gender") }}</option>
                   @foreach(Gender::cases() as $gender)
                     <option value="{{$gender->value}}">{{ucfirst($gender->value)}}</option>
                   @endforeach
                 </select>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="phone">Phone Number <span class="text-danger">*</span></label>
+                <label class="form-label" for="phone">{{ __("Phone Number") }} <span class="text-danger">*</span></label>
                 <input type="number" name="phone" id="phone" class="form-control"
-                       placeholder="Enter phone number"/>
+                       placeholder="{{ __("Enter phone number") }}"/>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="altPhone">Alternative Mobile No</label>
+                <label class="form-label" for="altPhone">{{ __("Alternative Mobile No") }}</label>
                 <input type="number" name="altPhone" id="altPhone" class="form-control"
-                       placeholder="Enter alternate number"/>
+                       placeholder="{{ __("Enter alternate number") }}"/>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
+                <label class="form-label" for="email">{{ __("Email") }} <span class="text-danger">*</span></label>
                 <input type="email" name="email" id="email" class="form-control"
-                       placeholder="Enter email address"/>
+                       placeholder="{{ __("Enter email address") }}"/>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="role">Role <span class="text-danger">*</span></label>
+                <label class="form-label" for="role">{{ __("Role") }} <span class="text-danger">*</span></label>
                 <select class="selectpicker select2 w-auto" id="role" data-style="btn-transparent"
                         data-icon-base="bx" data-tick-icon="bx-check text-white" name="role">
-                  <option value="" selected>Select Role</option>
+                  <option value="" selected>{{ __("Select Role") }}</option>
                   @foreach ($roles as $role)
                     <option value="{{$role->name}}">{{$role->name}}</option>
                   @endforeach
                 </select>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="dob">Date of Birth <span class="text-danger">*</span></label>
+                <label class="form-label" for="dob">{{ __("Date of Birth") }} <span class="text-danger">*</span></label>
                 <input type="date" name="dob" id="dob" class="form-control"/>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="address">Address</label>
+                <label class="form-label" for="address">{{ __("Address") }}</label>
                 <textarea name="address" id="address" class="form-control"
-                          placeholder="Enter complete address"></textarea>
+                          placeholder="{{ __("Enter complete address") }}"></textarea>
               </div>
               <div class="col-12 g-6 mb-4">
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="useDefaultPassword" name="useDefaultPassword"
                          checked>
-                  <label class="form-check label" for="useDefaultPassword">Use Default Password</label>
+                  <label class="form-check label" for="useDefaultPassword">{{ __("Use Default Password") }}</label>
                 </div>
               </div>
               <div class="row mb-4" id="passwordDiv" style="display: none;">
                 <div class="col-sm-6">
-                  <label class="form-label" for="password">Password <span class="text-danger">*</span></label>
+                  <label class="form-label" for="password">{{ __("Password") }} <span class="text-danger">*</span></label>
                   <input type="password" name="password" id="password" class="form-control"
-                         placeholder="Enter password"/>
+                         placeholder="{{ __("Enter password") }}"/>
                 </div>
                 <div class="col-sm-6">
-                  <label class="form-label" for="confirmPassword">Confirm Password <span
+                  <label class="form-label" for="confirmPassword">{{ __("Confirm Password") }} <span
                       class="text-danger">*</span></label>
                   <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
-                         placeholder="Re-enter password"/>
+                         placeholder="{{ __("Re-enter password") }}"/>
                 </div>
               </div>
 
               @if($settings->is_helper_text_enabled)
                 <div class="alert alert-primary alert-dismissible" role="alert">
-                  <h6 class="alert-heading">Note</h6>
+                  <h6 class="alert-heading">{{ __("Note") }}</h6>
                   <p class="mb-0">If you check the "Use Default Password" checkbox, the default password will be
                     <strong>{{$settings->default_password}}</strong></p>
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
@@ -346,10 +346,10 @@
             <div class="col-12 d-flex justify-content-between">
               <button class="btn btn-label-secondary btn-prev" disabled>
                 <i class="bx bx-left-arrow-alt bx-sm ms-sm-n2 me-sm-2"></i>
-                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                <span class="align-middle d-sm-inline-block d-none">{{ __("Previous") }}</span>
               </button>
               <button class="btn btn-primary btn-next">
-                <span class="align-middle d-sm-inline-block d-none me-sm-2">Next</span>
+                <span class="align-middle d-sm-inline-block d-none me-sm-2">{{ __("Next") }}</span>
                 <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
               </button>
             </div>
@@ -358,54 +358,54 @@
           <!-- employment details -->
           <div id="employee-info-validation" class="content">
             <div class="content-header mb-4">
-              <h6 class="mb-0">Work Details</h6>
-              <small>Enter the work details.</small>
+              <h6 class="mb-0">{{ __("Work Details") }}</h6>
+              <small>{{ __("Enter the work details.") }}</small>
             </div>
             <div class="row g-6">
               <div class="col-sm-6">
-                <label class="form-label" for="code">Employee Code <span class="text-danger">*</span></label>
+                <label class="form-label" for="code">{{ __("Employee Code") }} <span class="text-danger">*</span></label>
                 <input type="text" name="code" id="code" class="form-control"
-                       placeholder="Enter employee code"/>
+                       placeholder="{{ __("Enter employee code") }}"/>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="doj">Date of Joining <span class="text-danger">*</span></label>
+                <label class="form-label" for="doj">{{ __("Date of Joining") }} <span class="text-danger">*</span></label>
                 <input type="date" id="doj" name="doj" class="form-control"/>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="designationId">Designation <span class="text-danger">*</span></label>
+                <label class="form-label" for="designationId">{{ __("Designation") }} <span class="text-danger">*</span></label>
                 <select class="selectpicker select2 w-auto" id="designationId" data-style="btn-transparent"
                         data-icon-base="bx" data-tick-icon="bx-check text-white" name="designationId">
-                  <option value="" selected>Select a designation</option>
+                  <option value="" selected>{{ __("Select a designation") }}</option>
                   @foreach ($designations as $designation)
                     <option value="{{$designation->id}}">{{$designation->name}}</option>
                   @endforeach
                 </select>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="teamId">Team <span class="text-danger">*</span></label>
+                <label class="form-label" for="teamId">{{ __("Team") }} <span class="text-danger">*</span></label>
                 <select class="selectpicker select2 w-auto" id="teamId" data-style="btn-transparent"
                         data-icon-base="bx" data-tick-icon="bx-check text-white" name="teamId">
-                  <option value="" selected>Select a team</option>
+                  <option value="" selected>{{ __("Select a team") }}</option>
                   @foreach ($teams as $team)
                     <option value="{{$team->id}}">{{$team->code}} - {{$team->name}}</option>
                   @endforeach
                 </select>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="shiftId">Shifts <span class="text-danger">*</span></label>
+                <label class="form-label" for="shiftId">{{ __("Shifts") }} <span class="text-danger">*</span></label>
                 <select class="selectpicker select2 w-auto" id="shiftId" data-style="btn-transparent"
                         data-icon-base="bx" data-tick-icon="bx-check text-white" name="shiftId">
-                  <option value="" selected>Select a shift</option>
+                  <option value="" selected>{{ __("Select a shift") }}</option>
                   @foreach ($shifts as $shift)
                     <option value="{{$shift->id}}">{{$shift->code}} - {{$shift->name}}</option>
                   @endforeach
                 </select>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="reportingToId">Reporting To <span class="text-danger">*</span></label>
+                <label class="form-label" for="reportingToId">{{ __("Reporting To") }} <span class="text-danger">*</span></label>
                 <select class="selectpicker select2 w-auto" id="reportingToId" data-style="btn-transparent"
                         data-icon-base="bx" data-tick-icon="bx-check text-white" name="reportingToId">
-                  <option value="" selected>Select reporting manager</option>
+                  <option value="" selected>{{ __("Select reporting manager") }}</option>
                   @foreach ($users as $user)
                     <option value="{{$user->id}}">{{$user->code}}
                       : {{$user->first_name.' '.$user->last_name}}</option>
@@ -414,59 +414,59 @@
               </div>
 
               <div class="col-sm-6">
-                <label class="form-label" for="attendanceType">Attendance Type <span
+                <label class="form-label" for="attendanceType">{{ __("Attendance Type") }} <span
                     class="text-danger">*</span></label>
                 <select class="selectpicker select2 w-auto" id="attendanceType" data-style="btn-transparent"
                         data-icon-base="bx" data-tick-icon="bx-check text-white" name="attendanceType">
-                  <option value="open" selected>Open</option>
+                  <option value="open" selected>{{ __("Open") }}</option>
                   @if($addonService->isAddonEnabled(ModuleConstants::GEOFENCE))
-                    <option value="geofence">Geofence</option>
+                    <option value="geofence">{{ __("Geofence") }}</option>
                   @endif
                   @if($addonService->isAddonEnabled(ModuleConstants::IP_ADDRESS_ATTENDANCE))
-                    <option value="ipAddress">IP Address</option>
+                    <option value="ipAddress">{{ __("IP Address") }}</option>
                   @endif
                   @if($addonService->isAddonEnabled(ModuleConstants::QR_ATTENDANCE))
-                    <option value="staticqr">Static QR</option>
+                    <option value="staticqr">{{ __("Static QR") }}</option>
                   @endif
                   @if($addonService->isAddonEnabled(ModuleConstants::DYNAMIC_QR_ATTENDANCE))
-                    <option value="dynamicqr">Dynamic QR</option>
+                    <option value="dynamicqr">{{ __("Dynamic QR") }}</option>
                   @endif
                   @if($addonService->isAddonEnabled(ModuleConstants::SITE_ATTENDANCE))
-                    <option value="site">Site</option>
+                    <option value="site">{{ __("Site") }}</option>
                   @endif
                   @if($addonService->isAddonEnabled(ModuleConstants::FACE_ATTENDANCE))
-                    <option value="face">Face</option>
+                    <option value="face">{{ __("Face") }}</option>
                   @endif
                 </select>
               </div>
               <div class="form-group col-sm-6 mb-3" id="geofenceGroupDiv" style="display:none;">
-                <label for="geofenceGroupId" class="control-label">Geofence Group</label>
+                <label for="geofenceGroupId" class="control-label">{{ __("Geofence Group") }}</label>
                 <select id="geofenceGroupId" name="geofenceGroupId" class="form-select mb-3"></select>
                 <span class="text-danger">{{ $errors->first('geofenceGroupId', ':message') }}</span>
               </div>
               <div class="form-group col-sm-6 mb-3" id="ipGroupDiv" style="display:none;">
-                <label for="ipGroupId" class="control-label">Ip Group</label>
+                <label for="ipGroupId" class="control-label">{{ __("Ip Group") }}</label>
                 <select id="ipGroupId" name="ipGroupId" class="form-select mb-3"></select>
                 <span class="text-danger">{{ $errors->first('ipGroupId', ':message') }}</span>
               </div>
               <div class="form-group col-sm-6 mb-3" id="dynamicQrDiv" style="display:none;">
-                <label for="dynamicQrId" class="control-label">Qr Device</label>
+                <label for="dynamicQrId" class="control-label">{{ __("Qr Device") }}</label>
                 <select id="dynamicQrId" name="dynamicQrId" class="form-select mb-3"></select>
                 <span class="text-danger">{{ $errors->first('dynamicQrId', ':message') }}</span>
               </div>
               <div class="form-group col-sm-6 mb-3" id="qrGroupDiv" style="display:none;">
-                <label for="qrGroupId" class="control-label">Qr Group</label>
+                <label for="qrGroupId" class="control-label">{{ __("Qr Group") }}</label>
                 <select id="qrGroupId" name="qrGroupId" class="form-select mb-3"></select>
                 <span class="text-danger">{{ $errors->first('qrGroupId', ':message') }}</span>
               </div>
               <div class="form-group col-md-3 mb-3" id="siteDiv" style="display:none;">
-                <label for="siteId" class="control-label">Site</label>
+                <label for="siteId" class="control-label">{{ __("Site") }}</label>
                 <select id="siteId" name="siteId" class="form-select mb-3"></select>
                 <span class="text-danger">{{ $errors->first('siteId', ':message') }}</span>
               </div>
               @if($settings->is_helper_text_enabled)
                 <div class="alert alert-primary alert-dismissible" role="alert">
-                  <h6 class="alert-heading">Note</h6>
+                  <h6 class="alert-heading">{{ __("Note") }}</h6>
                   <ul>
                     <li><strong>None</strong> Open attendance system without any restriction</li>
                     <li><strong>Geofence</strong> Allow attendance only from the selected geofence group</li>
@@ -486,10 +486,10 @@
               <div class="col-12 d-flex justify-content-between">
                 <button class="btn btn-primary btn-prev">
                   <i class="bx bx-left-arrow-alt bx-sm ms-sm-n2 me-sm-2"></i>
-                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  <span class="align-middle d-sm-inline-block d-none">{{ __("Previous") }}</span>
                 </button>
                 <button class="btn btn-primary btn-next">
-                  <span class="align-middle d-sm-inline-block d-none me-sm-2">Next</span>
+                  <span class="align-middle d-sm-inline-block d-none me-sm-2">{{ __("Next") }}</span>
                   <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
                 </button>
               </div>
@@ -499,24 +499,24 @@
           <!-- Compensation -->
           <div id="salary-validation" class="content">
             <div class="content-header mb-4">
-              <h6 class="mb-0">Salary Information</h6>
-              <small>Enter Employee Salary Details.</small>
+              <h6 class="mb-0">{{ __("Salary Information") }}</h6>
+              <small>{{ __("Enter Employee Salary Details.") }}</small>
             </div>
             <div class="row g-6">
               <div class="col-sm-6">
-                <label class="form-label" for="baseSalary">Base Salary <span class="text-danger">*</span></label>
+                <label class="form-label" for="baseSalary">{{ __("Base Salary") }} <span class="text-danger">*</span></label>
                 <input type="number" name="baseSalary" id="baseSalary" class="form-control"
-                       placeholder="Enter Salary"/>
+                       placeholder="{{ __("Enter Salary") }}"/>
               </div>
               <div class="col-sm-6">
-                <label class="form-label" for="availableLeaveCount">Available Leave Count</label>
+                <label class="form-label" for="availableLeaveCount">{{ __("Available Leave Count") }}</label>
                 <input type="number" name="availableLeaveCount" id="availableLeaveCount" class="form-control"
-                       placeholder="Enter available leave count"/>
+                       placeholder="{{ __("Enter available leave count") }}"/>
               </div>
               <div class="col-12 d-flex justify-content-between">
                 <button class="btn btn-primary btn-prev">
                   <i class="bx bx-left-arrow-alt bx-sm ms-sm-n2 me-sm-2"></i>
-                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  <span class="align-middle d-sm-inline-block d-none">{{ __("Previous") }}</span>
                 </button>
                 <button class="btn btn-success btn-next btn-submit">Submit</button>
               </div>

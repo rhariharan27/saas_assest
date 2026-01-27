@@ -2,7 +2,7 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddOrUpdateDesignation"
     aria-labelledby="offcanvasCreateDesignationLabel">
     <div class="offcanvas-header border-bottom">
-        <h5 id="offcanvasDesignationLabel" class="offcanvas-title">@lang('Add Designation')</h5>
+        <h5 id="offcanvasDesignationLabel" class="offcanvas-title">{{ __('Add Designation') }}</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0 p-6 h-100">
@@ -12,26 +12,26 @@
 
             <div class="mb-6">
                 <label class="form-label" for="name">@lang('Name') <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="name" placeholder="@lang('Enter Designation Name')" name="name"
+                <input type="text" class="form-control" id="name" placeholder="{{ __("Enter Designation Name") }}" name="name"
                     required />
             </div>
 
             <div class="mb-6">
                 <label class="form-label" for="name">@lang('Department')</label>
                 <select class="form-select " id="department_id" name="department_id">
-                    <option value="" disabled selected>Select department</option>
+                    <option value="" disabled selected>{{ __("Select department") }}</option>
                 </select>
             </div>
 
             <div class="mb-6">
                 <label class="form-label" for="code">@lang('Code') <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="code" placeholder="@lang('Enter Department Code')" name="code"
+                <input type="text" class="form-control" id="code" placeholder="{{ __("Enter Department Code") }}" name="code"
                     required />
             </div>
 
             <div class="mb-6">
                 <label class="form-label" for="notes">@lang('Description')</label>
-                <textarea class="form-control" id="notes" name="notes" placeholder="@lang('Enter Description')" rows="3"></textarea>
+                <textarea class="form-control" id="notes" name="notes" placeholder="{{ __("Enter Description") }}" rows="3"></textarea>
             </div>
 
           <div class="mb-6">
@@ -41,8 +41,8 @@
             </div>
           </div>
 
-            <button type="submit" class="btn btn-primary me-3 data-submit">@lang('Submit')</button>
-            <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">@lang('Cancel')</button>
+            <button type="submit" class="btn btn-primary me-3 data-submit">{{ __("Submit") }}</button>
+            <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">{{ __("Cancel") }}</button>
         </form>
     </div>
 </div>

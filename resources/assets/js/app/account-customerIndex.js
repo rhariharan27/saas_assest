@@ -82,12 +82,12 @@ $(function () {
               var output = '<div class="col">';
               output += '<div class="d-flex align-items-center gap-2">' +
                 '<i class="bx bx-check-shield text-success"></i>' +
-                '<span class="text-success">Subscribed</span>' +
+                '<span class="text-success">' + window.__('Subscribed') + '</span>' +
                 '</div>';
               output += '</div>';
               return output;
             } else {
-              return '<span class="text-danger">No Subscription</span>';
+              return '<span class="text-danger">' + window.__('No Subscription') + '</span>';
             }
           }
         },
@@ -99,16 +99,16 @@ $(function () {
               return '<div class="d-flex flex-column">' +
                 '<span class="fw-bold text-primary">' + data.plan + '</span>' +
                 '<div class="mt-1">' +
-                '<strong>Validity:</strong> ' +
+                '<strong>' + window.__('Validity') + ':</strong> ' +
                 '<span class="text-muted">' + data.end_date + '</span>' +
                 '</div>' +
                 '<div>' +
-                '<strong>Users:</strong> ' +
-                '<span class="text-muted">Included: ' + data.included_users + ', Additional: ' + data.additional_users + '</span>' +
+                '<strong>' + window.__('Users') + ':</strong> ' +
+                '<span class="text-muted">' + window.__('Included') + ': ' + data.included_users + ', ' + window.__('Additional') + ': ' + data.additional_users + '</span>' +
                 '</div>' +
                 '</div>';
             } else {
-              return '<span class="text-danger">No Subscription</span>';
+              return '<span class="text-danger">' + window.__('No Subscription') + '</span>';
             }
           }
         },
@@ -154,7 +154,7 @@ $(function () {
       language: {
         sLengthMenu: '_MENU_',
         search: '',
-        searchPlaceholder: 'Search User',
+        searchPlaceholder: window.__('Search User'),
         info: 'Displaying _START_ to _END_ of _TOTAL_ entries',
         paginate: {
           next: '<i class="bx bx-chevron-right bx-sm"></i>',
@@ -165,12 +165,12 @@ $(function () {
         {
           extend: 'collection',
           className: 'btn btn-label-secondary dropdown-toggle mx-4',
-          text: '<i class="bx bx-export me-2 bx-sm"></i>Export',
+          text: '<i class="bx bx-export me-2 bx-sm"></i>' + window.__('Export'),
           buttons: [
             {
               extend: 'print',
-              title: 'Users',
-              text: '<i class="bx bx-printer me-2" ></i>Print',
+              title: window.__('Users'),
+              text: '<i class="bx bx-printer me-2" ></i>' + window.__('Print'),
               className: 'dropdown-item',
               exportOptions: {
                 columns: [1, 2, 3, 4, 5],

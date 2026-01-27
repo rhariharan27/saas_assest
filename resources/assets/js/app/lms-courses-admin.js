@@ -212,9 +212,9 @@ $(function () { // jQuery document ready
   coursesDataTableElement.on('click', '.delete-course', function () {
     const button = $(this); const deleteUrl = button.data('url');
     const enrollmentCount = parseInt(button.data('enrollments') || 0, 10);
-    if (enrollmentCount > 0) { Swal.fire({ icon: 'error', title: 'Cannot Delete', text: `This course has ${enrollmentCount} active enrollment(s). Please manage enrollments first.` }); return; } // Updated message
+    if (enrollmentCount > 0) { Swal.fire({ icon: 'error', title: window.translations?.cannotDelete || 'Cannot Delete', text: `${window.translations?.courseHas || 'This course has'} ${enrollmentCount} ${window.translations?.enrollmentsManageFirst || 'active enrollment(s). Please manage enrollments first.'}` }); return; } // Updated message
     // *** Use Swal ONLY for confirmation ***
-    Swal.fire({ title: 'Are you sure?', text: "Delete this course? Associated lessons may also be deleted!", icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes, delete it!', customClass: { confirmButton: 'btn btn-danger me-3', cancelButton: 'btn btn-label-secondary' }, buttonsStyling: false
+    Swal.fire({ title: window.translations?.areYouSure || 'Are you sure?', text: window.translations?.deleteCourseWarning || "Delete this course? Associated lessons may also be deleted!", icon: 'warning', showCancelButton: true, confirmButtonText: window.translations?.yesDeleteIt || 'Yes, delete it!', customClass: { confirmButton: 'btn btn-danger me-3', cancelButton: 'btn btn-label-secondary' }, buttonsStyling: false
     }).then(function (result) {
       if (result.isConfirmed) {
         $.ajax({ url: deleteUrl, method: 'POST', data: { _method: 'DELETE' }, dataType: 'json',

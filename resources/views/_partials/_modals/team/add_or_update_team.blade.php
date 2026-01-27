@@ -1,7 +1,7 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddOrUpdateTeam"
     aria-labelledby="offcanvasCreateTeamLabel">
     <div class="offcanvas-header border-bottom">
-        <h5 id="offcanvasTeamLabel" class="offcanvas-title">@lang('Create Team')</h5>
+        <h5 id="offcanvasTeamLabel" class="offcanvas-title">{{ __('Add Team') }}</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0 p-6 h-100">
@@ -10,17 +10,17 @@
             <input type="hidden" name="status" id="status">
             <div class="mb-6">
                 <label class="form-label" for="name">@lang('Name')<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="name" placeholder="@lang('Enter name')"
+                <input type="text" class="form-control" id="name" placeholder="{{ __("Enter name") }}"
                     name="name" />
             </div>
             <div class="mb-6">
                 <label class="form-label" for="code">@lang('Code')<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="code" placeholder="@lang('Enter code')"
+                <input type="text" class="form-control" id="code" placeholder="{{ __("Enter code") }}"
                     name="code" />
             </div>
             <div class="mb-6">
                 <label class="form-label" for="notes">@lang('Description')</label>
-                <textarea class="form-control" id="notes" placeholder="@lang('Enter description')" name="notes"></textarea>
+                <textarea class="form-control" id="notes" placeholder="{{ __("Enter description") }}" name="notes"></textarea>
             </div>
             <div class="mb-6 d-flex justify-content-between">
                 <label class="form-label mb-0" for="isChatEnabled">@lang('Is Chat Enabled')</label>
@@ -29,8 +29,8 @@
                     <input type="hidden" name="isChatEnabled" id="isChatEnabled" value="1">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary me-3 data-submit">@lang('Create')</button>
-            <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">@lang('Cancel')</button>
+            <button type="submit" class="btn btn-primary me-3 data-submit">{{ __("Create") }}</button>
+            <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">{{ __("Cancel") }}</button>
         </form>
     </div>
 </div>

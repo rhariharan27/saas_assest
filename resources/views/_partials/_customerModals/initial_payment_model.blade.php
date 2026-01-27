@@ -17,7 +17,7 @@
           @csrf
           <input type="hidden" name="paymentModal-planId" id="paymentModal-planId">
           <div class="mb-3 col-6">
-            <label for="users" class="form-label">Number of Additional Users</label>
+            <label for="users" class="form-label">{{ __('Number of Additional Users') }}</label>
             <div class="input-group">
               <button type="button" class="btn btn-outline-secondary" id="paymentModal-decreaseUsers">-</button>
               <input type="number" name="paymentModal-users" id="paymentModal-users" class="form-control text-center"

@@ -7,7 +7,7 @@
 
   <div class="offcanvas-body px-4">
     <div class="row mb-4">
-      <div class="col-4 fw-bold">User:</div>
+      <div class="col-4 fw-bold">{{ __('User') }}:</div>
       <div class="col-8">
         <div class="d-flex flex-column">
           <span id="userName" class="fw-bold text-body"></span>
@@ -17,35 +17,35 @@
     </div>
     <hr class="my-3">
     <div class="row mb-4">
-      <div class="col-4 fw-bold">Client Name:</div>
+      <div class="col-4 fw-bold">{{ __('Client') }}:</div>
       <div class="col-8">
         <span id="client" class="fw-medium"></span>
       </div>
     </div>
     <hr class="my-3">
     <div class="row mb-4">
-      <div class="col-4 fw-bold">Created At:</div>
+      <div class="col-4 fw-bold">{{ __('Created At') }}:</div>
       <div class="col-8">
         <span id="createdAt"></span>
       </div>
     </div>
     <hr class="my-3">
     <div class="row mb-4">
-      <div class="col-4 fw-bold">Address:</div>
+      <div class="col-4 fw-bold">{{ __('Address') }}:</div>
       <div class="col-8">
         <p id="address" class="text-wrap mb-0"></p>
       </div>
     </div>
     <hr class="my-3">
     <div class="row mb-4">
-      <div class="col-4 fw-bold">Notes:</div>
+      <div class="col-4 fw-bold">{{ __('Remarks') }}:</div>
       <div class="col-8">
         <p id="remarks" class="text-wrap mb-0"></p>
       </div>
     </div>
     <hr class="my-3">
     <div class="row">
-      <div class="col-4 fw-bold">Image:</div>
+      <div class="col-4 fw-bold">{{ __('Image') }}:</div>
       <div class="col-8">
         <img id="imageUrl" class="img-fluid rounded border shadow-sm" src="https://placehold.co/100x100" alt="Details"
              width="100" height="100">

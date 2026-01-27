@@ -1,5 +1,5 @@
 @php
-  $title = 'Live Location';
+  $title = __('Live Location');
 @endphp
 @extends('layouts/layoutMaster')
 
@@ -12,8 +12,8 @@
     <div class="col-md-4">
       <div class="card shadow-sm h-100">
         <div class="card-header">
-          <h5 class="mb-0">Employee List</h5>
-          <input type="text" id="employeeSearch" class="form-control mt-2" placeholder="Search employees...">
+          <h5 class="mb-0">{{ __('Employee List') }}</h5>
+          <input type="text" id="employeeSearch" class="form-control mt-2" placeholder="{{ __('Search employees...') }}">
         </div>
         <div class="card-body overflow-auto" style="max-height: 80vh;" id="employeeList">
           <!-- Employee cards will be dynamically populated -->
@@ -28,17 +28,17 @@
         <div class="col-auto">
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-outline-primary">
-              Online <span class="badge bg-success" id="online">0</span>
+              {{ __('Online') }} <span class="badge bg-success" id="online">0</span>
             </button>
             <button type="button" class="btn btn-outline-primary">
-              Offline <span class="badge bg-danger" id="offline">0</span>
+              {{ __('Offline') }} <span class="badge bg-danger" id="offline">0</span>
             </button>
           </div>
         </div>
         <!-- Refresh Button -->
         <div class="col-auto">
           <a class="btn btn-outline-primary d-flex align-items-center" href="{{ route('liveLocationView') }}">
-            <i class="bi bi-arrow-clockwise me-2"></i> Refresh
+            <i class="bi bi-arrow-clockwise me-2"></i> {{ __('Refresh') }}
           </a>
         </div>
       </div>

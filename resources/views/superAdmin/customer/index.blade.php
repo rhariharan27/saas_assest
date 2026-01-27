@@ -40,7 +40,7 @@
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard"
                   type="button" role="tab" aria-controls="dashboard" aria-selected="true">
-            Dashboard
+            {{ __('Dashboard') }}
           </button>
         </li>
         <li class="nav-item" role="presentation">

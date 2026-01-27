@@ -15,7 +15,7 @@
       <div class="mb-4">
         <label class="form-label" for="designationId">@lang('Designation') <span class="text-danger">*</span></label>
         <select class="form-select select2" id="designationId" name="designationId">
-          <option value="">Select Designation</option>
+          <option value="">{{ __("Select Designation") }}</option>
         </select>
       </div>
 
@@ -23,7 +23,7 @@
       <div class="mb-4">
         <label class="form-label" for="role">@lang('Role') <span class="text-danger">*</span></label>
         <select class="form-select select2" id="role" name="role">
-          <option value="">Select Role</option>
+          <option value="">{{ __("Select Role") }}</option>
         </select>
       </div>
 
@@ -31,7 +31,7 @@
       <div class="mb-4">
         <label class="form-label" for="teamId">@lang('Team') <span class="text-danger">*</span></label>
         <select class="form-select select2" id="teamId" name="teamId">
-          <option value="">Select Team</option>
+          <option value="">{{ __("Select Team") }}</option>
         </select>
       </div>
 
@@ -39,7 +39,7 @@
       <div class="mb-4">
         <label class="form-label" for="shiftId">@lang('Shift') <span class="text-danger">*</span></label>
         <select class="form-select select2" id="shiftId" name="shiftId">
-          <option value="">Select Shift</option>
+          <option value="">{{ __("Select Shift") }}</option>
         </select>
       </div>
 
@@ -47,12 +47,12 @@
       <div class="mb-4">
         <label class="form-label" for="reportingToId">@lang('Reporting To') <span class="text-danger">*</span></label>
         <select class="form-select select2" id="reportingToId" name="reportingToId">
-          <option value="">Select Reporting To</option>
+          <option value="">{{ __("Select Reporting To") }}</option>
         </select>
       </div>
 
       <div class="mb-4">
-        <label class="form-label" for="doj">Date of Joining <span class="text-danger">*</span></label>
+        <label class="form-label" for="doj">{{ __("Date of Joining") }} <span class="text-danger">*</span></label>
         <input type="date" name="doj" id="doj" class="form-control"
                value="{{ $user->date_of_joining != null ? Carbon::parse($user->date_of_joining)->format('Y-m-d') : '' }}"/>
       </div>
@@ -83,17 +83,17 @@
         </select>
       </div>
       <div class="mb-4" id="geofenceGroupDiv" style="display:none;">
-        <label for="geofenceGroupId" class="control-label">Geofence Group</label>
+        <label for="geofenceGroupId" class="control-label">{{ __("Geofence Group") }}</label>
         <select id="geofenceGroupId" name="geofenceGroupId" class="form-select mb-3"></select>
         <span class="text-danger">{{ $errors->first('geofenceGroupId', ':message') }}</span>
       </div>
       <div class="mb-4" id="ipGroupDiv" style="display:none;">
-        <label for="ipGroupId" class="control-label">Ip Group</label>
+        <label for="ipGroupId" class="control-label">{{ __("Ip Group") }}</label>
         <select id="ipGroupId" name="ipGroupId" class="form-select mb-3"></select>
         <span class="text-danger">{{ $errors->first('ipGroupId', ':message') }}</span>
       </div>
       <div class="mb-4" id="qrGroupDiv" style="display:none;">
-        <label for="qrGroupId" class="control-label">Qr Group</label>
+        <label for="qrGroupId" class="control-label">{{ __("Qr Group") }}</label>
         <select id="qrGroupId" name="qrGroupId" class="form-select mb-3"></select>
         <span class="text-danger">{{ $errors->first('qrGroupId', ':message') }}</span>
       </div>

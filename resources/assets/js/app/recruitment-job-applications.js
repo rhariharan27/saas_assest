@@ -137,14 +137,14 @@ $(function () {
             dtApplication.row(button.closest('tr')).invalidate().draw(false);
           }
         } else {
-          Swal.fire({ icon: 'error', title: 'Error', text: response.message || 'Failed to update status.' });
+          Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: response.message || window.translations?.failedToUpdateStatus || 'Failed to update status.' });
           if(dtApplication) { button.closest('tr').css('opacity', 1); } // Restore opacity on error
         }
       },
       error: function (jqXHR) {
         let message = 'An error occurred.';
         if (jqXHR.responseJSON?.message) { message = jqXHR.responseJSON.message; }
-        Swal.fire({ icon: 'error', title: 'Error', text: message });
+        Swal.fire({ icon: 'error', title: window.translations?.error || 'Error', text: message });
         if(dtApplication) { button.closest('tr').css('opacity', 1); } // Restore opacity on error
       },
       complete: function() {

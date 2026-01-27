@@ -28,6 +28,16 @@
 @section('page-script')
   @vite(['resources/js/main-datatable.js'])
   @vite(['resources/js/main-helper.js'])
+  <script>
+    // Pass translations to JavaScript
+    window.translations = {
+      searchDepartment: '{{ __("Search Department") }}',
+      noParent: '{{ __("No Parent") }}',
+      displaying: '{{ __("Displaying") }}',
+      addDepartment: '{{ __("Add Department") }}',
+      editDepartment: '{{ __("Edit Department") }}'
+    };
+  </script>
   @vite(['resources/assets/js/app/department-index.js'])
 @endsection
 
@@ -35,12 +45,12 @@
 @section('content')
   <div class="row">
     <div class="col">
-      <h4>@lang('Departments')</h4>
+      <h4>{{ __('Departments') }}</h4>
     </div>
     <div class="col text-end">
       <button type="button" class="btn btn-primary add-new-department" data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasAddDepartment">
-        <i class="bx bx-plus bx-sm me-0 me-sm-2"></i> @lang('Add New')
+        <i class="bx bx-plus bx-sm me-0 me-sm-2"></i> {{ __('Add New') }}
       </button>
     </div>
   </div>
@@ -51,14 +61,14 @@
       <table class="datatables-departments table border-top">
         <thead>
         <tr>
-          <th>@lang('')</th>
-          <th>@lang('Id')</th>
-          <th>@lang('Name')</th>
-          <th>@lang('Code')</th>
-          <th>@lang('Parent Department')
-          <th>@lang('Description')</th>
-          <th>@lang('Status')</th>
-          <th>@lang('Actions')</th>
+          <th>{{ __('') }}</th>
+          <th>{{ __('Id') }}</th>
+          <th>{{ __('Name') }}</th>
+          <th>{{ __('Code') }}</th>
+          <th>{{ __('Parent Department') }}
+          <th>{{ __('Description') }}</th>
+          <th>{{ __('Status') }}</th>
+          <th>{{ __('Actions') }}</th>
         </tr>
         </thead>
       </table>

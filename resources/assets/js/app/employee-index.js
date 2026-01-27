@@ -52,12 +52,12 @@ $(function () {
       {
         extend: 'collection',
         className: 'btn btn-label-secondary dropdown-toggle mx-4',
-        text: '<i class="bx bx-export me-2 bx-sm"></i>Export',
+        text: '<i class="bx bx-export me-2 bx-sm"></i>' + (window.translations?.export || 'Export'),
         buttons: [
           {
             extend: 'print',
             title: 'Users',
-            text: '<i class="bx bx-printer me-2" ></i>Print',
+            text: '<i class="bx bx-printer me-2" ></i>' + (window.translations?.print || 'Print'),
             className: 'dropdown-item',
             exportOptions: {
               columns: [1, 2, 3, 4, 5],
@@ -110,7 +110,7 @@ $(function () {
           {
             extend: 'csv',
             title: 'Users',
-            text: '<i class="bx bx-file me-2" ></i>Csv',
+            text: '<i class="bx bx-file me-2" ></i>' + (window.translations?.csv || 'Csv'),
             className: 'dropdown-item',
             exportOptions: {
               columns: [1, 2, 3, 4, 5],
@@ -134,7 +134,7 @@ $(function () {
           },
           {
             extend: 'excel',
-            text: '<i class="bx bxs-file-export me-2"></i>Excel',
+            text: '<i class="bx bxs-file-export me-2"></i>' + (window.translations?.excel || 'Excel'),
             className: 'dropdown-item',
             exportOptions: {
               columns: [1, 2, 3, 4, 5],
@@ -174,7 +174,7 @@ $(function () {
           {
             extend: 'pdf',
             title: 'Users',
-            text: '<i class="bx bxs-file-pdf me-2"></i>Pdf',
+            text: '<i class="bx bxs-file-pdf me-2"></i>' + (window.translations?.pdf || 'Pdf'),
             className: 'dropdown-item',
             exportOptions: {
               columns: [1, 2, 3, 4, 5],
@@ -214,7 +214,7 @@ $(function () {
           {
             extend: 'copy',
             title: 'Users',
-            text: '<i class="bx bx-copy me-2" ></i>Copy',
+            text: '<i class="bx bx-copy me-2" ></i>' + (window.translations?.copy || 'Copy'),
             className: 'dropdown-item',
             exportOptions: {
               columns: [1, 2, 3, 4, 5],
@@ -239,7 +239,7 @@ $(function () {
         ]
       },
       {
-        text: '<i class="bx bx-plus bx-sm me-0 me-sm-2"></i><span class="d-none d-sm-inline-block">Create</span>',
+        text: '<i class="bx bx-plus bx-sm me-0 me-sm-2"></i><span class="d-none d-sm-inline-block">' + (window.translations?.create || 'Create') + '</span>',
         className: 'add-new btn btn-primary',
         action: function () {
           window.open('employees/create', '_self');
@@ -247,8 +247,17 @@ $(function () {
       }
     ],
     language: {
-      searchPlaceholder: 'Search employee...',
-      search: ''
+      searchPlaceholder: window.translations?.searchEmployee || 'Search employee...',
+      search: '',
+      lengthMenu: window.translations?.show + ' _MENU_ ' + window.translations?.entries || '_MENU_ entries',
+      info: window.translations?.info || 'Showing _START_ to _END_ of _TOTAL_ entries',
+      infoEmpty: window.translations?.infoEmpty || 'Showing 0 to 0 of 0 entries',
+      paginate: {
+        first: window.translations?.firstPage || 'First Page',
+        previous: window.translations?.previous || 'Previous',
+        next: window.translations?.next || 'Next',
+        last: window.translations?.lastPage || 'Last Page'
+      }
     }
   });
 

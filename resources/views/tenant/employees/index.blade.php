@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Employees')
+@section('title', __('Employees'))
 
 
 <!-- Vendor Styles -->
@@ -33,6 +33,29 @@
 @section('page-script')
   @vite([
     'resources/js/main-helper.js',
+  ])
+  <script>
+    // Pass translations to JavaScript
+    window.translations = {
+      searchEmployee: '{{ __("Search Employee") }}',
+      export: '{{ __("Export") }}',
+      print: '{{ __("Print") }}',
+      csv: '{{ __("Csv") }}',
+      excel: '{{ __("Excel") }}',
+      pdf: '{{ __("Pdf") }}',
+      copy: '{{ __("Copy") }}',
+      create: '{{ __("Create") }}',
+      show: '{{ __("Show") }}',
+      entries: '{{ __("entries") }}',
+      firstPage: '{{ __("First Page") }}',
+      previous: '{{ __("Previous") }}',
+      next: '{{ __("Next") }}',
+      lastPage: '{{ __("Last Page") }}',
+      info: '{{ __("Showing _START_ to _END_ of _TOTAL_ entries") }}',
+      infoEmpty: '{{ __("Showing 0 to 0 of 0 entries") }}'
+    };
+  </script>
+  @vite([
     'resources/assets/js/app/employee-index.js',
     'resources/js/main-select2.js'
 ])
@@ -47,12 +70,12 @@
         <div class="card-body">
           <div class="d-flex align-items-start justify-content-between">
             <div class="content-left">
-              <span class="text-heading">Total</span>
+              <span class="text-heading">{{ __('Total') }}</span>
               <div class="d-flex align-items-center my-1">
                 <h4 class="mb-0 me-2">{{$totalUser}}</h4>
                 {{--  <p class="text-success mb-0">(100%)</p>--}}
               </div>
-              <small class="mb-0">Total Users</small>
+              <small class="mb-0">{{ __('Total Users') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-primary">
@@ -68,12 +91,12 @@
         <div class="card-body">
           <div class="d-flex align-items-start justify-content-between">
             <div class="content-left">
-              <span class="text-heading">Active</span>
+              <span class="text-heading">{{ __('Active') }}</span>
               <div class="d-flex align-items-center my-1">
                 <h4 class="mb-0 me-2">{{$active}}</h4>
                 {{--  <p class="text-success mb-0">(+95%)</p>--}}
               </div>
-              <small class="mb-0">Total Active Users </small>
+              <small class="mb-0">{{ __('Total Active Users') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-success">
@@ -89,12 +112,12 @@
         <div class="card-body">
           <div class="d-flex align-items-start justify-content-between">
             <div class="content-left">
-              <span class="text-heading">InActive</span>
+              <span class="text-heading">{{ __('Inactive') }}</span>
               <div class="d-flex align-items-center my-1">
                 <h4 class="mb-0 me-2">{{$inactive}}</h4>
                 <p class="text-success mb-0">(0%)</p>
               </div>
-              <small class="mb-0">Tota</small>
+              <small class="mb-0">{{ __('Total Inactive Users') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-danger">
@@ -110,12 +133,12 @@
         <div class="card-body">
           <div class="d-flex align-items-start justify-content-between">
             <div class="content-left">
-              <span class="text-heading">Relieved</span>
+              <span class="text-heading">{{ __('Relieved') }}</span>
               <div class="d-flex align-items-center my-1">
                 <h4 class="mb-0 me-2">{{$relieved}}</h4>
                 <p class="text-danger mb-0">(+6%)</p>
               </div>
-              <small class="mb-0">Recent analytics</small>
+              <small class="mb-0">{{ __('Recent analytics') }}</small>
             </div>
             <div class="avatar">
             <span class="avatar-initial rounded bg-label-warning">
@@ -130,27 +153,27 @@
   <!-- Filter Row -->
   <div class="row mb-4">
     <div class="col-md-3">
-      <label for="roleFilter" class="form-label">Filter by role</label>
+      <label for="roleFilter" class="form-label">{{ __('Filter by role') }}</label>
       <select class="form-select select2 filter-input" id="roleFilter">
-        <option value="">All Roles</option>
+        <option value="">{{ __('All Roles') }}</option>
         @foreach($roles as $role)
           <option value="{{ $role->name }}">{{ $role->name }}</option>
         @endforeach
       </select>
     </div>
     <div class="col-md-3">
-      <label for="teamFilter" class="form-label">Filter by team</label>
+      <label for="teamFilter" class="form-label">{{ __('Filter by team') }}</label>
       <select class="form-select select2 filter-input" id="teamFilter">
-        <option value="">All Teams</option>
+        <option value="">{{ __('All Teams') }}</option>
         @foreach($teams as $team)
           <option value="{{ $team->id }}">{{ $team->name }}</option>
         @endforeach
       </select>
     </div>
     <div class="col-md-3">
-      <label for="designationFilter" class="form-label">Filter by designation</label>
+      <label for="designationFilter" class="form-label">{{ __('Filter by designation') }}</label>
       <select class="form-select select2 filter-input" id="designationFilter">
-        <option value="">All Designations</option>
+        <option value="">{{ __('All Designations') }}</option>
         @foreach($designations as $designation)
           <option value="{{ $designation->id }}">{{ $designation->name }}</option>
         @endforeach
@@ -159,7 +182,7 @@
     {{--<!-- Total Users Limit -->
     <div class="col-md-3 col-lg-6 text-md-end align-self-center">
     <span class="d-inline-block mt-2 mt-md-0">
-      <span class="fw-bold">Total Users Limit:</span>
+      <span class="fw-bold">{{ __('Total Users Limit:') }}</span>
       <span class="badge bg-primary fs-6">{{$settings->employees_limit}}</span>
     </span>
     </div>--}}
@@ -170,14 +193,14 @@
       <table class="datatables-employees table border-top">
         <thead>
         <tr>
-          <th>Id</th>
-          <th>User</th>
-          <th>Phone</th>
-          <th>Role</th>
-          <th>Attendance Type</th>
-          <th>Team</th>
-          <th>Status</th>
-          <th>Actions</th>
+          <th>{{ __('Id') }}</th>
+          <th>{{ __('User') }}</th>
+          <th>{{ __('Phone') }}</th>
+          <th>{{ __('Role') }}</th>
+          <th>{{ __('Attendance Type') }}</th>
+          <th>{{ __('Team') }}</th>
+          <th>{{ __('Status') }}</th>
+          <th>{{ __('Actions') }}</th>
         </tr>
         </thead>
       </table>
@@ -188,8 +211,8 @@
   <div class="row mt-3">
     <div class="col-md-12">
       <div class="alert alert-primary" role="alert">
-        <h5 class="alert-heading">Available Employees Limit</h5>
-        <p class="mb-0">You have <strong>{{$settings->employees_limit}}</strong> employees limit available. You can add more employees by upgrading your plan.</p>
+        <h5 class="alert-heading">{{ __('Available Employees Limit') }}</h5>
+        <p class="mb-0">{{ __('You have') }} <strong>{{$settings->employees_limit}}</strong> {{ __('employees limit available. You can add more employees by upgrading your plan.') }}</p>
       </div>
     </div>
   </div>

@@ -14,18 +14,18 @@
       <div class="mb-4">
         <label class="form-label" for="baseSalary">@lang('Base Salary')</label>
         <input type="number" name="baseSalary" id="baseSalary" class="form-control"
-               placeholder="Enter Salary" value="{{$user->base_salary}}" />
+               placeholder="{{ __("Enter Salary") }}" value="{{$user->base_salary}}" />
       </div>
       
       <div class="mb-4">
-        <label class="form-label" for="availableLeaveCount">Available Leave Count</label>
+        <label class="form-label" for="availableLeaveCount">{{ __("Available Leave Count") }}</label>
         <input type="number" name="availableLeaveCount" id="availableLeaveCount" class="form-control"
-               placeholder="Enter available leave count" value="{{$user->available_leave_count}}" />
+               placeholder="{{ __("Enter available leave count") }}" value="{{$user->available_leave_count}}" />
       </div>
 
 
-      <button type="submit" class="btn btn-primary me-3">@lang('Save Changes')</button>
-      <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">@lang('Cancel')</button>
+      <button type="submit" class="btn btn-primary me-3">{{ __("Save Changes") }}</button>
+      <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">{{ __("Cancel") }}</button>
     </form>
   </div>
 </div>

@@ -33,8 +33,10 @@ $(function () {
       lengthMenu: [7, 10, 20, 50, 70, 100],
       language: {
         search: '',
-        searchPlaceholder: 'Search Visits',
-        info: 'Displaying _START_ to _END_ of _TOTAL_ entries',
+        searchPlaceholder: window.translations?.searchVisits || 'Search Visits',
+        info: window.translations?.info || 'Displaying _START_ to _END_ of _TOTAL_ entries',
+        infoEmpty: window.translations?.noDataAvailable || 'No data available in table',
+        emptyTable: window.translations?.noDataAvailable || 'No data available in table',
         paginate: {
           next: '<i class="bx bx-chevron-right bx-sm"></i>',
           previous: '<i class="bx bx-chevron-left bx-sm"></i>'

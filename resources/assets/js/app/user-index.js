@@ -130,8 +130,8 @@ $(function () {
               '<a href="' +
               userView +
               full['id'] +
-              '" class="dropdown-item">View</a>' +
-              '<a href="javascript:;" class="dropdown-item">Suspend</a>' +
+              '" class="dropdown-item">' + window.__('View') + '</a>' +
+              '<a href="javascript:;" class="dropdown-item">' + window.__('Suspend') + '</a>' +
               '</div>' +
               '</div>'
             );
@@ -152,7 +152,7 @@ $(function () {
       language: {
         sLengthMenu: '_MENU_',
         search: '',
-        searchPlaceholder: 'Search User',
+        searchPlaceholder: window.__('Search User'),
         info: 'Displaying _START_ to _END_ of _TOTAL_ entries',
         paginate: {
           next: '<i class="bx bx-chevron-right bx-sm"></i>',
@@ -164,12 +164,12 @@ $(function () {
         {
           extend: 'collection',
           className: 'btn btn-label-secondary dropdown-toggle mx-4',
-          text: '<i class="bx bx-export me-2 bx-sm"></i>Export',
+          text: '<i class="bx bx-export me-2 bx-sm"></i>' + window.__('Export'),
           buttons: [
             {
               extend: 'print',
-              title: 'Users',
-              text: '<i class="bx bx-printer me-2" ></i>Print',
+              title: window.__('Users'),
+              text: '<i class="bx bx-printer me-2" ></i>' + window.__('Print'),
               className: 'dropdown-item',
               exportOptions: {
                 columns: [1, 2, 3, 4, 5],

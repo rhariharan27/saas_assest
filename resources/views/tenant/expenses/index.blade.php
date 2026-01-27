@@ -42,9 +42,9 @@
   <div class="row mb-4">
     <!-- Employee Filter -->
     <div class="col-md-3 mb-3">
-      <label for="employeeFilter" class="form-label">Filter by employee</label>
+      <label for="employeeFilter" class="form-label">{{ __('Filter by employee') }}</label>
       <select id="employeeFilter" name="employeeFilter" class="form-select select2">
-        <option value="" selected>All Employees</option>
+        <option value="" selected>{{ __('All Employees') }}</option>
         @foreach($employees as $employee)
           <option value="{{ $employee->id }}">{{ $employee->first_name }} {{ $employee->last_name }}</option>
         @endforeach
@@ -53,15 +53,15 @@
 
     <!--Date Filter -->
     <div class="col-md-3 mb-3">
-      <label for="dateFilter" class="form-label">Filter by date</label>
+      <label for="dateFilter" class="form-label">{{ __('Filter by date') }}</label>
       <input type="date" id="dateFilter" name="dateFilter" class="form-control">
     </div>
 
     <!-- Expense Type filter -->
     <div class="col-md-3 mb-3">
-      <label for="expenseTypeFilter" class="form-label">Filter by expense type</label>
+      <label for="expenseTypeFilter" class="form-label">{{ __('Filter by expense type') }}</label>
       <select id="expenseTypeFilter" name="expenseTypeFilter" class="form-select select2">
-        <option value="" selected>All Expense Types</option>
+        <option value="" selected>{{ __('All Expense Types') }}</option>
         @foreach($expenseTypes as $expenseType)
           <option value="{{ $expenseType->id }}">{{ $expenseType->name }}</option>
         @endforeach
@@ -70,9 +70,9 @@
 
     <!-- Status Filter -->
     <div class="col-md-3 mb-3">
-      <label for="statusFilter" class="form-label">Filter by status</label>
+      <label for="statusFilter" class="form-label">{{ __('Filter by status') }}</label>
       <select id="statusFilter" name="statusFilter" class="form-select select2">
-        <option value="" selected>All Statuses</option>
+        <option value="" selected>{{ __('All Statuses') }}</option>
         @foreach(ExpenseRequestStatus::cases() as $gender)
           <option value="{{ $gender->value }}">{{ $gender->name }}</option>
         @endforeach
@@ -86,14 +86,14 @@
         <thead>
         <tr>
           <th>@lang('')</th>
-          <th>@lang('Id')</th>
-          <th>@lang('User')</th>
-          <th>@lang('Expense Type')</th>
-          <th>@lang('Expense Date')</th>
-          <th>@lang('Amount')</th>
-          <th>@lang('Status')</th>
-          <th>@lang('Image')</th>
-          <th>@lang('Actions')</th>
+          <th>{{ __('Id') }}</th>
+          <th>{{ __('User') }}</th>
+          <th>{{ __('Expense Type') }}</th>
+          <th>{{ __('Expense Date') }}</th>
+          <th>{{ __('Amount') }}</th>
+          <th>{{ __('Status') }}</th>
+          <th>{{ __('Image') }}</th>
+          <th>{{ __('Actions') }}</th>
         </tr>
         </thead>
       </table>

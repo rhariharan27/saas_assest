@@ -27,7 +27,7 @@
     </div>
     <div class="col">
       <div class="float-end">
-        <a href="{{ route('client.create') }}" class="btn btn-primary">Create new</a>
+        <a href="{{ route('client.create') }}" class="btn btn-primary">{{ __('Create new') }}</a>
       </div>
     </div>
   </div>
@@ -38,14 +38,14 @@
         <table id="datatable" class="table table-striped">
           <thead>
           <tr>
-            <th>Sl.No</th>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>City</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>{{ __('Sl.No') }}</th>
+            <th>{{ __('Name') }}</th>
+            <th>{{ __('Phone Number') }}</th>
+            <th>{{ __('Email') }}</th>
+            <th>{{ __('Address') }}</th>
+            <th>{{ __('City') }}</th>
+            <th>{{ __('Status') }}</th>
+            <th>{{ __('Actions') }}</th>
           </tr>
           </thead>
           <tbody>
@@ -86,7 +86,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-icon btn-sm"
-                            onclick="return confirm('Are you sure you want to delete this client?')">
+                            onclick="return confirm('{{ __('Are you sure you want to delete this client?') }}')">
                       <i class="fa fa-trash"></i>
                     </button>
                   </form>
@@ -103,12 +103,27 @@
 @endsection
 
 @section('page-script')
+  <script>
+    window.translations = {
+      searchClient: '{{ __("Search Client") }}',
+      noDataAvailable: '{{ __("No data available in table") }}',
+      info: '{{ __("Displaying _START_ to _END_ of _TOTAL_ entries") }}'
+    };
+  </script>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
   <script>
 
     $(function () {
-      $('#datatable').dataTable();
+      $('#datatable').dataTable({
+        language: {
+          searchPlaceholder: window.translations?.searchClient || 'Search Client',
+          emptyTable: window.translations?.noDataAvailable || 'No data available in table',
+          info: window.translations?.info || 'Displaying _START_ to _END_ of _TOTAL_ entries',
+          infoEmpty: window.translations?.noDataAvailable || 'No data available in table'
+        }
+      });
     });
 
     function changeStatus(id) {

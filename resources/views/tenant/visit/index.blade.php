@@ -22,6 +22,21 @@
 @endsection
 
 @section('page-script')
+  <script>
+    // Pass translations to JavaScript
+    window.translations = {
+      searchVisits: '{{ __("Search Visits") }}',
+      noDataAvailable: '{{ __("No data available in table") }}',
+      displayingEntries: '{{ __("Displaying") }}',
+      showEntries: '{{ __("Show") }}',
+      entries: '{{ __("entries") }}',
+      info: '{{ __("Displaying _START_ to _END_ of _TOTAL_ entries") }}',
+      next: '{{ __("Next") }}',
+      previous: '{{ __("Previous") }}',
+      firstPage: '{{ __("First Page") }}',
+      lastPage: '{{ __("Last Page") }}'
+    };
+  </script>
   @vite(['resources/assets/js/app/visits-index.js'])
 @endsection
 
@@ -34,7 +49,7 @@
   </div>
   <!--Date Filter -->
   <div class="mb-4">
-    <label for="dateFilter" class="form-label">Filter by date</label>
+    <label for="dateFilter" class="form-label">{{ __('Filter by date') }}</label>
     <input type="date" id="dateFilter" name="dateFilter" class="form-control w-auto">
   </div>
   <!-- Visits table card -->
@@ -44,12 +59,12 @@
         <thead>
         <tr>
           <th>@lang('')</th>
-          <th>@lang('Sl.No')</th>
-          <th>@lang('User')</th>
-          <th>@lang('Client')</th>
-          <th>@lang('Created At')</th>
-          <th>@lang('Image')</th>
-          <th>@lang('Actions')</th>
+          <th>{{ __('Sl.No') }}</th>
+          <th>{{ __('User') }}</th>
+          <th>{{ __('Client') }}</th>
+          <th>{{ __('Created At') }}</th>
+          <th>{{ __('Image') }}</th>
+          <th>{{ __('Actions') }}</th>
         </tr>
         </thead>
       </table>

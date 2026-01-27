@@ -12,7 +12,7 @@
     <div class="col-md-4">
       <div class="card text-center shadow-sm">
         <div class="card-body">
-          <h5>Total Requests</h5>
+          <h5>{{ __('Total Requests') }}</h5>
           <h3 class="fw-bold">{{ $totalRequests }}</h3>
         </div>
       </div>

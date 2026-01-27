@@ -57,15 +57,15 @@ $(function () {
     ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].forEach(day => {
       $(`#${day}Toggle`).prop('checked', true); // Check Mon-Fri
     });
-    offcanvasLabel.text('Add Shift');
-    submitBtn.text('Submit').prop('disabled', false);
+    offcanvasLabel.text(window.translations?.addNewShift || 'Add New Shift');
+    submitBtn.text(window.translations?.submit || 'Submit').prop('disabled', false);
   }
 
   // Set Button Loading State
   function setShiftButtonLoading(isLoading) {
-    const buttonText = shiftIdInput.val() ? 'Update' : 'Submit';
+    const buttonText = shiftIdInput.val() ? (window.translations?.update || 'Update') : (window.translations?.submit || 'Submit');
     submitBtn.prop('disabled', isLoading);
-    submitBtn.html(isLoading ? '<span class="spinner-border spinner-border-sm"></span> Processing...' : buttonText);
+    submitBtn.html(isLoading ? '<span class="spinner-border spinner-border-sm"></span> ' + (window.translations?.processing || 'Processing...') : buttonText);
   }
 
   // Display Validation Errors
@@ -136,7 +136,7 @@ $(function () {
       ],
       order: [[1, 'asc']], // Order by name
       dom: '<"row me-2"<"col-md-2"<"me-3"l>><"col-md-10"<"dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0"fB>>>t<"row mx-2"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-      language: { sLengthMenu: '_MENU_', search: '', searchPlaceholder: 'Search Shifts...' },
+      language: { sLengthMenu: '_MENU_', search: '', searchPlaceholder: window.translations?.searchShifts || 'Search Shifts' },
       buttons: [
         /* Export buttons if needed */
       ]
@@ -151,7 +151,7 @@ $(function () {
   $('.add-new').on('click', function () {
     // Target '.add-new' class from Blade
     resetShiftForm();
-    offcanvasLabel.text('Add New Shift');
+    offcanvasLabel.text(window.translations?.addNewShift || 'Add New Shift');
     shiftOffcanvas?.show();
   });
 
@@ -160,7 +160,7 @@ $(function () {
     const editUrl = $(this).data('url'); // URL from button
 
     resetShiftForm();
-    offcanvasLabel.text('Loading Shift Data...');
+    offcanvasLabel.text(window.translations?.loadingShiftData || 'Loading Shift Data...');
     shiftOffcanvas?.show();
 
     $.ajax({
@@ -170,7 +170,7 @@ $(function () {
       success: function (response) {
         if (response.success && response.shift) {
           const data = response.shift;
-          offcanvasLabel.text('Edit Shift: ' + data.name);
+          offcanvasLabel.text((window.translations?.editShift || 'Edit Shift') + ': ' + data.name);
           shiftIdInput.val(data.id);
           shiftMethodInput.val('PUT'); // Set method for update
 
@@ -186,7 +186,7 @@ $(function () {
           });
         } else {
           shiftOffcanvas?.hide();
-          showErrorToast(response.message || 'Failed data load.');
+          showErrorToast(response.message || window.translations?.operationFailed || 'Operation failed.');
         }
       },
       error: function (jqXHR) {
@@ -233,7 +233,7 @@ $(function () {
             showSuccessToast(response.message);
             dtShift?.ajax.reload(null, false);
           } else {
-            showErrorToast(response.message || 'Operation failed.');
+            showErrorToast(response.message || window.translations?.operationFailed || 'Operation failed.');
           }
         },
         error: function (jqXHR) {
@@ -268,7 +268,7 @@ $(function () {
           // showSuccessToast(response.message || 'Status updated.');
           //dtShift?.row(checkbox.closest('tr')).invalidate('data').draw(false); // Reload row data
         } else {
-          showErrorToast(response.message || 'Update failed.');
+          showErrorToast(response.message || window.translations?.updateFailed || 'Update failed.');
           checkbox.prop('checked', currentStateIsActive);
         }
       },
@@ -289,16 +289,16 @@ $(function () {
     const isAssigned = button.is(':disabled'); // Check if disabled due to assignment
 
     if (isAssigned) {
-      showErrorToast('Cannot delete shift: It is currently assigned to users.');
+      showErrorToast(window.translations?.cannotDeleteShift || 'Cannot delete shift: It is currently assigned to users.');
       return;
     }
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Delete this shift?',
+      title: window.translations?.areYouSure || 'Are you sure?',
+      text: window.translations?.deleteConfirmation || 'Delete this shift?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: window.translations?.yesDeleteIt || 'Yes, delete it!',
       customClass: { confirmButton: 'btn btn-danger me-3', cancelButton: 'btn btn-label-secondary' },
       buttonsStyling: false
     }).then(function (result) {

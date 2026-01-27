@@ -354,7 +354,7 @@ $(function () {
     $('#name').val('');
     $('#code').val('');
     $('#notes').val('');
-    $('#offcanvasHolidayLabel').html('Add Holiday');
+    $('#offcanvasHolidayLabel').html(window.translations?.addHoliday || 'Add Holiday');
     fv.resetForm(true);
 
   });
@@ -371,7 +371,7 @@ $(function () {
     }
 
     // changing the title of offcanvas
-    $('#offcanvasHolidayLabel').html('Edit Holiday');
+    $('#offcanvasHolidayLabel').html(window.translations?.editHoliday || 'Edit Holiday');
 
     // get data
     $.get(`${baseUrl}holidays\/getByIdAjax\/${id}`, function (response) {

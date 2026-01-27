@@ -1,7 +1,7 @@
 @php
-    $title = 'Client Details'
+    $title = __('Client Details')
 @endphp
-@section('title', __($title))
+@section('title', __('Client Details'))
 
 @extends('layouts/layoutMaster')
 
@@ -22,48 +22,48 @@
             <div class="col">
                 <table class="table table-bordered">
                     <tr>
-                        <th>Client Name</th>
+                        <th>{{ __('Name') }}</th>
                         <td>{{$client->name}}</td>
                     </tr>
                     <tr>
-                        <th>Phone Number</th>
+                        <th>{{ __('Phone Number') }}</th>
                         <td>{{$client->phone}}</td>
                     </tr>
                     <tr>
-                        <th>Email</th>
+                        <th>{{ __('Email') }}</th>
                         <td>{{$client->email}}</td>
                     </tr>
                     <tr>
-                        <th>Address</th>
+                        <th>{{ __('Address') }}</th>
                         <td>{{$client->address}}</td>
                     </tr>
                     <tr>
-                        <th>City</th>
+                        <th>{{ __('City') }}</th>
                         <td>{{$client->city ?? 'N/A'}}</td>
                     </tr>
                     <tr>
-                        <th>Contact Person</th>
+                        <th>{{ __('Contact Person Name') }}</th>
                         <td>{{$client->contact_person_name ?? 'N/A'}}</td>
                     </tr>
                     <tr>
-                        <th>Remarks</th>
+                        <th>{{ __('Remarks') }}</th>
                         <td>{{$client->remarks ?? 'N/A'}}</td>
                     </tr>
                     <tr>
-                        <th>Created At</th>
+                        <th>{{ __('Created At') }}</th>
                         <td>{{$client->created_at}}</td>
                     </tr>
                     <tr>
-                        <th>Updated At</th>
+                        <th>{{ __('Updated At') }}</th>
                         <td>{{$client->updated_at}}</td>
                     </tr>
                     <tr>
-                        <th>Status</th>
+                        <th>{{ __('Status') }}</th>
                         <td>
                             @if($client->status == 'active')
-                                <span class="badge bg-success">Active</span>
+                                <span class="badge bg-success">{{ __('Active') }}</span>
                             @else
-                                <span class="badge bg-danger">Inactive</span>
+                                <span class="badge bg-danger">{{ __('Inactive') }}</span>
                             @endif
                         </td>
                     </tr>

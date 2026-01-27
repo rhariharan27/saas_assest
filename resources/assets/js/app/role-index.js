@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
   var addRoleModel = $('#addOrUpdateRoleModal');
 
   roleAdd.onclick = function () {
-    roleTitle.innerHTML = 'Add New Role';
+    roleTitle.innerHTML = window.translations?.addNewRole || 'Add New Role';
     $('#id').val('');
     $('#name').val('');
     $('#isMultiCheckInEnabled').prop('checked', false);
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
       $('#mobileAppAccess').prop('checked', role['is_mobile_app_access_enabled']);
       $('#webAppAccess').prop('checked', role['is_web_access_enabled']);
       $('#locationActivityTracking').prop('checked', role['is_location_activity_tracking_enabled']);
-      $('.role-title').text('Update Role');
+      $('.role-title').text(window.translations?.updateRole || 'Update Role');
       addRoleModel.modal('show');
     });
   });
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         name: {
           validators: {
             notEmpty: {
-              message: 'Please enter role name'
+              message: window.translations?.pleaseEnterRoleName || 'Please enter role name'
             }
           }
         }
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
           //Get Response
           var response = err.responseJSON;
           Swal.fire({
-            title: 'Failed',
+            title: window.getErrorTitle?.() || 'Error',
             text: response.data,
             icon: 'error',
             customClass: {
@@ -109,11 +109,11 @@ document.addEventListener('DOMContentLoaded', function (e) {
   window.deleteRole = function (id) {
     // sweetalert for confirmation of delete
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: window.translations?.areYouSure || 'Are you sure?',
+      text: window.translations?.deleteWarning || "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: window.translations?.yesDeleteIt || 'Yes, delete it!',
       customClass: {
         confirmButton: 'btn btn-primary me-3',
         cancelButton: 'btn btn-label-secondary'
@@ -129,8 +129,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
             // success sweetalert
             Swal.fire({
               icon: 'success',
-              title: 'Deleted!',
-              text: 'The role has been deleted!',
+              title: window.translations?.deleted || 'Deleted!',
+              text: window.translations?.roleDeleted || 'The role has been deleted!',
               customClass: {
                 confirmButton: 'btn btn-success'
               }
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
             var response = error.responseJSON;
             Swal.fire({
               icon: 'error',
-              title: 'Oops...',
+              title: window.translations?.oops || 'Oops...',
               text: response.data,
               customClass: {
                 confirmButton: 'btn btn-success'
