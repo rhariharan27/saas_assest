@@ -63,7 +63,7 @@ class RouteServiceProvider extends ServiceProvider
   protected function centralDomains(): array
   {
     if (empty(config('tenancy.central_domains')[0])) {
-      return [$_SERVER['HTTP_HOST']];
+      return [$_SERVER['HTTP_HOST'] ?? 'localhost'];
     }
     return config('tenancy.central_domains');
   }
