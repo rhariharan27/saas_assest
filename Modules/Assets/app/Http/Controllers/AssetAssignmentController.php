@@ -119,7 +119,7 @@ class AssetAssignmentController extends Controller
     ]);
 
         if ($validator->fails()) {
-            \Log::debug('Asset Assignment Validation Failed', [
+            Log::debug('Asset Assignment Validation Failed', [
                 'errors' => $validator->errors()->toArray(),
                 'input' => $request->all(),
                 'user_tenant_id' => Auth::user()->tenant_id,
