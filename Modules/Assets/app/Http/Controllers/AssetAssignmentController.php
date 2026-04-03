@@ -107,8 +107,7 @@ class AssetAssignmentController extends Controller
         // --- Validation ---
         $validator = Validator::make($request->all(), [
             'user_id' => ['required', 'integer', Rule::exists('users', 'id')->where(function ($query) {
-                $query->where('tenant_id', Auth::user()->tenant_id)
-                      ->where('status', 'active'); // Use the string value directly
+                $query->where('status', 'active');
             })],
             'assigned_at' => 'required|date_format:Y-m-d',
             'expected_return_date' => 'nullable|date_format:Y-m-d|after_or_equal:assigned_at',
@@ -149,7 +148,6 @@ class AssetAssignmentController extends Controller
                 'notes' => $validated['notes'] ?? null,
                 'assigned_by_id' => $assignerId,
                 'employee_approval_status' => ApprovalStatus::PENDING,
-                'tenant_id' => Auth::user()->tenant_id,
             ]);
 
             // Update asset status - Keep as ASSIGNED with pending note
