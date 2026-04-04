@@ -211,63 +211,6 @@
             </div>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">{{ __('Quick Actions') }}</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row g-3">
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                <a href="{{ route('tenant.assignments.pendingApprovalsView') }}" class="btn quick-action-btn w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
-                                    <i class="bx bx-time fs-1 text-warning mb-2"></i>
-                                    <span class="fw-medium">{{ __('Pending Assignment Approvals') }}</span>
-                                    <small class="text-muted">{{ __('Review employee responses') }}</small>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                <a href="{{ route('tenant.assignments.pendingReturnsView') }}" class="btn quick-action-btn w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
-                                    <i class="bx bx-undo fs-1 text-info mb-2"></i>
-                                    <span class="fw-medium">{{ __('Return Requests') }}</span>
-                                    <small class="text-muted">{{ __('Approve/reject returns') }}</small>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                <a href="{{ route('assets.index') }}" class="btn quick-action-btn w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
-                                    <i class="bx bx-plus fs-1 text-primary mb-2"></i>
-                                    <span class="fw-medium">{{ __('Pending Assignments') }}</span>
-                                    <small class="text-muted">{{ __('Assign asset to employee') }}</small>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                <button type="button" class="btn quick-action-btn w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3" id="sendBulkReminders">
-                                    <i class="bx bx-bell fs-1 text-secondary mb-2"></i>
-                                    <span class="fw-medium">{{ __('Send Reminders') }}</span>
-                                    <small class="text-muted">{{ __('Notify overdue employees') }}</small>
-                                </button>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                <button type="button" class="btn quick-action-btn w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3" id="generateReport">
-                                    <i class="bx bx-chart fs-1 text-success mb-2"></i>
-                                    <span class="fw-medium">{{ __('Generate Report') }}</span>
-                                    <small class="text-muted">{{ __('Export analytics') }}</small>
-                                </button>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                <a href="{{ route('assetCategories.index') }}" class="btn quick-action-btn w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
-                                    <i class="bx bx-cog fs-1 text-muted mb-2"></i>
-                                    <span class="fw-medium">{{ __('Settings') }}</span>
-                                    <small class="text-muted">{{ __('Manage categories') }}</small>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Charts and Recent Activity -->
         <div class="row mb-4">
             <!-- Approval Trends Chart -->

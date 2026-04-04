@@ -215,9 +215,6 @@
                     <button type="button" class="btn btn-outline-primary btn-sm" id="bulkRemindBtn" disabled>
                         <i class="bx bx-bell me-1"></i>{{ __('Send Reminders') }}
                     </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm ms-2" id="exportBtn">
-                        <i class="bx bx-download me-1"></i>{{ __('Export') }}
-                    </button>
                 </div>
             </div>
             <div class="card-datatable table-responsive">
